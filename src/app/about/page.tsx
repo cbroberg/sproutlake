@@ -21,7 +21,7 @@ export default function AboutPage() {
             <h1 className="text-4xl sm:text-5xl font-bold">
               {page.data.heroTitle as string}
             </h1>
-            <p className="mt-4 text-xl text-gray-400">
+            <p className="mt-4 text-xl text-gray-500 dark:text-gray-400">
               {page.data.heroSubtitle as string}
             </p>
           </div>

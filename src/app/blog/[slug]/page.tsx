@@ -73,11 +73,11 @@ export default async function BlogPostPage({
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             {post.data.title as string}
           </h1>
-          <p className="mt-6 text-xl text-gray-400 leading-relaxed">
+          <p className="mt-6 text-xl text-gray-500 dark:text-gray-400 leading-relaxed">
             {post.data.excerpt as string}
           </p>
         </div>
-        <hr className="border-white/10 my-10" />
+        <hr className="border-gray-200 dark:border-white/10 my-10" />
         <div
           className="prose prose-invert max-w-none"
           dangerouslySetInnerHTML={{
@@ -85,12 +85,12 @@ export default async function BlogPostPage({
           }}
         />
         {(post.data.tags as string[])?.length > 0 && (
-          <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
             <div className="flex flex-wrap gap-2">
               {(post.data.tags as string[]).map((tag) => (
                 <span
                   key={tag}
-                  className="text-sm text-gray-400 bg-white/5 px-3 py-1 rounded-full"
+                  className="text-sm text-gray-500 dark:text-gray-400 bg-white/5 px-3 py-1 rounded-full"
                 >
                   #{tag}
                 </span>

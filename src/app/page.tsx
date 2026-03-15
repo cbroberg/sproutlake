@@ -47,7 +47,7 @@ export default function HomePage() {
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
               {page.data.heroTitle as string}
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-300 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
               {page.data.heroSubtitle as string}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -59,7 +59,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center px-8 py-3.5 rounded-lg border border-white/20 text-white font-semibold text-lg hover:bg-white/5 transition-colors"
+                className="inline-flex items-center px-8 py-3.5 rounded-lg border border-white/20 text-white font-semibold text-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
               >
                 Learn More
               </Link>
@@ -69,13 +69,13 @@ export default function HomePage() {
       </section>
 
       {/* Problems */}
-      <section id="problems" className="py-24 bg-[#0a0a0a]">
+      <section id="problems" className="py-24 bg-gray-50 dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <h2 className="text-3xl sm:text-4xl font-bold">
               The Challenges You Face
             </h2>
-            <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Modern farming is more complex than ever. These are the problems
               we solve.
             </p>
@@ -84,7 +84,7 @@ export default function HomePage() {
             {problems.map((problem) => (
               <div
                 key={problem.id}
-                className="bg-[#141414] border border-white/5 rounded-2xl p-6 hover:border-red-500/30 transition-colors group"
+                className="bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-6 hover:border-red-500/30 transition-colors group"
               >
                 <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
                   <Icon
@@ -95,7 +95,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-semibold mb-2">
                   {problem.data.title as string}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                   {problem.data.description as string}
                 </p>
               </div>
@@ -105,7 +105,7 @@ export default function HomePage() {
       </section>
 
       {/* Solution */}
-      <section className="py-24 bg-[#0d0d0d]">
+      <section className="py-24 bg-white dark:bg-[#0d0d0d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
             <div>
@@ -115,7 +115,7 @@ export default function HomePage() {
               <h2 className="text-3xl sm:text-4xl font-bold mt-3">
                 Your Farm, Fully Optimized.
               </h2>
-              <p className="mt-6 text-gray-300 text-lg leading-relaxed">
+              <p className="mt-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
                 We transform your farm into a smart, responsive environment.
                 SproutLake bridges the gap between your animals, your equipment,
                 and you. Our network of durable sensors monitors your operations
@@ -134,13 +134,13 @@ export default function HomePage() {
                         {i + 1}
                       </span>
                     </div>
-                    <p className="text-gray-300">{step}</p>
+                    <p className="text-gray-600 dark:text-gray-300">{step}</p>
                   </div>
                 ))}
               </div>
             </div>
             <div className="relative">
-              <div className="aspect-square relative rounded-2xl overflow-hidden border border-white/5">
+              <div className="aspect-square relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5">
                 <Image
                   src="/images/sproutlake-piglets.png"
                   alt="SproutLake piglet monitoring"
@@ -154,7 +154,7 @@ export default function HomePage() {
       </section>
 
       {/* Features */}
-      <section id="features" className="py-24 bg-[#0a0a0a]">
+      <section id="features" className="py-24 bg-gray-50 dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
@@ -163,7 +163,7 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-bold mt-3">
               Everything You Need to Run a Smarter Farm
             </h2>
-            <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               From IoT sensors to AI-powered insights, SproutLake delivers a
               complete platform for modern agriculture.
             </p>
@@ -172,7 +172,7 @@ export default function HomePage() {
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="bg-[#141414] border border-white/5 rounded-2xl p-6 hover:border-green-500/30 transition-colors group"
+                className="bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-6 hover:border-green-500/30 transition-colors group"
               >
                 <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
                   <Icon
@@ -186,7 +186,7 @@ export default function HomePage() {
                 <h3 className="text-lg font-semibold mt-1 mb-2">
                   {feature.data.title as string}
                 </h3>
-                <p className="text-sm text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
                   {feature.data.description as string}
                 </p>
               </div>
@@ -196,7 +196,7 @@ export default function HomePage() {
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="py-24 bg-[#0d0d0d]">
+      <section id="pricing" className="py-24 bg-white dark:bg-[#0d0d0d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
             <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
@@ -205,7 +205,7 @@ export default function HomePage() {
             <h2 className="text-3xl sm:text-4xl font-bold mt-3">
               Plans for Every Farm Size
             </h2>
-            <p className="mt-4 text-gray-400 text-lg max-w-2xl mx-auto">
+            <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Start small and scale as you grow. All plans include our core
               hardware and software platform.
             </p>
@@ -219,7 +219,7 @@ export default function HomePage() {
                   className={`relative rounded-2xl p-8 ${
                     highlighted
                       ? "bg-green-500/5 border-2 border-green-500/40"
-                      : "bg-[#141414] border border-white/5"
+                      : "bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5"
                   }`}
                 >
                   {highlighted && (
@@ -232,7 +232,7 @@ export default function HomePage() {
                   <h3 className="text-xl font-bold">
                     {plan.data.planName as string}
                   </h3>
-                  <p className="text-sm text-gray-400 mt-1">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     {plan.data.maxSows as string}
                   </p>
                   <div className="mt-6">
@@ -240,12 +240,12 @@ export default function HomePage() {
                       {plan.data.priceAnnual as string}
                     </span>
                     {(plan.data.priceAnnual as string) !== "Contact us" && (
-                      <span className="text-gray-400 ml-1">
+                      <span className="text-gray-500 dark:text-gray-400 ml-1">
                         {plan.data.currency as string}/year
                       </span>
                     )}
                   </div>
-                  <p className="text-sm text-gray-400 mt-3">
+                  <p className="text-sm text-gray-500 dark:text-gray-400 mt-3">
                     {plan.data.description as string}
                   </p>
                   <ul className="mt-8 space-y-3">
@@ -253,7 +253,7 @@ export default function HomePage() {
                       (feat, i) => (
                         <li
                           key={i}
-                          className="flex items-start gap-2 text-sm text-gray-300"
+                          className="flex items-start gap-2 text-sm text-gray-600 dark:text-gray-300"
                         >
                           <svg
                             className="w-5 h-5 text-green-500 shrink-0 mt-0.5"
@@ -275,7 +275,7 @@ export default function HomePage() {
                   </ul>
                   {(plan.data.addons as Array<{ name: string; price: string }>)
                     ?.length > 0 && (
-                    <div className="mt-6 pt-4 border-t border-white/5">
+                    <div className="mt-6 pt-4 border-t border-gray-200 dark:border-white/5">
                       <p className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-2">
                         Add-ons
                       </p>
@@ -285,7 +285,7 @@ export default function HomePage() {
                           price: string;
                         }>
                       ).map((addon, i) => (
-                        <p key={i} className="text-sm text-gray-400">
+                        <p key={i} className="text-sm text-gray-500 dark:text-gray-400">
                           {addon.name} — {addon.price}
                         </p>
                       ))}
@@ -311,7 +311,7 @@ export default function HomePage() {
       </section>
 
       {/* Contact */}
-      <section id="contact" className="py-24 bg-[#0a0a0a]">
+      <section id="contact" className="py-24 bg-gray-50 dark:bg-[#0a0a0a]">
         <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
             Get in Touch
@@ -319,7 +319,7 @@ export default function HomePage() {
           <h2 className="text-3xl sm:text-4xl font-bold mt-3">
             Ready to See the Difference Data Can Make?
           </h2>
-          <p className="mt-4 text-gray-400 text-lg max-w-xl mx-auto">
+          <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto">
             Schedule a free, no-obligation demo with a SproutLake specialist.
             We&apos;ll walk you through the platform and discuss how we can
             tailor a solution to your specific operational goals.
@@ -328,17 +328,17 @@ export default function HomePage() {
             <input
               type="text"
               placeholder="Your name"
-              className="w-full px-4 py-3 rounded-lg bg-[#141414] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
             />
             <input
               type="email"
               placeholder="Your email"
-              className="w-full px-4 py-3 rounded-lg bg-[#141414] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
             />
             <textarea
               placeholder="Tell us about your farm"
               rows={4}
-              className="w-full px-4 py-3 rounded-lg bg-[#141414] border border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 resize-none"
             />
             <button
               type="submit"

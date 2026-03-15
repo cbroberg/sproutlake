@@ -16,7 +16,7 @@ export default function InfographicsPage() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-16">
           <h1 className="text-4xl sm:text-5xl font-bold">Infographics</h1>
-          <p className="mt-4 text-xl text-gray-400">
+          <p className="mt-4 text-xl text-gray-500 dark:text-gray-400">
             Visual deep-dives into SproutLake&apos;s AI technology,
             architecture, and features.
           </p>
@@ -26,7 +26,7 @@ export default function InfographicsPage() {
             <Link
               key={info.id}
               href={`/infographics/${info.slug}`}
-              className="group bg-[#141414] border border-white/5 rounded-2xl p-8 hover:border-green-500/30 transition-colors flex flex-col"
+              className="group bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-8 hover:border-green-500/30 transition-colors flex flex-col"
             >
               <span className="text-xs font-medium text-green-500 uppercase tracking-wider bg-green-500/10 px-2.5 py-1 rounded-full self-start mb-4">
                 {info.data.category as string}
@@ -34,7 +34,7 @@ export default function InfographicsPage() {
               <h2 className="text-xl font-bold group-hover:text-green-400 transition-colors">
                 {info.data.title as string}
               </h2>
-              <p className="mt-3 text-gray-400 text-sm leading-relaxed flex-1">
+              <p className="mt-3 text-gray-500 dark:text-gray-400 text-sm leading-relaxed flex-1">
                 {info.data.description as string}
               </p>
               <div className="mt-6 text-green-500 text-sm font-medium group-hover:text-green-400 transition-colors flex items-center gap-1">

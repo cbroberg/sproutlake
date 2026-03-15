@@ -61,11 +61,11 @@ export default async function InfographicPage({
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight mt-6">
             {info.data.title as string}
           </h1>
-          <p className="mt-6 text-xl text-gray-400 leading-relaxed">
+          <p className="mt-6 text-xl text-gray-500 dark:text-gray-400 leading-relaxed">
             {info.data.description as string}
           </p>
         </div>
-        <hr className="border-white/10 my-10" />
+        <hr className="border-gray-200 dark:border-white/10 my-10" />
         <div
           className="prose prose-invert max-w-none"
           dangerouslySetInnerHTML={{
@@ -73,10 +73,10 @@ export default async function InfographicPage({
           }}
         />
         {(info.data.audioScript as string) && (
-          <div className="mt-12 pt-8 border-t border-white/10">
+          <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
             <h2 className="text-2xl font-bold mb-6">Audio Script</h2>
             <div
-              className="bg-[#141414] border border-white/5 rounded-2xl p-8"
+              className="bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-8"
               dangerouslySetInnerHTML={{
                 __html: renderMarkdown(info.data.audioScript as string),
               }}
