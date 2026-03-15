@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SproutLake - Tier 1 Statistical Anomaly Detection</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+	<!-- 
+        Chosen Palette: Brilliant Blues (#003F5C, #34657F, #668BA4, #99B2C9, #CCE0EE)
+        Application Structure Plan: The SPA is structured as a narrative infographic that scrolls vertically. It begins with a hook (The Challenge), explains the statistical method (The Solution), demonstrates it with an interactive simulation (How It Works), allows user interaction with parameters (Interactive Explorer), and concludes with the benefits. This narrative structure was chosen to guide a non-expert user from a problem to a solution, making a complex technical topic digestible and engaging.
+        Visualization & Content Choices: 
+        - Big Number Stat -> Goal: Inform -> Method: Large Tailwind text -> Justification: High impact for key takeaway.
+        - Process Flow -> Goal: Organize -> Method: Styled HTML/CSS Flexbox -> Justification: Clearly shows the Tier 1 -> Tier 2 escalation without using prohibited SVG/Mermaid.
+        - Simulation Chart -> Goal: Show Change -> Method: Dynamic Line Chart (Chart.js) -> Justification: The best way to visualize a time-series process and highlight anomalies as they occur in a live-updating manner.
+        - Interactive Parameter Chart -> Goal: Organize/Relationships -> Method: Line Chart with HTML Sliders (Chart.js + Vanilla JS) -> Justification: Interactively demonstrates the relationship between statistical parameters and detection sensitivity, providing a powerful learning tool.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: #CCE0EE;
+			/* lightest blue */
+		}
+
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 800px;
+			margin-left: auto;
+			margin-right: auto;
+			height: 300px;
+		}
+
+		@media (min-width: 768px) {
+			.chart-container {
+				height: 450px;
+			}
+		}
+
+		.stat-card {
+			background-color: white;
+			border-radius: 0.75rem;
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+			padding: 1.5rem;
+			border-top: 4px solid #34657F;
+		}
+
+		.cta-button {
+			transition: all 0.3s ease;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+	<!-- Header Section -->
+	<header class="bg-white shadow-sm sticky top-0 z-50">
+		<div class="container mx-auto px-6 py-4 flex justify-between items-center">
+			<div class="flex items-center">
+				   <!-- Uploaded SVG Logo with link to index -->
+				   <a href="index.html" aria-label="Go to home">
+					 <img src="./images/sproutlake.svg" alt="Sproutlake Logo" class="h-24 w-auto" />
+				   </a>
+			</div>
+			<nav class="hidden md:flex items-center space-x-6">
+				   <a href="index.html#solution" class="text-gray-600 hover:text-green-600">Solution</a>
+				   <a href="index.html#how-it-works" class="text-gray-600 hover:text-green-600">How It Works</a>
+				   <a href="index.html#features" class="text-gray-600 hover:text-green-600">Features</a>
+				   <a href="index.html#SproutLake-ai-features" class="text-gray-600 hover:text-green-600">Generative AI</a>
+				   <a href="index.html#about" class="text-gray-600 hover:text-green-600">About Us</a>
+				   <div class="relative group">
+				     <button id="infographics-menu-button" type="button" class="flex items-center text-gray-600 hover:text-green-600 focus:outline-none">
+				       Infographics
+				       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+				     </button>
+				     <div id="infographics-dropdown" class="absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity z-50">
+				       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
+				       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
+				       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
+				       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">The Three-Lane AI Highway Infographic</a>
+				       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
+				     </div>
+				   </div>
+			</nav>
+			<a href="index.html#contact"
+				class="hidden md:inline-block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button">
+				Request a Demo
+			</a>
+			<button id="mobile-menu-button" type="button" title="Open mobile menu" class="md:hidden text-gray-800 focus:outline-none">
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+					</path>
+				</svg>
+			</button>
+		</div>
+		<!-- Mobile Menu -->
+		<div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+			   <a href="index.html#solution" class="block text-gray-600 hover:text-green-600">Solution</a>
+			   <a href="index.html#how-it-works" class="block text-gray-600 hover:text-green-600">How It Works</a>
+			   <a href="index.html#features" class="block text-gray-600 hover:text-green-600">Features</a>
+			   <a href="index.html#SproutLake-ai-features" class="block text-gray-600 hover:text-green-600">Generative AI</a>
+			   <a href="index.html#about" class="block text-gray-600 hover:text-green-600">About Us</a>
+			   <div class="relative">
+			     <button id="mobile-infographics-menu-button" type="button" class="w-full flex items-center justify-between text-gray-600 hover:text-green-600 focus:outline-none py-2">
+			       Infographics
+			       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+			     </button>
+			     <div id="mobile-infographics-dropdown" class="hidden flex-col bg-white border border-gray-200 rounded-lg shadow-lg mt-2">
+			       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
+			       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
+			       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
+			       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">The Three-Lane AI Highway Infographic</a>
+			       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
+			       
+			     </div>
+			   </div>
+			<a href="index.html#contact"
+				class="block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button text-center mt-2">
+				Request a Demo
+			</a>
+		</div>
+	</header>
+
+	<main>
+	<div class="container mx-auto p-4 md:p-8 max-w-7xl">
+
+		<!-- Header -->
+		<header class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-black text-[#003F5C] mb-2">The Smart Gatekeeper</h1>
+			<p class="text-lg md:text-xl text-[#34657F]">How SproutLake's Tier 1 Statistical Analysis Works</p>
+		</header>
+
+		<!-- Section 1: The Challenge -->
+		<section class="mb-20">
+			<div class="stat-card text-center">
+				<h2 class="text-2xl font-bold text-[#003F5C] mb-4">The Data Deluge</h2>
+				<p class="text-lg text-[#34657F] max-w-3xl mx-auto mb-8">A single farm produces thousands of data points
+					every hour. Analyzing every single point with advanced AI is inefficient and costly. The real
+					challenge isn't just finding problems—it's filtering out the noise to find the signals that truly
+					matter.</p>
+				<div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+					<div class="text-center md:text-right md:border-r-2 border-[#99B2C9] pr-8">
+						<p class="text-6xl md:text-8xl font-black text-[#003F5C]">99.9%</p>
+						<p class="text-xl font-semibold text-[#34657F]">Of Data is Normal</p>
+					</div>
+					<div class="text-center md:text-left">
+						<p class="text-lg text-[#34657F]">Our Tier 1 system is the smart gatekeeper. It uses efficient
+							statistical analysis to instantly identify the tiny fraction of data that requires deeper
+							investigation, saving cost and focusing attention where it's needed most.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2: The Solution Explained -->
+		<section class="mb-20">
+			<div class="stat-card">
+				<h2 class="text-2xl md:text-3xl font-bold text-[#003F5C] text-center mb-8">The Solution: A Moving Target
+				</h2>
+				<p class="text-lg text-center text-[#34657F] max-w-3xl mx-auto mb-12">Instead of static "high" or "low"
+					limits which cause false alarms, our system uses a dynamic method called **Moving Average with a
+					Standard Deviation Threshold**. It learns what's "normal" for the immediate past to intelligently
+					detect what's abnormal right now.</p>
+				<div class="chart-container">
+					<canvas id="explanationChart"></canvas>
+				</div>
+			</div>
+		</section>
+
+
+		<!-- Section 3: The Simulation -->
+		<section class="mb-20">
+			<div class="stat-card">
+				<h2 class="text-2xl md:text-3xl font-bold text-[#003F5C] text-center mb-4">How It Works: Live Simulation
+				</h2>
+				<p class="text-lg text-center text-[#34657F] max-w-3xl mx-auto mb-8">Watch the Tier 1 system in action.
+					The chart below simulates a 24-hour stream of farrowing box temperature data. The system analyzes
+					each new point, adapting its "normal" range (the blue band) as it goes. See what happens when a
+					sudden, critical event occurs.</p>
+
+				<div class="chart-container mb-8">
+					<canvas id="simulationChart"></canvas>
+				</div>
+
+				<div id="simulation-status" class="text-center p-4 rounded-lg transition-all duration-500 bg-[#CCE0EE]">
+					<p id="status-text" class="text-lg font-semibold text-[#003F5C]">Press start to begin the
+						simulation.</p>
+					<p id="time-text" class="text-sm text-[#34657F]"></p>
+				</div>
+				<div class="text-center mt-6">
+					<button id="start-simulation-btn"
+						class="bg-[#003F5C] text-white font-bold py-3 px-8 rounded-lg hover:bg-[#34657F] transition-colors">Start
+						Simulation</button>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 4: The Escalation Flow -->
+		<section class="mb-20">
+			<div class="stat-card">
+				<h2 class="text-2xl md:text-3xl font-bold text-[#003F5C] text-center mb-8">From Signal to Insight: The
+					Hybrid Approach</h2>
+				<div class="flex flex-col md:flex-row items-center justify-center space-y-4 md:space-y-0 md:space-x-8">
+					<div class="text-center p-4 border-2 border-[#99B2C9] rounded-lg">
+						<p class="text-lg font-bold text-[#003F5C]">Tier 1</p>
+						<p class="text-[#34657F]">Statistical analysis flags an anomaly.</p>
+					</div>
+					<div class="text-5xl font-thin text-[#668BA4] transform md:-rotate-0 rotate-90">&rarr;</div>
+					<div class="text-center p-4 border-2 border-[#99B2C9] rounded-lg bg-[#CCE0EE]">
+						<p class="text-lg font-bold text-[#003F5C]">Tier 2</p>
+						<p class="text-[#34657F]">Event is escalated to SproutLake AI for deep analysis.</p>
+					</div>
+					<div class="text-5xl font-thin text-[#668BA4] transform md:-rotate-0 rotate-90">&rarr;</div>
+					<div class="text-center p-4 border-2 border-[#34657F] rounded-lg bg-[#34657F] text-white">
+						<p class="text-lg font-bold">Actionable Insight</p>
+						<p>Farmer receives a detailed diagnosis and recommendation.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<script>
+		const chartTooltipConfig = {
+			plugins: {
+				tooltip: {
+					callbacks: {
+						title: function (tooltipItems) {
+							const item = tooltipItems[0];
+							let label = item.chart.data.labels[item.dataIndex];
+							if (Array.isArray(label)) {
+								return label.join(' ');
+							}
+							return label;
+						}
+					}
+				}
+			}
+		};
+
+		// --- Explanation Chart ---
+		const explanationCtx = document.getElementById('explanationChart').getContext('2d');
+		const explanationData = {
+			labels: Array.from({ length: 20 }, (_, i) => `T-${19 - i}`),
+			datasets: [{
+				label: 'Temperature (°C)',
+				data: [29.8, 29.7, 29.9, 29.8, 29.7, 30.0, 29.9, 29.8, 29.9, 30.1, 30.0, 29.9, 29.8, 29.7, 29.9, 29.8, 29.7, 30.0, 29.9, 29.8],
+				borderColor: '#003F5C',
+				backgroundColor: 'transparent',
+				pointBackgroundColor: '#003F5C',
+				tension: 0.4,
+				borderWidth: 3
+			}, {
+				label: 'Moving Average',
+				data: [29.8, 29.8, 29.8, 29.8, 29.8, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.9, 29.8, 29.8, 29.8, 29.8, 29.9, 29.9, 29.9],
+				borderColor: '#34657F',
+				borderDash: [5, 5],
+				pointRadius: 0,
+				borderWidth: 2,
+				fill: false
+			}, {
+				label: 'Upper Bound (+3 StdDev)',
+				data: Array(20).fill(30.3),
+				borderColor: '#99B2C9',
+				pointRadius: 0,
+				borderWidth: 1,
+				fill: '+1' // Fill to the dataset below it
+			}, {
+				label: 'Lower Bound (-3 StdDev)',
+				data: Array(20).fill(29.5),
+				borderColor: '#99B2C9',
+				backgroundColor: 'rgba(153, 178, 201, 0.2)',
+				pointRadius: 0,
+				borderWidth: 1,
+				fill: false
+			}]
+		};
+		new Chart(explanationCtx, {
+			type: 'line',
+			data: explanationData,
+			options: {
+				responsive: true,
+				maintainAspectRatio: false,
+				scales: {
+					y: { beginAtZero: false, suggestedMin: 28, suggestedMax: 31, grid: { color: '#CCE0EE' } },
+					x: { grid: { display: false } }
+				},
+				...chartTooltipConfig
+			}
+		});
+
+		// --- Simulation Chart ---
+		const simulationCtx = document.getElementById('simulationChart').getContext('2d');
+		const statusText = document.getElementById('status-text');
+		const timeText = document.getElementById('time-text');
+		const startBtn = document.getElementById('start-simulation-btn');
+		const statusDiv = document.getElementById('simulation-status');
+
+		const mockTemperatureStream = [29.5, 29.6, 29.4, 29.5, 29.7, 29.5, 29.6, 29.4, 29.5, 29.6, 29.7, 29.5, 29.4, 29.6, 29.5, 25.1, 25.3, 25.2, 25.4, 26.5, 27.5, 28.5, 29.5, 29.6];
+		const windowSize = 12;
+		const threshold = 3;
+
+		let simulationChart;
+		let simulationInterval;
+
+		function initializeSimulationChart() {
+			if (simulationChart) {
+				simulationChart.destroy();
+			}
+			simulationChart = new Chart(simulationCtx, {
+				type: 'line',
+				data: {
+					labels: [],
+					datasets: [
+						{ label: 'Temperature (°C)', data: [], borderColor: '#003F5C', borderWidth: 3, tension: 0.1, pointRadius: 4, pointBackgroundColor: '#003F5C' },
+						{ label: 'Moving Average', data: [], borderColor: '#34657F', borderDash: [5, 5], borderWidth: 2, pointRadius: 0 },
+						{ label: 'Upper Bound', data: [], borderColor: '#99B2C9', borderWidth: 1, pointRadius: 0, fill: '+1' },
+						{ label: 'Lower Bound', data: [], borderColor: '#99B2C9', borderWidth: 1, backgroundColor: 'rgba(153, 178, 201, 0.2)', pointRadius: 0, fill: false }
+					]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					scales: { y: { suggestedMin: 24, suggestedMax: 31, grid: { color: '#CCE0EE' } }, x: { grid: { display: false } } },
+					animation: { duration: 250 },
+					...chartTooltipConfig
+				}
+			});
+		}
+
+		function runSimulation() {
+			startBtn.disabled = true;
+			startBtn.textContent = 'Simulation Running...';
+			initializeSimulationChart();
+
+			let step = 0;
+			const dataWindow = [];
+
+			simulationInterval = setInterval(() => {
+				if (step >= mockTemperatureStream.length) {
+					clearInterval(simulationInterval);
+					statusText.textContent = 'Simulation Complete.';
+					statusDiv.classList.remove('bg-red-200', 'border-red-500');
+					statusDiv.classList.add('bg-green-200', 'border-green-500');
+					startBtn.disabled = false;
+					startBtn.textContent = 'Restart Simulation';
+					return;
+				}
+
+				const newValue = mockTemperatureStream[step];
+				const currentHour = Math.floor(step / (60 / 5));
+				const currentMinute = (step % (60 / 5)) * 5;
+				const timeLabel = `${String(currentHour).padStart(2, '0')}:${String(currentMinute).padStart(2, '0')}`;
+
+				simulationChart.data.labels.push(timeLabel);
+				simulationChart.data.datasets[0].data.push(newValue);
+
+				let isAnomaly = false;
+
+				if (dataWindow.length >= windowSize) {
+					const mean = dataWindow.reduce((a, b) => a + b, 0) / dataWindow.length;
+					const stdDev = Math.sqrt(dataWindow.map(x => Math.pow(x - mean, 2)).reduce((a, b) => a + b, 0) / dataWindow.length);
+					const diff = Math.abs(newValue - mean);
+
+					simulationChart.data.datasets[1].data.push(mean);
+					const upper = mean + threshold * stdDev;
+					const lower = mean - threshold * stdDev;
+					simulationChart.data.datasets[2].data.push(upper);
+					simulationChart.data.datasets[3].data.push(lower);
+
+					if (diff > (threshold * stdDev) && stdDev > 0.1) {
+						isAnomaly = true;
+					}
+				} else {
+					// Pad empty data for avg/bounds until window is full
+					simulationChart.data.datasets[1].data.push(null);
+					simulationChart.data.datasets[2].data.push(null);
+					simulationChart.data.datasets[3].data.push(null);
+				}
+
+				if (isAnomaly) {
+					statusDiv.classList.remove('bg-[#CCE0EE]');
+					statusDiv.classList.add('bg-red-200', 'border', 'border-red-500');
+					statusText.textContent = `ANOMALY DETECTED! Escalating to SproutLake AI...`;
+					const points = simulationChart.data.datasets[0].pointBackgroundColor;
+					if (typeof points !== 'object') { // if it is a single color string
+						simulationChart.data.datasets[0].pointBackgroundColor = Array(step).fill('#003F5C');
+					}
+					simulationChart.data.datasets[0].pointBackgroundColor[step] = 'red';
+					simulationChart.data.datasets[0].pointRadius = Array(step + 1).fill(4);
+					simulationChart.data.datasets[0].pointRadius[step] = 8;
+				} else {
+					statusText.textContent = `Monitoring... Data point normal.`;
+					statusDiv.classList.remove('bg-red-200', 'border', 'border-red-500');
+					statusDiv.classList.add('bg-[#CCE0EE]');
+				}
+
+				timeText.textContent = `Time: ${timeLabel}, Temperature: ${newValue}°C`;
+
+				dataWindow.push(newValue);
+				if (dataWindow.length > windowSize) {
+					dataWindow.shift();
+				}
+
+				simulationChart.update();
+				step++;
+			}, 500);
+		}
+
+		startBtn.addEventListener('click', () => {
+			clearInterval(simulationInterval);
+			runSimulation();
+		});
+
+		initializeSimulationChart();
+
+		// JavaScript for mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when a link is clicked
+			const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+			for (let link of mobileMenuLinks) {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('hidden');
+				});
+			}
+		}
+
+		// Dropdown for mobile nav
+		const mobileInfographicsMenuButton = document.getElementById('mobile-infographics-menu-button');
+		const mobileInfographicsDropdown = document.getElementById('mobile-infographics-dropdown');
+		if (mobileInfographicsMenuButton && mobileInfographicsDropdown) {
+			mobileInfographicsMenuButton.addEventListener('click', () => {
+				mobileInfographicsDropdown.classList.toggle('hidden');
+			});
+		}
+	</script>
+
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-gray-800 text-white py-10">
+		<div class="container mx-auto px-6 text-center">
+			<div class="flex items-center justify-center mb-4">
+				<a href="index.html" aria-label="Go to home">
+					<img src="./images/sproutlake-white.svg" alt="Sproutlake Logo" class="h-12 w-auto">
+				</a>
+			</div>
+			<p class="mb-4 text-gray-400">Optimizing Productive Farms</p>
+			<p class="text-gray-500 text-sm">&copy; 2025 SproutLake. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

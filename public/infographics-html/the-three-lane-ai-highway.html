@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SproutLake - The Three-Lane AI Highway</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<!-- 
+        Chosen Palette: SproutLake Brand Palette (#25333f, #84bb44, #f8fafc, #e2e8f0)
+        Application Structure Plan: The SPA is designed as a vertical scrolling narrative that explains a complex technical concept (the "Three-Lane AI Highway") in a digestible, chapter-by-chapter format. The structure follows the audio script's flow: Introduction -> Lane 1 -> Lane 2 -> Lane 3 -> Conclusion. This linear, guided-story structure was chosen because the primary goal is educational. It breaks down the AI's functionality into three distinct, interactive simulations, allowing users to understand each part before moving to the next, which is more user-friendly than a dense, dashboard-style layout.
+        Visualization & Content Choices: 
+        - Process Diagram (The Highway) -> Goal: Organize -> Method: Styled HTML/CSS Flexbox -> Interaction: Scroll-based highlighting -> Justification: Visually introduces and reinforces the core metaphor of the three lanes without using prohibited SVG/Mermaid.
+        - Data Query -> Goal: Inform/Compare -> Method: Bar Chart (Chart.js) -> Interaction: User clicks a question button, which populates the chart and a text summary -> Justification: A bar chart is the clearest way to compare categorical data (barns), and the interaction makes the Q&A concept tangible.
+        - RAG Explanation -> Goal: Organize -> Method: Multi-step HTML/CSS diagram -> Interaction: User clicks a button to trigger a step-by-step visual reveal of the RAG process -> Justification: Makes an abstract concept (RAG) easy to follow by breaking it into visible, sequential steps.
+        - Actuator Simulation -> Goal: Organize/Inform -> Method: Interactive HTML elements -> Interaction: A guided, multi-step simulation (command -> AI confirmation -> user approval -> state change) -> Justification: The safest and most effective way to demonstrate a feature that controls physical hardware, emphasizing the critical safety-confirmation loop.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: #f8fafc;
+			/* gray-50 */
+		}
+
+		.brand-dark {
+			color: #25333f;
+		}
+
+		.brand-green {
+			color: #84bb44;
+		}
+
+		.bg-brand-dark {
+			background-color: #25333f;
+		}
+
+		.bg-brand-green {
+			background-color: #84bb44;
+		}
+
+		.border-brand-green {
+			border-color: #84bb44;
+		}
+
+		.lane {
+			transition: all 0.3s ease-in-out;
+			border-bottom: 4px solid transparent;
+		}
+
+		.lane.active {
+			transform: translateY(-5px);
+			background-color: white;
+			border-bottom-color: #84bb44;
+		}
+
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			height: 250px;
+		}
+
+		@media (min-width: 768px) {
+			.chart-container {
+				height: 350px;
+			}
+		}
+
+		.fade-in {
+			animation: fadeIn 0.5s ease-in-out forwards;
+			opacity: 0;
+		}
+
+		.rag-step {
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		.rag-step.visible {
+			opacity: 1;
+		}
+
+		@keyframes fadeIn {
+			to {
+				opacity: 1;
+			}
+		}
+
+		.cta-button {
+			transition: all 0.3s ease;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+	<!-- Header Section -->
+	<header class="bg-white shadow-sm sticky top-0 z-50">
+		<div class="container mx-auto px-6 py-4 flex justify-between items-center">
+			<div class="flex items-center">
+				   <!-- Uploaded SVG Logo with link to index -->
+				   <a href="index.html" aria-label="Go to home">
+					 <img src="./images/sproutlake.svg" alt="Sproutlake Logo" class="h-24 w-auto" />
+				   </a>
+			</div>
+			<nav class="hidden md:flex items-center space-x-6">
+				   <a href="index.html#solution" class="text-gray-600 hover:text-green-600">Solution</a>
+				   <a href="index.html#how-it-works" class="text-gray-600 hover:text-green-600">How It Works</a>
+				   <a href="index.html#features" class="text-gray-600 hover:text-green-600">Features</a>
+				   <a href="index.html#SproutLake-ai-features" class="text-gray-600 hover:text-green-600">Generative AI</a>
+				   <a href="index.html#about" class="text-gray-600 hover:text-green-600">About Us</a>
+				   <div class="relative group">
+				     <button id="infographics-menu-button" type="button" class="flex items-center text-gray-600 hover:text-green-600 focus:outline-none">
+				       Infographics
+				       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+				     </button>
+				     <div id="infographics-dropdown" class="absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity z-50">
+				       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
+				       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
+				       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
+				       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">The Three-Lane AI Highway Infographic</a>
+				       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
+				     </div>
+				   </div>
+			</nav>
+			<a href="index.html#contact"
+				class="hidden md:inline-block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button">
+				Request a Demo
+			</a>
+			<button id="mobile-menu-button" type="button" title="Open mobile menu" class="md:hidden text-gray-800 focus:outline-none">
+				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+					xmlns="http://www.w3.org/2000/svg">
+					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
+					</path>
+				</svg>
+			</button>
+		</div>
+		<!-- Mobile Menu -->
+		<div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
+			   <a href="index.html#solution" class="block text-gray-600 hover:text-green-600">Solution</a>
+			   <a href="index.html#how-it-works" class="block text-gray-600 hover:text-green-600">How It Works</a>
+			   <a href="index.html#features" class="block text-gray-600 hover:text-green-600">Features</a>
+			   <a href="index.html#SproutLake-ai-features" class="block text-gray-600 hover:text-green-600">Generative AI</a>
+			   <a href="index.html#about" class="block text-gray-600 hover:text-green-600">About Us</a>
+			   <div class="relative">
+			     <button id="mobile-infographics-menu-button" type="button" class="w-full flex items-center justify-between text-gray-600 hover:text-green-600 focus:outline-none py-2">
+			       Infographics
+			       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+			     </button>
+			     <div id="mobile-infographics-dropdown" class="hidden flex-col bg-white border border-gray-200 rounded-lg shadow-lg mt-2">
+			       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
+			       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
+			       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
+			       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">The Three-Lane AI Highway Infographic</a>
+			       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
+			       
+			     </div>
+			   </div>
+			<a href="index.html#contact"
+				class="block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button text-center mt-2">
+				Request a Demo
+			</a>
+		</div>
+	</header>
+
+	<main>
+	<div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+		<!-- Header -->
+		<header class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-black brand-dark mb-2">The Three-Lane AI Highway</h1>
+			<p class="text-lg md:text-xl text-gray-600">Your AI Co-Pilot for Smarter Farm Management</p>
+		</header>
+
+		<!-- Section 1: Introduction -->
+		<section id="intro" class="mb-20 text-center">
+			<h2 class="text-3xl font-bold brand-dark mb-4">More Than a Chatbot. A Co-Pilot.</h2>
+			<p class="text-lg text-gray-700 max-w-3xl mx-auto mb-12">
+				SproutLake is designed to understand precisely what you need. When you ask a question or give a command,
+				our intelligent system routes your request down one of three specialized lanes to ensure you get the
+				most accurate, safe, and relevant response every time.
+			</p>
+			<div class="p-8 bg-white rounded-lg shadow-xl">
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
+					<div id="lane-card-1" class="lane p-6 bg-gray-50 rounded-lg shadow-md">
+						<span class="text-4xl">📊</span>
+						<h3 class="text-xl font-bold mt-2 brand-dark">Lane 1: Data Queries</h3>
+						<p class="mt-1 text-gray-600">Get performance insights.</p>
+					</div>
+					<div id="lane-card-2" class="lane p-6 bg-gray-50 rounded-lg shadow-md">
+						<span class="text-4xl">❓</span>
+						<h3 class="text-xl font-bold mt-2 brand-dark">Lane 2: Application Help</h3>
+						<p class="mt-1 text-gray-600">Learn how to use the app.</p>
+					</div>
+					<div id="lane-card-3" class="lane p-6 bg-gray-50 rounded-lg shadow-md">
+						<span class="text-4xl">⚙️</span>
+						<h3 class="text-xl font-bold mt-2 brand-dark">Lane 3: Actuator Events</h3>
+						<p class="mt-1 text-gray-600">Safely change settings.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2: Lane 1 - Data Queries -->
+		<section id="lane1" class="mb-20 pt-20 -mt-20">
+			<div class="p-6 md:p-10 bg-white rounded-lg shadow-xl">
+				<h2 class="text-3xl font-bold brand-dark mb-2">Lane 1: Data Queries</h2>
+				<p class="text-lg text-gray-600 mb-8">Your direct line to understanding your farm's performance. Ask a
+					question, and the AI analyzes your operational data to provide a clear, concise summary.</p>
+				<div class="bg-gray-50 p-6 rounded-lg border">
+					<p class="text-center font-semibold text-gray-700 mb-4">Try asking a question:</p>
+					<div class="text-center">
+						<button id="ask-data-question-btn"
+							class="bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">"Compare
+							the average daily energy use for each barn this month."</button>
+					</div>
+					<div id="data-query-response" class="mt-6 min-h-[400px]">
+						<p id="data-query-placeholder" class="text-center text-gray-500 pt-16">The answer will appear
+							here...</p>
+						<div id="data-chart-container" class="chart-container hidden">
+							<canvas id="dataQueryChart"></canvas>
+						</div>
+						<p id="data-query-summary" class="text-center font-semibold text-lg mt-4 brand-dark"></p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 3: Lane 2 - Application Help (RAG) -->
+		<section id="lane2" class="mb-20 pt-20 -mt-20">
+			<div class="p-6 md:p-10 bg-white rounded-lg shadow-xl">
+				<h2 class="text-3xl font-bold brand-dark mb-2">Lane 2: Application Help</h2>
+				<p class="text-lg text-gray-600 mb-8">Need help using the app? The AI travels this lane to search our
+					official SproutLake knowledge base, ensuring you get accurate answers grounded in our documentation.
+				</p>
+				<div class="bg-gray-50 p-6 rounded-lg border">
+					<p class="text-center font-semibold text-gray-700 mb-4">Simulate an app help question:</p>
+					<div class="text-center">
+						<button id="ask-help-question-btn"
+							class="bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">"How
+							do I recalibrate a temperature sensor?"</button>
+					</div>
+					<div id="rag-response" class="mt-8">
+						<!-- RAG Process Visualization -->
+						<div
+							class="flex flex-col md:flex-row items-center justify-between space-y-4 md:space-y-0 md:space-x-4">
+							<div id="rag-step-1" class="rag-step text-center">
+								<span class="text-3xl">💬</span>
+								<p class="font-bold">1. User Asks</p>
+							</div>
+							<div id="rag-arrow-1"
+								class="rag-step text-4xl font-thin text-gray-400 transform rotate-90 md:rotate-0">&rarr;
+							</div>
+							<div id="rag-step-2" class="rag-step text-center">
+								<span class="text-3xl">📚</span>
+								<p class="font-bold">2. Retrieve from KB</p>
+							</div>
+							<div id="rag-arrow-2"
+								class="rag-step text-4xl font-thin text-gray-400 transform rotate-90 md:rotate-0">&rarr;
+							</div>
+							<div id="rag-step-3" class="rag-step text-center">
+								<span class="text-3xl">🧠</span>
+								<p class="font-bold">3. Augment & Generate</p>
+							</div>
+						</div>
+						<div id="rag-answer-container"
+							class="mt-8 p-6 bg-green-50 border-l-4 border-brand-green rounded-r-lg"
+							style="opacity: 0; transition: opacity 0.5s ease-in-out 1.5s;">
+							<p class="font-semibold brand-dark">SproutLake AI says:</p>
+							<p id="rag-answer" class="text-gray-700"></p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 4: Lane 3 - Actuator Events -->
+		<section id="lane3" class="mb-20 pt-20 -mt-20">
+			<div class="p-6 md:p-10 bg-white rounded-lg shadow-xl">
+				<h2 class="text-3xl font-bold brand-dark mb-2">Lane 3: Actuator Events</h2>
+				<p class="text-lg text-gray-600 mb-8">The most powerful lane. When you issue a command to change a
+					setting, the AI understands it's a critical request. It first confirms the action with you before
+					executing anything, ensuring you are always in complete, safe control.</p>
+				<div class="bg-gray-50 p-6 rounded-lg border">
+					<p class="text-center font-semibold text-gray-700 mb-6">Simulate a command to change the heating
+						profile:</p>
+					<!-- State Display -->
+					<div class="max-w-md mx-auto mb-8">
+						<div class="flex justify-between items-center mb-1">
+							<span class="font-bold brand-dark">Heating Profile: Day <span
+									id="current-day-display">17</span> of 25</span>
+							<span id="days-left-display" class="text-sm text-gray-500">8 days left</span>
+						</div>
+						<div class="w-full bg-gray-200 rounded-full h-4">
+							<div id="progress-bar" class="bg-brand-green h-4 rounded-full"
+								style="width: 68%; transition: width 0.5s ease-in-out;"></div>
+						</div>
+					</div>
+					<!-- Simulation Steps -->
+					<div id="actuator-simulation-container" class="space-y-4 text-center">
+						<div id="actuator-step-1" class="fade-in">
+							<p class="text-lg italic text-gray-600">"The piglets are growing fast, please adjust their
+								program to have only 5 days left."</p>
+							<button id="send-command-btn"
+								class="mt-4 bg-brand-dark text-white font-semibold py-3 px-6 rounded-lg hover:bg-gray-700 transition-colors">Send
+								Command to AI</button>
+						</div>
+						<div id="actuator-step-2"
+							class="p-6 bg-yellow-100 border-l-4 border-yellow-500 rounded-r-lg text-left hidden">
+							<p class="font-bold text-yellow-800">SproutLake AI (Confirmation):</p>
+							<p class="text-yellow-700">You want to adjust the heating profile so there are 5 days left
+								(setting current day to 20). This will change the heating parameters. Are you sure?</p>
+							<div class="mt-4 space-x-4">
+								<button id="confirm-yes-btn"
+									class="bg-green-600 text-white font-semibold py-2 px-5 rounded-lg">Yes, I'm
+									Sure</button>
+								<button id="confirm-no-btn"
+									class="bg-red-600 text-white font-semibold py-2 px-5 rounded-lg">No, Cancel</button>
+							</div>
+						</div>
+						<div id="actuator-step-3" class="p-4 bg-green-100 text-green-800 rounded-lg hidden">
+							<p><strong class="font-bold">Confirmed.</strong> The heating profile has been updated.</p>
+						</div>
+						<div id="actuator-step-4" class="p-4 bg-red-100 text-red-800 rounded-lg hidden">
+							<p><strong class="font-bold">Cancelled.</strong> No changes have been made.</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Conclusion -->
+		<section class="text-center py-16">
+			<img src="./images/sproutlake.svg" alt="SproutLake Logo" class="h-16 mx-auto mb-4">
+			<h2 class="text-3xl font-extrabold brand-dark">From Data, to Decisions, to Action.</h2>
+			<p class="text-lg text-gray-600 mt-2">The SproutLake AI is your trusted partner for a more productive,
+				efficient, and secure farm.</p>
+		</section>
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const chartTooltipConfig = {
+				plugins: { tooltip: { callbacks: { title: function (tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; if (Array.isArray(label)) { return label.join(' '); } return label; } } } }
+			};
+
+			// --- Scrollspy for lane highlighting ---
+			const laneCards = [document.getElementById('lane-card-1'), document.getElementById('lane-card-2'), document.getElementById('lane-card-3')];
+			const laneSections = [document.getElementById('lane1'), document.getElementById('lane2'), document.getElementById('lane3')];
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					const index = laneSections.indexOf(entry.target);
+					if (entry.isIntersecting) {
+						laneCards[index].classList.add('active');
+					} else {
+						laneCards[index].classList.remove('active');
+					}
+				});
+			}, { rootMargin: "-40% 0px -40% 0px" });
+			laneSections.forEach(section => observer.observe(section));
+
+			// --- Lane 1: Data Query Logic ---
+			const askDataBtn = document.getElementById('ask-data-question-btn');
+			const dataQueryPlaceholder = document.getElementById('data-query-placeholder');
+			const dataChartContainer = document.getElementById('data-chart-container');
+			const dataQuerySummary = document.getElementById('data-query-summary');
+			let dataQueryChart;
+
+			askDataBtn.addEventListener('click', () => {
+				askDataBtn.disabled = true;
+				askDataBtn.textContent = "Analyzing...";
+				dataQueryPlaceholder.classList.add('hidden');
+				dataChartContainer.classList.remove('hidden');
+
+				// Mock data
+				const barnData = {
+					labels: ['Barn 1', 'Barn 2', 'Barn 3'],
+					datasets: [{
+						label: 'Avg. Daily Energy Use (kWh)',
+						data: [195.5, 220.1, 255.8],
+						backgroundColor: ['#668BA4', '#34657F', '#003F5C'],
+						borderColor: '#CCE0EE',
+						borderWidth: 2,
+					}]
+				};
+
+				if (dataQueryChart) dataQueryChart.destroy();
+				dataQueryChart = new Chart(document.getElementById('dataQueryChart').getContext('2d'), {
+					type: 'bar',
+					data: barnData,
+					options: {
+						responsive: true,
+						maintainAspectRatio: false,
+						scales: { y: { beginAtZero: true, title: { display: true, text: 'kWh' } } },
+						plugins: { legend: { display: false }, ...chartTooltipConfig.plugins }
+					}
+				});
+
+				setTimeout(() => {
+					dataQuerySummary.textContent = "Based on the data, Barn 3 has the highest average daily energy consumption this month at 255.8 kWh.";
+					dataQuerySummary.classList.add('fade-in');
+					askDataBtn.disabled = false;
+					askDataBtn.textContent = 'Ask Another Question';
+				}, 500);
+			});
+
+			// --- Lane 2: RAG Logic ---
+			const askHelpBtn = document.getElementById('ask-help-question-btn');
+			const ragSteps = document.querySelectorAll('.rag-step, .rag-arrow');
+			const ragAnswerContainer = document.getElementById('rag-answer-container');
+			const ragAnswer = document.getElementById('rag-answer');
+
+			askHelpBtn.addEventListener('click', () => {
+				askHelpBtn.disabled = true;
+				askHelpBtn.textContent = "Finding answer...";
+				ragSteps.forEach(el => el.classList.remove('visible'));
+				ragAnswerContainer.style.opacity = 0;
+
+				let delay = 0;
+				ragSteps.forEach(step => {
+					setTimeout(() => step.classList.add('visible'), delay);
+					delay += 500;
+				});
+
+				setTimeout(() => {
+					ragAnswer.innerHTML = "To recalibrate a temperature sensor, navigate to the 'Devices' tab, select the correct farrowing box, and tap on the sensor details. You will find a 'Recalibrate' button. You'll need a certified reference thermometer to complete the process.";
+					ragAnswerContainer.style.opacity = 1;
+					askHelpBtn.disabled = false;
+					askHelpBtn.textContent = "Ask Another Question";
+				}, 2000);
+			});
+
+			// --- Lane 3: Actuator Logic ---
+			const sendCommandBtn = document.getElementById('send-command-btn');
+			const confirmYesBtn = document.getElementById('confirm-yes-btn');
+			const confirmNoBtn = document.getElementById('confirm-no-btn');
+			const step1 = document.getElementById('actuator-step-1');
+			const step2 = document.getElementById('actuator-step-2');
+			const step3 = document.getElementById('actuator-step-3');
+			const step4 = document.getElementById('actuator-step-4');
+			const progressBar = document.getElementById('progress-bar');
+			const currentDayDisplay = document.getElementById('current-day-display');
+			const daysLeftDisplay = document.getElementById('days-left-display');
+
+			sendCommandBtn.addEventListener('click', () => {
+				step1.classList.add('hidden');
+				step2.classList.remove('hidden');
+				step2.classList.add('fade-in');
+			});
+
+			confirmNoBtn.addEventListener('click', () => {
+				step2.classList.add('hidden');
+				step4.classList.remove('hidden');
+				step4.classList.add('fade-in');
+			});
+
+			confirmYesBtn.addEventListener('click', () => {
+				step2.classList.add('hidden');
+				step3.classList.remove('hidden');
+				step3.classList.add('fade-in');
+
+				// Update the state
+				const newDay = 20;
+				const totalDays = 25;
+				const newPercentage = (newDay / totalDays) * 100;
+
+				progressBar.style.width = `${newPercentage}%`;
+				currentDayDisplay.textContent = newDay;
+				daysLeftDisplay.textContent = `${totalDays - newDay} days left`;
+			});
+		});
+
+		// JavaScript for mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when a link is clicked
+			const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+			for (let link of mobileMenuLinks) {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('hidden');
+				});
+			}
+		}
+
+		// Dropdown for mobile nav
+		const mobileInfographicsMenuButton = document.getElementById('mobile-infographics-menu-button');
+		const mobileInfographicsDropdown = document.getElementById('mobile-infographics-dropdown');
+		if (mobileInfographicsMenuButton && mobileInfographicsDropdown) {
+			mobileInfographicsMenuButton.addEventListener('click', () => {
+				mobileInfographicsDropdown.classList.toggle('hidden');
+			});
+		}
+	</script>
+
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-gray-800 text-white py-10">
+		<div class="container mx-auto px-6 text-center">
+			<div class="flex items-center justify-center mb-4">
+				<a href="index.html" aria-label="Go to home">
+					<img src="./images/sproutlake-white.svg" alt="Sproutlake Logo" class="h-12 w-auto">
+				</a>
+			</div>
+			<p class="mb-4 text-gray-400">Optimizing Productive Farms</p>
+			<p class="text-gray-500 text-sm">&copy; 2025 SproutLake. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>
