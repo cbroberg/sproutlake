@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SproutLake AI - Anomaly Detection Infographic</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;900&display=swap" rel="stylesheet">
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+		}
+
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 900px;
+			margin-left: auto;
+			margin-right: auto;
+			height: 300px;
+			max-height: 40vh;
+		}
+
+		@media (min-width: 768px) {
+			.chart-container {
+				height: 450px;
+			}
+		}
+
+		.cta-button {
+			transition: all 0.3s ease;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+	<!-- Header Section -->
+	<!-- header removed -->
+
+	<main>
+	<div class="container mx-auto p-4 md:p-8">
+
+		<!-- SECTION 1: HERO -->
+		<section class="text-center mb-16">
+			<h1 class="text-4xl md:text-6xl font-black text-[#0B2D48] mb-4">Don't Just Monitor. Understand.</h1>
+			<p class="text-lg md:text-xl text-gray-600 max-w-3xl mx-auto">Introducing SproutLake AI Anomaly Detection,
+				   powered by Senti AI. We turn raw sensor data into expert advice, protecting your most valuable
+				assets when it matters most.</p>
+			<div class="mt-8 bg-white p-6 rounded-xl shadow-2xl inline-block">
+				<p class="text-lg text-gray-700">A single missed health event during farrowing can cost over</p>
+				<p class="text-6xl md:text-7xl font-black text-[#CC333F] my-2">$400</p>
+				<p class="text-lg text-gray-700">in potential revenue. Early detection is everything.</p>
+			</div>
+		</section>
+
+		<!-- SECTION 2: THE SILENT PROBLEM -->
+		<section class="mb-16">
+			<div class="text-center mb-10">
+				<h2 class="text-3xl md:text-4xl font-bold text-[#0B2D48]">The Silent Problem in the Crate</h2>
+				<p class="text-lg text-gray-600 max-w-3xl mx-auto mt-2">A sow's water consumption is a vital sign.
+					Deviations are often the first and only indicator of a problem. But can you spot the danger in time?
+				</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-[#CC333F]">
+					<h3 class="text-xl font-bold text-gray-800">CRITICAL LOW</h3>
+					<p class="text-5xl font-black text-[#CC333F] my-3">&lt; 0.5 <span class="text-2xl">L/hr</span></p>
+					<p class="text-gray-600">A major red flag for illness, pain, or a blocked water nipple. Requires
+						immediate action.</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-[#00A0B0]">
+					<h3 class="text-xl font-bold text-gray-800">HEALTHY RANGE</h3>
+					<p class="text-5xl font-black text-[#00A0B0] my-3">0.8-1.5 <span class="text-2xl">L/hr</span></p>
+					<p class="text-gray-600">Consistent consumption indicates a healthy, comfortable, and productive
+						sow.</p>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-lg text-center border-l-8 border-[#EDC951]">
+					<h3 class="text-xl font-bold text-gray-800">WARNING HIGH</h3>
+					<p class="text-5xl font-black text-[#EDC951] my-3">&gt; 3.0 <span class="text-2xl">L/hr</span></p>
+					<p class="text-gray-600">A potential sign of fever, mastitis, or infection. Requires investigation.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 3: HOW IT WORKS -->
+		<section class="mb-16">
+			<div class="text-center mb-10">
+				<h2 class="text-3xl md:text-4xl font-bold text-[#0B2D48]">The AI Difference: From Sensor to Solution
+				</h2>
+				<p class="text-lg text-gray-600 max-w-3xl mx-auto mt-2">Our system goes beyond simple thresholds. We use
+					AI to analyze patterns and provide expert-level reasoning.</p>
+			</div>
+			<div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-0">
+				<div class="bg-white p-4 rounded-lg shadow-md text-center flex-1 w-full md:w-auto">
+					<p class="text-5xl mb-2">📡</p>
+					<h3 class="font-bold">1. Collect Data</h3>
+					<p class="text-sm text-gray-600">Sensors monitor water flow 24/7.</p>
+				</div>
+				<div class="text-2xl font-bold text-gray-400 mx-4 rotate-90 md:rotate-0">→</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center flex-1 w-full md:w-auto">
+					<p class="text-5xl mb-2">☁️</p>
+					<h3 class="font-bold">2. Stream to Platform</h3>
+					<p class="text-sm text-gray-600">Data is sent to the secure SproutLake cloud.</p>
+				</div>
+				<div class="text-2xl font-bold text-gray-400 mx-4 rotate-90 md:rotate-0">→</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center flex-1 w-full md:w-auto">
+					<p class="text-5xl mb-2">🧠</p>
+					<h3 class="font-bold">3. AI Analysis</h3>
+					   <p class="text-sm text-gray-600">SproutLake AI analyzes data against health models.</p>
+				</div>
+				<div class="text-2xl font-bold text-gray-400 mx-4 rotate-90 md:rotate-0">→</div>
+				<div class="bg-white p-4 rounded-lg shadow-md text-center flex-1 w-full md:w-auto">
+					<p class="text-5xl mb-2">📱</p>
+					<h3 class="font-bold">4. Get Actionable Alerts</h3>
+					<p class="text-sm text-gray-600">Receive expert advice on your device.</p>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 4: DATA VISUALIZATION -->
+		<section class="mb-16">
+			<div class="bg-white p-6 rounded-lg shadow-xl">
+				<div class="text-center mb-6">
+					<h2 class="text-3xl md:text-4xl font-bold text-[#0B2D48]">A Day in the Life of Sow 07B</h2>
+					<p class="text-lg text-gray-600 max-w-3xl mx-auto mt-2">The chart below shows 24 hours of real water
+						consumption data. While most of the day is normal, our AI instantly flags two critical events
+						that require attention.</p>
+				</div>
+				<div class="chart-container">
+					<canvas id="waterConsumptionChart"></canvas>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 5: FROM DATA TO ACTION -->
+		<section class="mb-16">
+			<div class="text-center mb-10">
+				<h2 class="text-3xl md:text-4xl font-bold text-[#0B2D48]">From Data to Actionable Insights</h2>
+				<p class="text-lg text-gray-600 max-w-3xl mx-auto mt-2">SproutLake doesn't just send you a number; it
+					sends you a plan. Here are the actual alerts generated by the AI for the events shown on the chart.
+				</p>
+			</div>
+			<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow-lg border-t-8 border-[#CC333F]">
+					<p class="text-sm font-bold text-[#CC333F]">AI-GENERATED ALERT: CRITICAL</p>
+					<h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">Critically Low Water Intake Detected</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li><strong>Timestamp:</strong> 6:00 AM</li>
+						<li><strong>Consumption:</strong> 0.21 Liters/Hour</li>
+						<li><strong>AI Analysis:</strong> Consumption is far below the 0.5 L/hr critical threshold. This
+							indicates the sow may be ill, in significant pain, or unable to access water.</li>
+						<li class="p-3 bg-red-50 rounded-md"><strong>Recommendation:</strong> <span
+								class="font-bold">Immediately check the sow's physical condition and ensure the water
+								nipple is functional and unobstructed.</span></li>
+					</ul>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-lg border-t-8 border-[#EDC951]">
+					<p class="text-sm font-bold text-[#EDC951]">AI-GENERATED ALERT: WARNING</p>
+					<h3 class="text-2xl font-bold text-gray-900 mt-1 mb-3">Abnormally High Water Intake Detected</h3>
+					<ul class="space-y-2 text-gray-700">
+						<li><strong>Timestamp:</strong> 3:00 PM</li>
+						<li><strong>Consumption:</strong> 4.15 Liters/Hour</li>
+						<li><strong>AI Analysis:</strong> Consumption is abnormally high, exceeding the 3.0 L/hr warning
+							threshold. This could be an early indicator of fever or infection (e.g., mastitis).</li>
+						<li class="p-3 bg-yellow-50 rounded-md"><strong>Recommendation:</strong> <span
+								class="font-bold">Check the sow for signs of fever or mastitis. Monitor her behavior and
+								water intake closely for the next few hours.</span></li>
+					</ul>
+				</div>
+			</div>
+		</section>
+
+		<!-- SECTION 6: BENEFITS -->
+		<section class="text-center mb-8">
+			<div class="text-center mb-10">
+				<h2 class="text-3xl md:text-4xl font-bold text-[#0B2D48]">The SproutLake AI Advantage</h2>
+			</div>
+			<div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+				<div class="bg-white p-6 rounded-lg shadow-md">
+					<p class="text-5xl">📉</p>
+					<h3 class="font-bold mt-2">Reduce Piglet Mortality</h3>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-md">
+					<p class="text-5xl">💰</p>
+					<h3 class="font-bold mt-2">Lower Vet Costs</h3>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-md">
+					<p class="text-5xl">❤️</p>
+					<h3 class="font-bold mt-2">Improve Animal Welfare</h3>
+				</div>
+				<div class="bg-white p-6 rounded-lg shadow-md">
+					<p class="text-5xl">✅</p>
+					<h3 class="font-bold mt-2">Gain Peace of Mind</h3>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<!-- footer removed -->
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const waterData = [];
+			const labels = [];
+			const pointBackgroundColors = [];
+			const pointRadii = [];
+
+			const normalMin = 0.8;
+			const normalMax = 1.5;
+			const lowAnomaly = 0.21;
+			const highAnomaly = 4.15;
+
+			const normalColor = '#00A0B0';
+			const lowColor = '#CC333F';
+			const highColor = '#EDC951';
+
+			for (let i = 0; i < 24; i++) {
+				let hour = i % 12 === 0 ? 12 : i % 12;
+				let ampm = i < 12 ? 'AM' : 'PM';
+				labels.push(`${hour} ${ampm}`);
+
+				if (i === 6) { // Low Anomaly
+					waterData.push(lowAnomaly);
+					pointBackgroundColors.push(lowColor);
+					pointRadii.push(8);
+				} else if (i === 15) { // High Anomaly
+					waterData.push(highAnomaly);
+					pointBackgroundColors.push(highColor);
+					pointRadii.push(8);
+				} else { // Normal Data
+					waterData.push(parseFloat((Math.random() * (normalMax - normalMin) + normalMin).toFixed(2)));
+					pointBackgroundColors.push(normalColor);
+					pointRadii.push(4);
+				}
+			}
+
+			const ctx = document.getElementById('waterConsumptionChart').getContext('2d');
+			const waterConsumptionChart = new Chart(ctx, {
+				type: 'line',
+				data: {
+					labels: labels,
+					datasets: [{
+						label: 'Water Consumption (Liters/Hour)',
+						data: waterData,
+						borderColor: '#00A0B0',
+						backgroundColor: 'rgba(0, 160, 176, 0.1)',
+						fill: true,
+						tension: 0.4,
+						pointBackgroundColor: pointBackgroundColors,
+						pointRadius: pointRadii,
+						pointHoverRadius: 10
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					scales: {
+						y: {
+							beginAtZero: true,
+							title: {
+								display: true,
+								text: 'Water Consumption (Liters)',
+								font: {
+									weight: 'bold'
+								}
+							}
+						},
+						x: {
+							title: {
+								display: true,
+								text: 'Hour of the Day',
+								font: {
+									weight: 'bold'
+								}
+							}
+						}
+					},
+					plugins: {
+						legend: {
+							display: false
+						},
+						tooltip: {
+							enabled: true,
+							backgroundColor: '#0B2D48',
+							titleFont: {
+								size: 16,
+								weight: 'bold'
+							},
+							bodyFont: {
+								size: 14
+							},
+							callbacks: {
+								title: function (tooltipItems) {
+									const item = tooltipItems[0];
+									let label = item.chart.data.labels[item.dataIndex];
+									if (Array.isArray(label)) {
+										return label.join(' ');
+									} else {
+										return label;
+									}
+								},
+								label: function (context) {
+									let label = 'Consumption: ';
+									if (context.parsed.y !== null) {
+										label += context.parsed.y + ' L/hr';
+									}
+									return label;
+								}
+							}
+						}
+					}
+				}
+			});
+		});
+
+		// JavaScript for mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when a link is clicked
+			const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+			for (let link of mobileMenuLinks) {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('hidden');
+				});
+			}
+		}
+
+		// Dropdown for mobile nav
+		const mobileInfographicsMenuButton = document.getElementById('mobile-infographics-menu-button');
+		const mobileInfographicsDropdown = document.getElementById('mobile-infographics-dropdown');
+		if (mobileInfographicsMenuButton && mobileInfographicsDropdown) {
+			mobileInfographicsMenuButton.addEventListener('click', () => {
+				mobileInfographicsDropdown.classList.toggle('hidden');
+			});
+		}
+	</script>
+
+	</main>
+
+	<!-- Footer -->
+	<footer class="bg-gray-800 text-white py-10">
+		<div class="container mx-auto px-6 text-center">
+			<div class="flex items-center justify-center mb-4">
+				<a href="index.html" aria-label="Go to home">
+					<img src="./images/sproutlake-white.svg" alt="Sproutlake Logo" class="h-12 w-auto">
+				</a>
+			</div>
+			<p class="mb-4 text-gray-400">Optimizing Productive Farms</p>
+			<p class="text-gray-500 text-sm">&copy; 2025 SproutLake. All Rights Reserved.</p>
+		</div>
+	</footer>
+
+</body>
+
+</html>

@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SproutLake - The Proactive Health Forecaster (PHF)</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<!-- 
+        Chosen Palette: Energetic & Playful (#FF6B6B, #FFD166, #06D6A0, #118AB2, #073B4C)
+        Application Structure Plan: The SPA is structured as a top-to-bottom narrative that educates the user on a complex concept (predictive forecasting). It starts with the core problem (the cost of reaction), introduces the solution (the PHF engine), provides a central interactive simulation to make the concept tangible, explains the underlying technology in a simple flow, and concludes with the high-impact benefits. This linear, story-driven approach was chosen because it's the most effective way to build understanding and demonstrate value for a sophisticated B2B technology product.
+        Visualization & Content Choices: 
+        - The Cost Curve -> Goal: Inform -> Method: Static Line Chart (Chart.js) -> Justification: Visually establishes the core business problem (reactive vs. proactive cost) in a universally understood format.
+        - Interactive Forecast Simulation -> Goal: Show Change/Relationships -> Method: Dynamic Multi-Axis Line Chart (Chart.js) with user-triggered event -> Interaction: User clicks a button to transform a 'normal' data pattern into a 'predictive' one, which reveals the AI forecast. -> Justification: This is the centerpiece that makes the abstract concept of pattern recognition tangible. It allows the user to *cause* the forecast, creating a powerful learning moment.
+        - Technology Flow Diagram -> Goal: Organize -> Method: Styled HTML/CSS Flexbox with Unicode arrows -> Justification: A clean, clear way to depict the process flow from data to insight without using prohibited SVG/Mermaid.
+        - Key Benefits -> Goal: Inform -> Method: High-impact stat cards with large text -> Justification: Makes the final value proposition scannable and memorable.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: #f7f9fc;
+		}
+
+		.card {
+			background-color: white;
+			border-radius: 0.75rem;
+			box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.07), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+			padding: 2rem;
+		}
+
+		@media (min-width: 768px) {
+			.card {
+				padding: 2.5rem;
+			}
+		}
+
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 900px;
+			margin-left: auto;
+			margin-right: auto;
+		}
+
+		.cost-chart-container {
+			height: 300px;
+		}
+
+		.forecast-chart-container {
+			height: 450px;
+		}
+
+		.fade-in-up {
+			opacity: 0;
+			transform: translateY(20px);
+			animation: fadeInUp 0.8s ease-out forwards;
+		}
+
+		@keyframes fadeInUp {
+			to {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		.cta-button {
+			transition: all 0.3s ease;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+	<!-- Header Section -->
+	<!-- header removed -->
+
+	<main>
+	<div class="container mx-auto p-4 md:p-8 max-w-6xl">
+
+		<!-- Header -->
+		<header class="text-center mb-16">
+			<h1 class="text-4xl md:text-5xl font-black text-[#073B4C] mb-2">From Reaction to Prediction</h1>
+			<p class="text-lg md:text-xl text-[#118AB2]">Introducing the SproutLake Proactive Health Forecaster (PHF)
+				Engine</p>
+		</header>
+
+		<!-- Section 1: The Problem -->
+		<section id="problem" class="mb-20">
+			<div class="card">
+				<h2 class="text-3xl font-bold text-[#073B4C] text-center mb-10">The High Cost of Being Reactive</h2>
+				<p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-12">
+					Standard anomaly alerts are a huge leap from manual checks, but they are still fundamentally
+					reactive. By the time an alert is triggered, a health issue has already begun, and the costs—in
+					terms of animal welfare, medication, and potential loss—have already started to climb. The key to
+					unlocking true efficiency is to intervene *before* the crisis.
+				</p>
+				<div class="chart-container cost-chart-container">
+					<canvas id="costCurveChart"></canvas>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 2: The Solution -->
+		<section id="solution" class="mb-20">
+			<div class="card text-center bg-[#073B4C] text-white">
+				<h2 class="text-3xl font-bold mb-4">The Solution: Proactive Forecasting</h2>
+				<p class="text-lg text-gray-200 max-w-3xl mx-auto">
+					The SproutLake PHF engine is trained to recognize the nearly invisible "shadows" of future events.
+					It analyzes subtle, multi-day patterns across all data streams to predict the probability of a
+					health crisis <strong>12-18 hours before it occurs.</strong>
+				</p>
+				<div class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
+					<div class="bg-gray-800 p-6 rounded-lg">
+						<h3 class="font-bold text-xl text-red-400 mb-2">Old Alert (Reactive)</h3>
+						<p class="font-mono bg-gray-900 p-3 rounded text-red-300">CRITICAL: Sow-7B water consumption is
+							0.2 L/hr.</p>
+						<p class="mt-3 text-gray-300">This tells you a problem is happening now.</p>
+					</div>
+					<div class="bg-[#118AB2] p-6 rounded-lg">
+						<h3 class="font-bold text-xl text-yellow-200 mb-2">New Forecast (Proactive)</h3>
+						<p class="font-mono bg-blue-900 p-3 rounded text-yellow-200">FORECAST: Sow-7B shows a 75%
+							probability of farrowing fever within 18 hours.</p>
+						<p class="mt-3 text-blue-100">This tells you a problem is likely to happen soon, giving you time
+							to prevent it.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 3: Interactive Simulation -->
+		<section id="simulation" class="mb-20">
+			<div class="card">
+				<h2 class="text-3xl font-bold text-[#073B4C] text-center mb-4">See the "Shadow Pattern"</h2>
+				<p class="text-lg text-gray-700 text-center max-w-3xl mx-auto mb-10">
+					The chart below shows 72 hours of normal data for a sow. A health crisis is often preceded by subtle
+					changes that are hard to spot. Press the button to reveal the "shadow pattern" the AI is trained to
+					detect and see the resulting forecast.
+				</p>
+				<div class="chart-container forecast-chart-container">
+					<canvas id="forecastChart"></canvas>
+				</div>
+				<div class="text-center my-8">
+					<button id="show-pattern-btn"
+						class="bg-[#FF6B6B] text-white font-bold py-3 px-8 rounded-lg hover:bg-red-600 transition-transform hover:scale-105 shadow-lg">Reveal
+						Predictive Pattern</button>
+				</div>
+				<div id="forecast-card" class="opacity-0 transition-opacity duration-1000">
+					<div class="bg-yellow-50 border-l-4 border-[#FFD166] p-6 rounded-r-lg">
+						<h3 class="font-bold text-xl text-[#073B4C] mb-2">Proactive Forecast Generated:</h3>
+						<p class="text-lg text-gray-800">Sow-7B's combined water and temperature patterns match a
+							profile with a <strong class="font-extrabold text-2xl">75%</strong> probability of
+							developing farrowing fever within 18 hours.</p>
+						<p class="mt-4 font-bold text-[#118AB2]">Recommendation: Perform a preventative health check.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 4: Technology Flow -->
+		<section id="technology" class="mb-20">
+			<div class="card">
+				<h2 class="text-3xl font-bold text-[#073B4C] text-center mb-10">How It Works: A Simple Flow</h2>
+				<div class="flex flex-col md:flex-row items-stretch justify-center text-center gap-4">
+					<div class="p-6 bg-gray-50 rounded-lg flex-1 flex flex-col justify-center">
+						<p class="text-3xl mb-2">📊</p>
+						<h3 class="font-bold text-lg">1. Data Foundation</h3>
+						<p class="text-gray-600 text-sm">Continuous data from Water, Temperature, and Energy sensors
+							builds a historical profile for each animal.</p>
+					</div>
+					<div class="self-center text-4xl font-thin text-gray-400 transform md:-rotate-0 rotate-90">&rarr;
+					</div>
+					<div class="p-6 bg-gray-50 rounded-lg flex-1 flex flex-col justify-center">
+						<p class="text-3xl mb-2">🤖</p>
+						<h3 class="font-bold text-lg">2. ML Model Analysis</h3>
+						<p class="text-gray-600 text-sm">A trained time-series model analyzes multi-day patterns and
+							generates a raw probability score.</p>
+					</div>
+					<div class="self-center text-4xl font-thin text-gray-400 transform md:-rotate-0 rotate-90">&rarr;
+					</div>
+					<div class="p-6 bg-gray-50 rounded-lg flex-1 flex flex-col justify-center">
+						<p class="text-3xl mb-2">🧠</p>
+						<h3 class="font-bold text-lg">3. Gemini AI Translation</h3>
+						<p class="text-gray-600 text-sm">Gemini translates the probability score into a clear,
+							human-readable forecast and actionable recommendation.</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Section 5: Benefits -->
+		<section id="benefits">
+			<div class="card">
+				<h2 class="text-3xl font-bold text-[#073B4C] text-center mb-10">The Future of Farm Management</h2>
+				<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+					<div class="text-center bg-green-50 p-6 rounded-lg border-t-4 border-[#06D6A0]">
+						<p class="text-4xl mb-2">🐷</p>
+						<h3 class="text-xl font-bold">Reduce Piglet Mortality</h3>
+					</div>
+					<div class="text-center bg-green-50 p-6 rounded-lg border-t-4 border-[#06D6A0]">
+						<p class="text-4xl mb-2">💊</p>
+						<h3 class="text-xl font-bold">Lower Vet & Medication Costs</h3>
+					</div>
+					<div class="text-center bg-green-50 p-6 rounded-lg border-t-4 border-[#06D6A0]">
+						<p class="text-4xl mb-2">❤️</p>
+						<h3 class="text-xl font-bold">Improve Animal Welfare</h3>
+					</div>
+					<div class="text-center bg-green-50 p-6 rounded-lg border-t-4 border-[#06D6A0]">
+						<p class="text-4xl mb-2">⏱️</p>
+						<h3 class="text-xl font-bold">Enhance Labor Efficiency</h3>
+					</div>
+				</div>
+			</div>
+		</section>
+
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const chartTooltipConfig = { plugins: { tooltip: { callbacks: { title: function (tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; if (Array.isArray(label)) { return label.join(' '); } return label; } } } } };
+			const FONT_COLOR = '#073B4C';
+
+			// --- Cost Curve Chart ---
+			const costCtx = document.getElementById('costCurveChart').getContext('2d');
+			new Chart(costCtx, {
+				type: 'line',
+				data: {
+					labels: ['-48h', '-24h', 'Event Occurs', '+24h', '+48h'],
+					datasets: [{
+						label: 'Cost of Intervention',
+						data: [1, 2, 100, 80, 60],
+						borderColor: '#FF6B6B',
+						backgroundColor: 'rgba(255, 107, 107, 0.2)',
+						fill: true,
+						tension: 0.1,
+					}]
+				},
+				options: {
+					responsive: true,
+					maintainAspectRatio: false,
+					scales: {
+						y: { title: { display: true, text: 'Relative Cost', color: FONT_COLOR }, ticks: { callback: () => '' } },
+						x: { title: { display: true, text: 'Time Relative to Critical Event', color: FONT_COLOR }, ticks: { color: FONT_COLOR } }
+					},
+					plugins: {
+						legend: { display: false },
+						...chartTooltipConfig.plugins,
+						annotation: {
+							annotations: {
+								line1: {
+									type: 'line',
+									xMin: 2, xMax: 2,
+									borderColor: '#118AB2',
+									borderWidth: 2,
+									borderDash: [6, 6],
+								},
+								label1: {
+									type: 'label',
+									xValue: 0.5, yValue: 50,
+									content: ['Proactive Intervention Window', '(PHF)'],
+									font: { size: 14, weight: 'bold' },
+									color: '#118AB2',
+								},
+								label2: {
+									type: 'label',
+									xValue: 2.8, yValue: 90,
+									content: ['Reactive Alert', '(Anomaly Detection)'],
+									font: { size: 14, weight: 'bold' },
+									color: '#FF6B6B',
+								}
+							}
+						}
+					},
+				}
+			});
+
+			// --- Forecast Simulation Chart ---
+			const forecastCtx = document.getElementById('forecastChart').getContext('2d');
+			const showPatternBtn = document.getElementById('show-pattern-btn');
+			const forecastCard = document.getElementById('forecast-card');
+			let forecastChart;
+
+			// Generate Mock Data for 72 hours
+			const forecastLabels = Array.from({ length: 72 }, (_, i) => `H-${71 - i}`);
+
+			// Normal Pattern
+			const normalWater = Array.from({ length: 72 }, () => 14 + Math.random() * 2);
+			const normalTemp = Array.from({ length: 72 }, () => 29.5 + (Math.random() - 0.5) * 0.5);
+
+			// Predictive "Shadow" Pattern
+			const predictiveWater = [...normalWater];
+			const predictiveTemp = [...normalTemp];
+			for (let i = 48; i < 72; i++) { // Last 24 hours show the pattern
+				const progress = (i - 48) / 24;
+				predictiveWater[i] -= progress * 4; // Gradual drop in water
+				predictiveTemp[i] += (Math.random() - 0.5) * (progress * 2); // Increased temp variance
+			}
+
+			const normalData = {
+				labels: forecastLabels,
+				datasets: [
+					{ label: 'Water Intake (L/day)', data: normalWater, borderColor: '#118AB2', backgroundColor: 'rgba(17, 138, 178, 0.1)', yAxisID: 'y', tension: 0.2 },
+					{ label: 'Avg Pen Temp (°C)', data: normalTemp, borderColor: '#FFD166', backgroundColor: 'rgba(255, 209, 102, 0.1)', yAxisID: 'y1', tension: 0.4 }
+				]
+			};
+
+			function createForecastChart(data) {
+				if (forecastChart) forecastChart.destroy();
+				forecastChart = new Chart(forecastCtx, {
+					type: 'line',
+					data: data,
+					options: {
+						responsive: true,
+						maintainAspectRatio: false,
+						interaction: { mode: 'index', intersect: false },
+						elements: { point: { radius: 0 } },
+						scales: {
+							x: { ticks: { maxTicksLimit: 10, color: FONT_COLOR }, title: { display: true, text: 'Hours Before Present', color: FONT_COLOR } },
+							y: { type: 'linear', display: true, position: 'left', title: { display: true, text: 'Water Intake (L/day)', color: '#118AB2' }, ticks: { color: '#118AB2' }, suggestedMin: 8, suggestedMax: 18 },
+							y1: { type: 'linear', display: true, position: 'right', title: { display: true, text: 'Temperature (°C)', color: '#FFD166' }, grid: { drawOnChartArea: false }, ticks: { color: '#FFD166' }, suggestedMin: 28, suggestedMax: 31 }
+						},
+						...chartTooltipConfig
+					}
+				});
+			}
+
+			createForecastChart(normalData);
+
+			showPatternBtn.addEventListener('click', () => {
+				showPatternBtn.disabled = true;
+				showPatternBtn.textContent = 'Pattern Revealed';
+				forecastChart.data.datasets[0].data = predictiveWater;
+				forecastChart.data.datasets[1].data = predictiveTemp;
+				forecastChart.update();
+				forecastCard.classList.add('fade-in-up');
+			});
+		});
+
+		// JavaScript for mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when a link is clicked
+			const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+			for (let link of mobileMenuLinks) {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('hidden');
+				});
+			}
+		}
+
+		// Dropdown for mobile nav
+		const mobileInfographicsMenuButton = document.getElementById('mobile-infographics-menu-button');
+		const mobileInfographicsDropdown = document.getElementById('mobile-infographics-dropdown');
+		if (mobileInfographicsMenuButton && mobileInfographicsDropdown) {
+			mobileInfographicsMenuButton.addEventListener('click', () => {
+				mobileInfographicsDropdown.classList.toggle('hidden');
+			});
+		}
+	</script>
+
+	</main>
+
+	<!-- Footer -->
+	<!-- footer removed -->
+
+</body>
+
+</html>
