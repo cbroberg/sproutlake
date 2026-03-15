@@ -17,3 +17,17 @@ html.dark body {
   background: #0a0a0a;
   color: #ededed;
 }
+
+/* Fix prose text color in light mode */
+html.light .prose p,
+html.light .prose li,
+html.light .prose blockquote {
+  color: #1f2937;
+}
+
+html.light .prose h1,
+html.light .prose h2,
+html.light .prose h3,
+html.light .prose h4 {
+  color: #111827;
+}

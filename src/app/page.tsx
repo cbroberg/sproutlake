@@ -30,24 +30,24 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero */}
+      {/* Hero — always dark overlay for readability */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
             src="/images/pigs-outside-1440.jpeg"
             alt="Farm background"
             fill
-            className="object-cover opacity-20"
+            className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a]/60 via-[#0a0a0a]/40 to-[#0a0a0a]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-44">
           <div className="max-w-3xl">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
               {page.data.heroTitle as string}
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-600 dark:text-gray-300 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl">
               {page.data.heroSubtitle as string}
             </p>
             <div className="mt-10 flex flex-wrap gap-4">
@@ -59,7 +59,7 @@ export default function HomePage() {
               </Link>
               <Link
                 href="/about"
-                className="inline-flex items-center px-8 py-3.5 rounded-lg border border-white/20 text-white font-semibold text-lg hover:bg-gray-100 dark:hover:bg-white/5 transition-colors"
+                className="inline-flex items-center px-8 py-3.5 rounded-lg border border-white/30 text-white font-semibold text-lg hover:bg-white/10 transition-colors"
               >
                 Learn More
               </Link>
