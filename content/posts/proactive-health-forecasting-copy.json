@@ -2,7 +2,7 @@
   "id": "dyiM75olW8qUq4jILqGT4",
   "slug": "proactive-health-forecasting-copy",
   "collection": "posts",
-  "status": "draft",
+  "status": "published",
   "data": {
     "title": "Demo New Editor Features",
     "excerpt": "The SproutLake Proactive Health Forecaster predicts health crises 12-18 hours before they occur. Learn how machine learning identifies the invisible 'shadow patterns' that precede critical events.",
@@ -19,5 +19,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T21:51:26.835Z",
-  "updatedAt": "2026-03-15T22:18:38.979Z"
+  "updatedAt": "2026-03-15T22:18:44.801Z"
 }
