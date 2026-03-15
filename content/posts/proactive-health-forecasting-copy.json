@@ -4,7 +4,7 @@
   "collection": "posts",
   "status": "draft",
   "data": {
-    "title": "Moving From Reactive Alerts to Proactive Health Forecasting",
+    "title": "Demo new editor features",
     "excerpt": "The SproutLake Proactive Health Forecaster predicts health crises 12-18 hours before they occur. Learn how machine learning identifies the invisible 'shadow patterns' that precede critical events.",
     "content": "## The High Cost of Being Reactive\n\nStandard anomaly alerts are a huge leap from manual checks, but they are still fundamentally reactive. By the time an alert is triggered, a health issue has already begun, and the costs — in terms of animal welfare, medication, and potential loss — have already started to climb.\n\n## Introducing the Proactive Health Forecaster\n\nThe SproutLake PHF engine is trained to recognize the nearly invisible \"shadows\" of future events. It analyzes subtle, multi-day patterns across all data streams to predict the probability of a health crisis **12-18 hours before it occurs**.\n\nA health crisis is rarely a sudden storm; it's a gathering of clouds. Over days, subtle changes in water intake, temperature, and activity create a unique pattern — a signature that predicts what's coming next. Humans can't see it, but our AI can.\n\n## How It Works\n\n1. **Data Foundation:** Continuous data from water, temperature, and energy sensors builds a historical profile for each animal.\n2. **ML Model Analysis:** A trained time-series model analyzes multi-day patterns and generates a raw probability score.\n3. **Gemini AI Translation:** Gemini translates the probability score into a clear, human-readable forecast and actionable recommendation.\n\n## The Power of Prediction\n\nThis is the ability to move from expensive treatment to low-cost prevention. It means reducing piglet mortality, lowering veterinary bills, and enhancing both animal welfare and your peace of mind.",
     "date": "2025-09-01T08:00:00.000Z",
@@ -19,5 +19,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T21:51:26.835Z",
-  "updatedAt": "2026-03-15T21:51:26.835Z"
+  "updatedAt": "2026-03-15T22:00:08.064Z"
 }
