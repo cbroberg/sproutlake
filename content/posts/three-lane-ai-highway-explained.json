@@ -6,10 +6,15 @@
   "data": {
     "title": "The Three-Lane AI Highway: Your Farm's Conversational Co-Pilot",
     "excerpt": "SproutLake's AI is more than a chatbot. It routes your requests through three specialized lanes — data queries, application help, and actuator control — to deliver the right response every time.",
-    "content": "<p>Managing a modern farm is more complex than ever. You have data on animal health, environmental conditions, and resource consumption. But how do you turn all that data into action?</p><h2>More Than a Chatbot</h2><p>At SproutLake, we've built a true AI co-pilot designed to understand precisely what you need. We call it the Three-Lane AI Highway. It's a powerful system that intelligently routes your requests to ensure you get the right response, every time.</p><h2>Lane 1: Data Queries</h2><p>Your direct line to understanding your farm's performance. When you ask, \"What was my average energy consumption last month?\" or \"Summarise the performance of Barn 3,\" the AI analyzes your operational data and provides a clear, concise summary, turning complex numbers into plain English.</p><h2>Lane 2: Application Help</h2><p>Using a technique called RAG (Retrieval-Augmented Generation), the AI searches our official SproutLake knowledge base — user manuals and FAQs — to find the exact right answer. It doesn't guess; it gives you trusted information, grounded in documentation.</p><h2>Lane 3: Actuator Events</h2><p>The most powerful lane. When you issue a command to change a setting, the AI understands it's a critical request. It first confirms the action with you before executing anything. This confirmation loop is our commitment to putting you in complete, safe control of your operation.</p>",
+    "content": "Managing a modern farm is more complex than ever. You have data on animal health, environmental conditions, and resource consumption. But how do you turn all that data into action?\n\n## More Than a Chatbot\n\nAt SproutLake, we've built a true AI co-pilot designed to understand precisely what you need. We call it the Three-Lane AI Highway. It's a powerful system that intelligently routes your requests to ensure you get the right response, every time.\n\n## Lane 1: Data Queries\n\nYour direct line to understanding your farm's performance. When you ask, \"What was my average energy consumption last month?\" or \"Summarise the performance of Barn 3,\" the AI analyzes your operational data and provides a clear, concise summary, turning complex numbers into plain English.\n\n## Lane 2: Application Help\n\nUsing a technique called RAG (Retrieval-Augmented Generation), the AI searches our official SproutLake knowledge base — user manuals and FAQs — to find the exact right answer. It doesn't guess; it gives you trusted information, grounded in documentation.\n\n## Lane 3: Actuator Events\n\nThe most powerful lane. When you issue a command to change a setting, the AI understands it's a critical request. It first confirms the action with you before executing anything. This confirmation loop is our commitment to putting you in complete, safe control of your operation.",
     "date": "2025-10-15T08:00:00.000Z",
     "author": "SproutLake Product",
-    "tags": ["ai", "chatbot", "actuator", "safety"],
+    "tags": [
+      "ai",
+      "chatbot",
+      "actuator",
+      "safety"
+    ],
     "category": "product"
   },
   "_fieldMeta": {},
