@@ -34,7 +34,7 @@ export default function HomePage() {
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
-            src="/images/pigs-outside-1440.jpeg"
+            src={page.data.heroImage as string || "/images/pigs-outside-1440.jpeg"}
             alt="Farm background"
             fill
             className="object-cover"
@@ -115,7 +115,7 @@ export default function HomePage() {
             <div className="md:w-1/2">
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
-                  src="/images/sproutlake-piglets.png"
+                  src={page.data.solutionImage as string || "/images/sproutlake-piglets.png"}
                   alt="Farmer using tablet to monitor farm"
                   width={640}
                   height={480}

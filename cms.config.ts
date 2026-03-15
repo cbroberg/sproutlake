@@ -13,6 +13,7 @@ export default defineConfig({
         { name: "heroTitle", type: "text", label: "Hero Title" },
         { name: "heroSubtitle", type: "textarea", label: "Hero Subtitle" },
         { name: "heroImage", type: "image", label: "Hero Image" },
+        { name: "solutionImage", type: "image", label: "Solution Section Image" },
         { name: "content", type: "richtext" },
         { name: "ctaText", type: "text", label: "CTA Text" },
         { name: "ctaLink", type: "text", label: "CTA Link" },
