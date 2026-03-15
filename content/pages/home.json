@@ -4,9 +4,10 @@
   "collection": "pages",
   "status": "draft",
   "data": {
-    "title": "home"
+    "title": "Home",
+    "description": "This is the home of SproutLake - the one-stop IoT service for Farmers. "
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T12:38:48.378Z",
-  "updatedAt": "2026-03-15T12:38:48.378Z"
+  "updatedAt": "2026-03-15T12:39:30.492Z"
 }
