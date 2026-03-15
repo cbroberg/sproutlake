@@ -84,8 +84,21 @@ export default defineConfig({
           ],
         },
         { name: "content", type: "richtext" },
+        { name: "htmlContent", type: "htmldoc", label: "Interactive HTML" },
+      ],
+    }),
+    defineCollection({
+      name: "podcasts",
+      label: "Podcasts",
+      urlPrefix: "/podcasts",
+      fields: [
+        { name: "title", type: "text", required: true },
+        { name: "description", type: "textarea" },
         { name: "audioFile", type: "audio", label: "Audio File" },
-        { name: "audioScript", type: "richtext", label: "Audio Script" },
+        { name: "transcript", type: "richtext", label: "Transcript" },
+        { name: "date", type: "date", label: "Publish Date" },
+        { name: "duration", type: "text", label: "Duration" },
+        { name: "tags", type: "tags", label: "Tags" },
       ],
     }),
     defineCollection({

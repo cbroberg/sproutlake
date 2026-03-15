@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCollection, getDocument } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
+import { InfographicViewer } from "./infographic-viewer";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -65,6 +66,12 @@ export default async function InfographicPage({
             {info.data.description as string}
           </p>
         </div>
+        {info.data.htmlContent && (
+          <InfographicViewer
+            htmlContent={info.data.htmlContent as string}
+            title={info.data.title as string}
+          />
+        )}
         <hr className="border-gray-200 dark:border-white/10 my-10" />
         <div
           className="prose dark:prose-invert max-w-none prose-gray"
