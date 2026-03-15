@@ -8,7 +8,7 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           <Link href="/" className="flex items-center gap-2">
             <Image
-              src="/images/sproutlake.svg"
+              src="/images/sproutlake-white.svg"
               alt="SproutLake"
               width={140}
               height={32}
