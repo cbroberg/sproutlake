@@ -2,12 +2,12 @@
   "id": "NVFjPVYPAeHwIClmp9wbr",
   "slug": "home",
   "collection": "pages",
-  "status": "draft",
+  "status": "published",
   "data": {
     "title": "home",
     "description": "Home of SproutLake - the one-stop IoT platform for farmers. "
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T12:38:48.378Z",
-  "updatedAt": "2026-03-15T12:45:05.225Z"
+  "updatedAt": "2026-03-15T12:45:23.552Z"
 }
