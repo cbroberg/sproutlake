@@ -83,83 +83,13 @@
 <body class="bg-gray-50 text-gray-800">
 
 	<!-- Header Section -->
-	<header class="bg-white shadow-sm sticky top-0 z-50">
-		<div class="container mx-auto px-6 py-4 flex justify-between items-center">
-			<div class="flex items-center">
-				   <!-- Uploaded SVG Logo with link to index -->
-				   <a href="index.html" aria-label="Go to home">
-					 <img src="./images/sproutlake.svg" alt="Sproutlake Logo" class="h-24 w-auto" />
-				   </a>
-			</div>
-			<nav class="hidden md:flex items-center space-x-6">
-				   <a href="index.html#solution" class="text-gray-600 hover:text-green-600">Solution</a>
-				   <a href="index.html#how-it-works" class="text-gray-600 hover:text-green-600">How It Works</a>
-				   <a href="index.html#features" class="text-gray-600 hover:text-green-600">Features</a>
-				   <a href="index.html#SproutLake-ai-features" class="text-gray-600 hover:text-green-600">Generative AI</a>
-				   <a href="index.html#about" class="text-gray-600 hover:text-green-600">About Us</a>
-				   <div class="relative group">
-				     <button id="infographics-menu-button" type="button" class="flex items-center text-gray-600 hover:text-green-600 focus:outline-none">
-				       Infographics
-				       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-				     </button>
-				     <div id="infographics-dropdown" class="absolute right-0 mt-2 w-80 bg-white border border-gray-200 rounded-lg shadow-lg opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 pointer-events-none group-hover:pointer-events-auto group-focus-within:pointer-events-auto transition-opacity z-50">
-				       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
-				       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
-				       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
-				       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">The Three-Lane AI Highway Infographic</a>
-				       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
-				     </div>
-				   </div>
-			</nav>
-			<a href="index.html#contact"
-				class="hidden md:inline-block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button">
-				Request a Demo
-			</a>
-			<button id="mobile-menu-button" type="button" title="Open mobile menu" class="md:hidden text-gray-800 focus:outline-none">
-				<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-					xmlns="http://www.w3.org/2000/svg">
-					<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7">
-					</path>
-				</svg>
-			</button>
-		</div>
-		<!-- Mobile Menu -->
-		<div id="mobile-menu" class="hidden md:hidden px-6 pt-2 pb-4 space-y-2">
-			   <a href="index.html#solution" class="block text-gray-600 hover:text-green-600">Solution</a>
-			   <a href="index.html#how-it-works" class="block text-gray-600 hover:text-green-600">How It Works</a>
-			   <a href="index.html#features" class="block text-gray-600 hover:text-green-600">Features</a>
-			   <a href="index.html#SproutLake-ai-features" class="block text-gray-600 hover:text-green-600">Generative AI</a>
-			   <a href="index.html#about" class="block text-gray-600 hover:text-green-600">About Us</a>
-			   <div class="relative">
-			     <button id="mobile-infographics-menu-button" type="button" class="w-full flex items-center justify-between text-gray-600 hover:text-green-600 focus:outline-none py-2">
-			       Infographics
-			       <svg class="ml-1 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
-			     </button>
-			     <div id="mobile-infographics-dropdown" class="hidden flex-col bg-white border border-gray-200 rounded-lg shadow-lg mt-2">
-			       <a href="SproutLake%20-%20Hybrid%20AI%20Engine%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Hybrid AI Engine Infographic</a>
-			       <a href="SproutLake%20-%20Introducing%20SproutLake%20AI%20Anomaly%20Detection%20infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Introducing SproutLake AI Anomaly Detection</a>
-			       <a href="SproutLake%20-%20Statistical%20Anomaly%20Detection%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Statistical Anomaly Detection Infographic</a>
-			       <a href="SproutLake%20-%20The%20Three-Lane%20AI%20Highway%20Infographic.html\" class=\"block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700\">The Three-Lane AI Highway Infographic</a>
-			       <a href="SproutLake%20-%20Proactive%20Health%20Forecaster%20Infographic.html" class="block px-6 py-3 text-gray-700 hover:bg-green-50 hover:text-green-700">Proactive Health Forecaster Infographic</a>
-			       
-			     </div>
-			   </div>
-			<a href="index.html#contact"
-				class="block bg-green-600 text-white font-semibold py-2 px-5 rounded-lg cta-button text-center mt-2">
-				Request a Demo
-			</a>
-		</div>
-	</header>
+	
 
 	<main>
 	<div class="container mx-auto p-4 md:p-8 max-w-6xl">
 
 		<!-- Header -->
-		<header class="text-center mb-16">
-			<h1 class="text-4xl md:text-5xl font-black text-[#073B4C] mb-2">From Reaction to Prediction</h1>
-			<p class="text-lg md:text-xl text-[#118AB2]">Introducing the SproutLake Proactive Health Forecaster (PHF)
-				Engine</p>
-		</header>
+		
 
 		<!-- Section 1: The Problem -->
 		<section id="problem" class="mb-20">
@@ -444,17 +374,7 @@
 	</main>
 
 	<!-- Footer -->
-	<footer class="bg-gray-800 text-white py-10">
-		<div class="container mx-auto px-6 text-center">
-			<div class="flex items-center justify-center mb-4">
-				<a href="index.html" aria-label="Go to home">
-					<img src="./images/sproutlake-white.svg" alt="Sproutlake Logo" class="h-12 w-auto">
-				</a>
-			</div>
-			<p class="mb-4 text-gray-400">Optimizing Productive Farms</p>
-			<p class="text-gray-500 text-sm">&copy; 2025 SproutLake. All Rights Reserved.</p>
-		</div>
-	</footer>
+	
 
 </body>
 

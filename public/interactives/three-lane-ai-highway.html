@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>SproutLake - The Three-Lane AI Highway</title>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap"
+		rel="stylesheet">
+	<!-- 
+        Chosen Palette: SproutLake Brand Palette (#25333f, #84bb44, #f8fafc, #e2e8f0)
+        Application Structure Plan: The SPA is designed as a vertical scrolling narrative that explains a complex technical concept (the "Three-Lane AI Highway") in a digestible, chapter-by-chapter format. The structure follows the audio script's flow: Introduction -> Lane 1 -> Lane 2 -> Lane 3 -> Conclusion. This linear, guided-story structure was chosen because the primary goal is educational. It breaks down the AI's functionality into three distinct, interactive simulations, allowing users to understand each part before moving to the next, which is more user-friendly than a dense, dashboard-style layout.
+        Visualization & Content Choices: 
+        - Process Diagram (The Highway) -> Goal: Organize -> Method: Styled HTML/CSS Flexbox -> Interaction: Scroll-based highlighting -> Justification: Visually introduces and reinforces the core metaphor of the three lanes without using prohibited SVG/Mermaid.
+        - Data Query -> Goal: Inform/Compare -> Method: Bar Chart (Chart.js) -> Interaction: User clicks a question button, which populates the chart and a text summary -> Justification: A bar chart is the clearest way to compare categorical data (barns), and the interaction makes the Q&A concept tangible.
+        - RAG Explanation -> Goal: Organize -> Method: Multi-step HTML/CSS diagram -> Interaction: User clicks a button to trigger a step-by-step visual reveal of the RAG process -> Justification: Makes an abstract concept (RAG) easy to follow by breaking it into visible, sequential steps.
+        - Actuator Simulation -> Goal: Organize/Inform -> Method: Interactive HTML elements -> Interaction: A guided, multi-step simulation (command -> AI confirmation -> user approval -> state change) -> Justification: The safest and most effective way to demonstrate a feature that controls physical hardware, emphasizing the critical safety-confirmation loop.
+        CONFIRMATION: NO SVG graphics used. NO Mermaid JS used.
+    -->
+	<style>
+		body {
+			font-family: 'Inter', sans-serif;
+			background-color: #f8fafc;
+			/* gray-50 */
+		}
+
+		.brand-dark {
+			color: #25333f;
+		}
+
+		.brand-green {
+			color: #84bb44;
+		}
+
+		.bg-brand-dark {
+			background-color: #25333f;
+		}
+
+		.bg-brand-green {
+			background-color: #84bb44;
+		}
+
+		.border-brand-green {
+			border-color: #84bb44;
+		}
+
+		.lane {
+			transition: all 0.3s ease-in-out;
+			border-bottom: 4px solid transparent;
+		}
+
+		.lane.active {
+			transform: translateY(-5px);
+			background-color: white;
+			border-bottom-color: #84bb44;
+		}
+
+		.chart-container {
+			position: relative;
+			width: 100%;
+			max-width: 700px;
+			margin-left: auto;
+			margin-right: auto;
+			height: 250px;
+		}
+
+		@media (min-width: 768px) {
+			.chart-container {
+				height: 350px;
+			}
+		}
+
+		.fade-in {
+			animation: fadeIn 0.5s ease-in-out forwards;
+			opacity: 0;
+		}
+
+		.rag-step {
+			opacity: 0;
+			transition: opacity 0.5s ease-in-out;
+		}
+
+		.rag-step.visible {
+			opacity: 1;
+		}
+
+		@keyframes fadeIn {
+			to {
+				opacity: 1;
+			}
+		}
+
+		.cta-button {
+			transition: all 0.3s ease;
+		}
+
+		.cta-button:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+		}
+	</style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+
+	<!-- Header Section -->
+	
+
+	<main>
+	<div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+		<!-- Header -->
+		
+
+		<!-- Section 1: Introduction -->
+		
+	</div>
+
+	<script>
+		document.addEventListener('DOMContentLoaded', () => {
+			const chartTooltipConfig = {
+				plugins: { tooltip: { callbacks: { title: function (tooltipItems) { const item = tooltipItems[0]; let label = item.chart.data.labels[item.dataIndex]; if (Array.isArray(label)) { return label.join(' '); } return label; } } } }
+			};
+
+			// --- Scrollspy for lane highlighting ---
+			const laneCards = [document.getElementById('lane-card-1'), document.getElementById('lane-card-2'), document.getElementById('lane-card-3')];
+			const laneSections = [document.getElementById('lane1'), document.getElementById('lane2'), document.getElementById('lane3')];
+			const observer = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					const index = laneSections.indexOf(entry.target);
+					if (entry.isIntersecting) {
+						laneCards[index].classList.add('active');
+					} else {
+						laneCards[index].classList.remove('active');
+					}
+				});
+			}, { rootMargin: "-40% 0px -40% 0px" });
+			laneSections.forEach(section => observer.observe(section));
+
+			// --- Lane 1: Data Query Logic ---
+			const askDataBtn = document.getElementById('ask-data-question-btn');
+			const dataQueryPlaceholder = document.getElementById('data-query-placeholder');
+			const dataChartContainer = document.getElementById('data-chart-container');
+			const dataQuerySummary = document.getElementById('data-query-summary');
+			let dataQueryChart;
+
+			askDataBtn.addEventListener('click', () => {
+				askDataBtn.disabled = true;
+				askDataBtn.textContent = "Analyzing...";
+				dataQueryPlaceholder.classList.add('hidden');
+				dataChartContainer.classList.remove('hidden');
+
+				// Mock data
+				const barnData = {
+					labels: ['Barn 1', 'Barn 2', 'Barn 3'],
+					datasets: [{
+						label: 'Avg. Daily Energy Use (kWh)',
+						data: [195.5, 220.1, 255.8],
+						backgroundColor: ['#668BA4', '#34657F', '#003F5C'],
+						borderColor: '#CCE0EE',
+						borderWidth: 2,
+					}]
+				};
+
+				if (dataQueryChart) dataQueryChart.destroy();
+				dataQueryChart = new Chart(document.getElementById('dataQueryChart').getContext('2d'), {
+					type: 'bar',
+					data: barnData,
+					options: {
+						responsive: true,
+						maintainAspectRatio: false,
+						scales: { y: { beginAtZero: true, title: { display: true, text: 'kWh' } } },
+						plugins: { legend: { display: false }, ...chartTooltipConfig.plugins }
+					}
+				});
+
+				setTimeout(() => {
+					dataQuerySummary.textContent = "Based on the data, Barn 3 has the highest average daily energy consumption this month at 255.8 kWh.";
+					dataQuerySummary.classList.add('fade-in');
+					askDataBtn.disabled = false;
+					askDataBtn.textContent = 'Ask Another Question';
+				}, 500);
+			});
+
+			// --- Lane 2: RAG Logic ---
+			const askHelpBtn = document.getElementById('ask-help-question-btn');
+			const ragSteps = document.querySelectorAll('.rag-step, .rag-arrow');
+			const ragAnswerContainer = document.getElementById('rag-answer-container');
+			const ragAnswer = document.getElementById('rag-answer');
+
+			askHelpBtn.addEventListener('click', () => {
+				askHelpBtn.disabled = true;
+				askHelpBtn.textContent = "Finding answer...";
+				ragSteps.forEach(el => el.classList.remove('visible'));
+				ragAnswerContainer.style.opacity = 0;
+
+				let delay = 0;
+				ragSteps.forEach(step => {
+					setTimeout(() => step.classList.add('visible'), delay);
+					delay += 500;
+				});
+
+				setTimeout(() => {
+					ragAnswer.innerHTML = "To recalibrate a temperature sensor, navigate to the 'Devices' tab, select the correct farrowing box, and tap on the sensor details. You will find a 'Recalibrate' button. You'll need a certified reference thermometer to complete the process.";
+					ragAnswerContainer.style.opacity = 1;
+					askHelpBtn.disabled = false;
+					askHelpBtn.textContent = "Ask Another Question";
+				}, 2000);
+			});
+
+			// --- Lane 3: Actuator Logic ---
+			const sendCommandBtn = document.getElementById('send-command-btn');
+			const confirmYesBtn = document.getElementById('confirm-yes-btn');
+			const confirmNoBtn = document.getElementById('confirm-no-btn');
+			const step1 = document.getElementById('actuator-step-1');
+			const step2 = document.getElementById('actuator-step-2');
+			const step3 = document.getElementById('actuator-step-3');
+			const step4 = document.getElementById('actuator-step-4');
+			const progressBar = document.getElementById('progress-bar');
+			const currentDayDisplay = document.getElementById('current-day-display');
+			const daysLeftDisplay = document.getElementById('days-left-display');
+
+			sendCommandBtn.addEventListener('click', () => {
+				step1.classList.add('hidden');
+				step2.classList.remove('hidden');
+				step2.classList.add('fade-in');
+			});
+
+			confirmNoBtn.addEventListener('click', () => {
+				step2.classList.add('hidden');
+				step4.classList.remove('hidden');
+				step4.classList.add('fade-in');
+			});
+
+			confirmYesBtn.addEventListener('click', () => {
+				step2.classList.add('hidden');
+				step3.classList.remove('hidden');
+				step3.classList.add('fade-in');
+
+				// Update the state
+				const newDay = 20;
+				const totalDays = 25;
+				const newPercentage = (newDay / totalDays) * 100;
+
+				progressBar.style.width = `${newPercentage}%`;
+				currentDayDisplay.textContent = newDay;
+				daysLeftDisplay.textContent = `${totalDays - newDay} days left`;
+			});
+		});
+
+		// JavaScript for mobile menu toggle
+		const mobileMenuButton = document.getElementById('mobile-menu-button');
+		const mobileMenu = document.getElementById('mobile-menu');
+
+		if (mobileMenuButton && mobileMenu) {
+			mobileMenuButton.addEventListener('click', () => {
+				mobileMenu.classList.toggle('hidden');
+			});
+
+			// Close mobile menu when a link is clicked
+			const mobileMenuLinks = mobileMenu.getElementsByTagName('a');
+			for (let link of mobileMenuLinks) {
+				link.addEventListener('click', () => {
+					mobileMenu.classList.add('hidden');
+				});
+			}
+		}
+
+		// Dropdown for mobile nav
+		const mobileInfographicsMenuButton = document.getElementById('mobile-infographics-menu-button');
+		const mobileInfographicsDropdown = document.getElementById('mobile-infographics-dropdown');
+		if (mobileInfographicsMenuButton && mobileInfographicsDropdown) {
+			mobileInfographicsMenuButton.addEventListener('click', () => {
+				mobileInfographicsDropdown.classList.toggle('hidden');
+			});
+		}
+	</script>
+
+	</main>
+
+	<!-- Footer -->
+	
+
+</body>
+
+</html>

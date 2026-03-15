@@ -4,11 +4,11 @@ import { getCollection, getDocument } from "@/lib/content";
 import type { Metadata } from "next";
 
 const INFOGRAPHIC_FILES: Record<string, string> = {
-  "hybrid-ai-engine": "/infographics-html/hybrid-ai-engine.html",
-  "ai-anomaly-detection": "/infographics-html/introducing-ai-anomaly-detection.html",
-  "statistical-anomaly-detection": "/infographics-html/statistical-anomaly-detection.html",
-  "three-lane-ai-highway": "/infographics-html/the-three-lane-ai-highway.html",
-  "proactive-health-forecaster": "/infographics-html/proactive-health-forecaster.html",
+  "hybrid-ai-engine": "/interactives/hybrid-ai-engine.html",
+  "ai-anomaly-detection": "/interactives/water-consumption-chart.html",
+  "statistical-anomaly-detection": "/interactives/statistical-anomaly-detection.html",
+  "three-lane-ai-highway": "/interactives/three-lane-ai-highway.html",
+  "proactive-health-forecaster": "/interactives/proactive-health-forecaster.html",
 };
 
 export async function generateStaticParams() {
