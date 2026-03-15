@@ -1,6 +1,40 @@
-import { defineConfig, defineCollection } from '@webhouse/cms';
+import { defineConfig, defineCollection, defineBlock } from '@webhouse/cms';
 
 export default defineConfig({
+  blocks: [
+    defineBlock({
+      name: "text",
+      label: "Text",
+      fields: [
+        { name: "body", type: "richtext", label: "Content" },
+      ],
+    }),
+    defineBlock({
+      name: "interactive",
+      label: "Interactive",
+      fields: [
+        { name: "interactiveId", type: "text", label: "Interactive ID", required: true },
+        { name: "caption", type: "text", label: "Caption" },
+      ],
+    }),
+    defineBlock({
+      name: "file",
+      label: "File Attachment",
+      fields: [
+        { name: "src", type: "text", label: "File URL", required: true },
+        { name: "filename", type: "text", label: "Display Name" },
+      ],
+    }),
+    defineBlock({
+      name: "image",
+      label: "Image",
+      fields: [
+        { name: "src", type: "image", label: "Image", required: true },
+        { name: "alt", type: "text", label: "Alt Text" },
+        { name: "caption", type: "text", label: "Caption" },
+      ],
+    }),
+  ],
   collections: [
     defineCollection({
       name: "pages",
@@ -120,7 +154,8 @@ export default defineConfig({
       fields: [
         { name: "title", type: "text", required: true },
         { name: "excerpt", type: "textarea", label: "Excerpt" },
-        { name: "content", type: "richtext" },
+        { name: "content", type: "richtext", label: "Content (legacy)" },
+        { name: "sections", type: "blocks", label: "Sections", blocks: ["text", "interactive", "image", "file"] },
         { name: "date", type: "date", label: "Publish Date" },
         { name: "author", type: "text", label: "Author" },
         { name: "tags", type: "tags", label: "Tags" },

@@ -78,12 +78,73 @@ export default async function BlogPostPage({
           </p>
         </div>
         <hr className="border-gray-200 dark:border-white/10 my-10" />
-        <div
-          className="prose dark:prose-invert max-w-none prose-gray"
-          dangerouslySetInnerHTML={{
-            __html: renderMarkdown(post.data.content as string),
-          }}
-        />
+
+        {/* Render sections (blocks) if available, fallback to legacy content */}
+        {Array.isArray(post.data.sections) && (post.data.sections as Record<string, unknown>[]).length > 0 ? (
+          <div className="space-y-8">
+            {(post.data.sections as Record<string, unknown>[]).map((block, i) => {
+              switch (block._block) {
+                case "text":
+                  return (
+                    <div
+                      key={i}
+                      className="prose dark:prose-invert max-w-none prose-gray"
+                      dangerouslySetInnerHTML={{ __html: renderMarkdown(block.body as string || "") }}
+                    />
+                  );
+                case "interactive":
+                  return (
+                    <div key={i} className="my-8">
+                      <iframe
+                        src={`/interactives/${block.interactiveId}.html`}
+                        title={block.caption as string || "Interactive"}
+                        style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
+                        sandbox="allow-scripts allow-same-origin"
+                      />
+                      {block.caption && (
+                        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</p>
+                      )}
+                    </div>
+                  );
+                case "image":
+                  return (
+                    <figure key={i} className="my-8">
+                      {/* eslint-disable-next-line @next/next/no-img-element */}
+                      <img
+                        src={block.src as string}
+                        alt={block.alt as string || ""}
+                        className="w-full rounded-lg"
+                      />
+                      {block.caption && (
+                        <figcaption className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</figcaption>
+                      )}
+                    </figure>
+                  );
+                case "file":
+                  return (
+                    <a
+                      key={i}
+                      href={block.src as string}
+                      download
+                      className="cms-file-attachment flex items-center gap-3 p-4 rounded-lg border border-gray-200 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 hover:border-green-500 transition-colors no-underline my-4"
+                    >
+                      <span className="text-2xl">📎</span>
+                      <span className="text-sm font-medium">{block.filename as string || (block.src as string).split("/").pop()}</span>
+                    </a>
+                  );
+                default:
+                  return null;
+              }
+            })}
+          </div>
+        ) : (
+          <div
+            className="prose dark:prose-invert max-w-none prose-gray"
+            dangerouslySetInnerHTML={{
+              __html: renderMarkdown(post.data.content as string),
+            }}
+          />
+        )}
         {(post.data.tags as string[])?.length > 0 && (
           <div className="mt-12 pt-8 border-t border-gray-200 dark:border-white/10">
             <div className="flex flex-wrap gap-2">
