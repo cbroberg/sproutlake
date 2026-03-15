@@ -17,8 +17,9 @@ export function Navbar() {
             <img
               src={logo}
               alt="SproutLake"
-              width={140}
-              height={32}
+              width={180}
+              height={48}
+              className="h-12 w-auto"
             />
           </Link>
           <div className="hidden md:flex items-center gap-8">

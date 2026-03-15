@@ -30,7 +30,7 @@ export default function HomePage() {
 
   return (
     <>
-      {/* Hero — always dark overlay for readability */}
+      {/* Hero — centered text like demo */}
       <section className="relative overflow-hidden">
         <div className="absolute inset-0">
           <Image
@@ -40,28 +40,22 @@ export default function HomePage() {
             className="object-cover"
             priority
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/40 to-black/70" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-44">
-          <div className="max-w-3xl">
+          <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
               {page.data.heroTitle as string}
             </h1>
-            <p className="mt-6 text-lg sm:text-xl text-gray-200 leading-relaxed max-w-2xl">
+            <p className="mt-6 text-lg sm:text-xl text-gray-100 leading-relaxed max-w-3xl mx-auto">
               {page.data.heroSubtitle as string}
             </p>
-            <div className="mt-10 flex flex-wrap gap-4">
+            <div className="mt-10 flex flex-wrap gap-4 justify-center">
               <Link
                 href={page.data.ctaLink as string}
-                className="inline-flex items-center px-8 py-3.5 rounded-lg bg-green-500 text-black font-semibold text-lg hover:bg-green-400 transition-colors"
+                className="inline-flex items-center px-10 py-4 rounded-lg bg-green-500 text-black font-bold text-lg hover:bg-green-400 transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 {page.data.ctaText as string}
-              </Link>
-              <Link
-                href="/about"
-                className="inline-flex items-center px-8 py-3.5 rounded-lg border border-white/30 text-white font-semibold text-lg hover:bg-white/10 transition-colors"
-              >
-                Learn More
               </Link>
             </div>
           </div>
@@ -69,85 +63,169 @@ export default function HomePage() {
       </section>
 
       {/* Problems */}
-      <section id="problems" className="py-24 bg-gray-50 dark:bg-[#0a0a0a]">
+      <section id="problems" className="py-20 bg-white dark:bg-[#0d0d0d]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-bold">
-              The Challenges You Face
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+              Are You Missing the Insights That Matter Most?
             </h2>
-            <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-              Modern farming is more complex than ever. These are the problems
-              we solve.
+            <p className="mt-4 text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
+              Managing a modern farm is more complex than ever. You can&apos;t be
+              everywhere at once, and small issues can quickly turn into costly
+              problems.
             </p>
           </div>
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-            {problems.map((problem) => (
-              <div
-                key={problem.id}
-                className="bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-6 hover:border-red-500/30 transition-colors group"
-              >
-                <div className="w-12 h-12 rounded-xl bg-red-500/10 flex items-center justify-center mb-4 group-hover:bg-red-500/20 transition-colors">
-                  <Icon
-                    name={problem.data.icon as string}
-                    className="w-6 h-6 text-red-400"
-                  />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+            {problems.map((problem, idx) => {
+              const svgIcons = [
+                /* Clock */
+                <svg key="clock" className="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+                /* Heart */
+                <svg key="heart" className="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>,
+                /* Lightning */
+                <svg key="zap" className="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>,
+                /* Puzzle / Question */
+                <svg key="question" className="w-12 h-12 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.546-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>,
+              ];
+              return (
+                <div
+                  key={problem.id}
+                  className="bg-gray-50 dark:bg-[#141414] rounded-lg p-6 text-center shadow-md dark:shadow-none dark:border dark:border-white/5"
+                >
+                  <div className="flex justify-center mb-4">
+                    {svgIcons[idx] || svgIcons[0]}
+                  </div>
+                  <h3 className="text-xl font-semibold mb-2 text-gray-900 dark:text-white">
+                    {problem.data.title as string}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">
+                    {problem.data.description as string}
+                  </p>
                 </div>
-                <h3 className="text-lg font-semibold mb-2">
-                  {problem.data.title as string}
-                </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
-                  {problem.data.description as string}
-                </p>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
       </section>
 
-      {/* Solution */}
-      <section className="py-24 bg-white dark:bg-[#0d0d0d]">
+      {/* Solution — image LEFT, text RIGHT */}
+      <section id="solution" className="py-20 bg-gray-50 dark:bg-[#0a0a0a]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-            <div>
-              <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
-                The Solution
-              </span>
-              <h2 className="text-3xl sm:text-4xl font-bold mt-3">
-                Your Farm, Fully Optimized.
+          <div className="flex flex-col md:flex-row items-center gap-12">
+            <div className="md:w-1/2">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+                <Image
+                  src="/images/sproutlake-piglets.png"
+                  alt="Farmer using tablet to monitor farm"
+                  width={640}
+                  height={480}
+                  className="w-full h-auto object-cover"
+                />
+              </div>
+            </div>
+            <div className="md:w-1/2">
+              <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white mb-4">
+                SproutLake: Your Farm, Fully Optimized.
               </h2>
-              <p className="mt-6 text-gray-600 dark:text-gray-300 text-lg leading-relaxed">
+              <p className="text-gray-600 dark:text-gray-300 text-lg mb-6 leading-relaxed">
                 We transform your farm into a smart, responsive environment.
                 SproutLake bridges the gap between your animals, your equipment,
                 and you. Our network of durable sensors monitors your operations
                 24/7 and delivers clear, actionable insights directly to your
                 phone, tablet, or computer.
               </p>
-              <div className="mt-8 space-y-4">
-                {[
-                  "Install rugged, wireless sensors with minimal disruption",
-                  "Monitor real-time data on your secure dashboard",
-                  "Make smarter, data-driven decisions",
-                ].map((step, i) => (
-                  <div key={i} className="flex items-start gap-3">
-                    <div className="w-8 h-8 rounded-full bg-green-500/10 flex items-center justify-center shrink-0 mt-0.5">
-                      <span className="text-green-400 text-sm font-bold">
-                        {i + 1}
-                      </span>
-                    </div>
-                    <p className="text-gray-600 dark:text-gray-300">{step}</p>
-                  </div>
-                ))}
+              <p className="text-xl font-bold text-gray-900 dark:text-white">
+                Stop guessing, start knowing.
+              </p>
+            </div>
+          </div>
+
+          {/* 3 mini icons row */}
+          <div className="max-w-5xl mx-auto mt-16">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 mb-12">
+              {/* IoT Sensors */}
+              <div className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10 mb-6">
+                  <svg className="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13a10 10 0 0114 0m-7 5a3 3 0 013-3m-6 0a3 3 0 016 0m-3 3v.01" /></svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">IoT Sensors</h3>
+                <p className="text-gray-600 dark:text-gray-400">Durable, wireless sensors that withstand tough farm conditions</p>
+              </div>
+              {/* Real-Time Monitoring */}
+              <div className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10 mb-6">
+                  <svg className="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="14" height="20" x="5" y="2" rx="2" strokeWidth={2} /><path d="M12 18h.01" strokeWidth={2} /></svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Real-Time Monitoring</h3>
+                <p className="text-gray-600 dark:text-gray-400">Access your data anywhere, anytime from any device</p>
+              </div>
+              {/* Smart Analytics */}
+              <div className="text-center">
+                <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10 mb-6">
+                  <svg className="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><rect width="4" height="12" x="3" y="8" rx="1" strokeWidth={2} /><rect width="4" height="16" x="10" y="4" rx="1" strokeWidth={2} /><rect width="4" height="8" x="17" y="12" rx="1" strokeWidth={2} /></svg>
+                </div>
+                <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">Smart Analytics</h3>
+                <p className="text-gray-600 dark:text-gray-400">AI-powered insights that help you make better decisions</p>
               </div>
             </div>
-            <div className="relative">
-              <div className="aspect-square relative rounded-2xl overflow-hidden border border-gray-200 dark:border-white/5">
-                <Image
-                  src="/images/sproutlake-piglets.png"
-                  alt="SproutLake piglet monitoring"
-                  fill
-                  className="object-cover"
-                />
+            <div className="text-center">
+              <Link
+                href="#how-it-works"
+                className="inline-flex items-center gap-2 bg-green-500 text-black font-semibold py-3 px-8 rounded-lg text-lg hover:bg-green-400 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+              >
+                See How It Works
+                <svg className="h-5 w-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* How It Works */}
+      <section id="how-it-works" className="py-20 bg-white dark:bg-[#0d0d0d]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl sm:text-4xl font-bold mb-12 text-gray-900 dark:text-white">
+            Get Started in Three Simple Steps
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12 relative">
+            {/* Dashed connector line for desktop */}
+            <div className="hidden md:block absolute top-10 left-[16.6%] right-[16.6%] border-t-2 border-dashed border-gray-300 dark:border-gray-700" />
+
+            {/* Step 1 */}
+            <div className="relative z-10">
+              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+                1
               </div>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Install the Hardware</h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Our rugged, wireless sensors are built to withstand the toughest
+                farm conditions. Installation is simple, getting you up and
+                running with minimal disruption.
+              </p>
+            </div>
+            {/* Step 2 */}
+            <div className="relative z-10">
+              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+                2
+              </div>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Monitor Your Dashboard</h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Data streams in real-time to your secure dashboard. View
+                heatmaps, track activity, and receive instant alerts for events
+                that need your attention.
+              </p>
+            </div>
+            {/* Step 3 */}
+            <div className="relative z-10">
+              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+                3
+              </div>
+              <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Make Smarter Decisions</h3>
+              <p className="text-gray-600 dark:text-gray-400">
+                Use powerful analytics to prevent problems and make data-driven
+                decisions that improve your farm&apos;s productivity and
+                profitability.
+              </p>
             </div>
           </div>
         </div>
@@ -160,7 +238,7 @@ export default function HomePage() {
             <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
               Features
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+            <h2 className="text-3xl sm:text-4xl font-bold mt-3 text-gray-900 dark:text-white">
               Everything You Need to Run a Smarter Farm
             </h2>
             <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
@@ -172,26 +250,105 @@ export default function HomePage() {
             {features.map((feature) => (
               <div
                 key={feature.id}
-                className="bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-6 hover:border-green-500/30 transition-colors group"
+                className="bg-white dark:bg-[#141414] border border-gray-200 dark:border-white/5 rounded-2xl p-6 hover:border-green-500/30 transition-colors group shadow-md dark:shadow-none"
               >
-                <div className="w-12 h-12 rounded-xl bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-500/20 transition-colors">
+                <div className="w-12 h-12 rounded-xl bg-green-100 dark:bg-green-500/10 flex items-center justify-center mb-4 group-hover:bg-green-200 dark:group-hover:bg-green-500/20 transition-colors">
                   <Icon
                     name={feature.data.icon as string}
-                    className="w-6 h-6 text-green-400"
+                    className="w-6 h-6 text-green-600 dark:text-green-400"
                   />
                 </div>
-                <span className="text-xs font-medium text-green-500/70 uppercase tracking-wider">
+                <span className="text-xs font-medium text-green-600 dark:text-green-500/70 uppercase tracking-wider">
                   {feature.data.category as string}
                 </span>
-                <h3 className="text-lg font-semibold mt-1 mb-2">
+                <h3 className="text-lg font-semibold mt-1 mb-2 text-gray-900 dark:text-white">
                   {feature.data.title as string}
                 </h3>
-                <p className="text-sm text-gray-500 dark:text-gray-400 leading-relaxed">
+                <p className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
                   {feature.data.description as string}
                 </p>
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Generative AI Section */}
+      <section id="generative-ai" className="py-20 bg-gray-800 dark:bg-[#111111]">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl sm:text-4xl font-bold text-white">
+              Powered by Generative AI
+            </h2>
+            <p className="text-gray-300 max-w-2xl mx-auto mt-4 text-lg">
+              SproutLake integrates the power of advanced AI models to bring you
+              cutting-edge, AI-driven insights that were never before possible.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+            {/* AI Card 1 */}
+            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-8 rounded-lg shadow-lg flex items-start space-x-6 border border-gray-600/50 dark:border-white/10">
+              <div className="bg-green-500 p-3 rounded-full shrink-0">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">AI-Powered Anomaly Detection</h3>
+                <p className="text-gray-300">
+                  Let SproutLake AI analyze your data streams 24/7. Get
+                  predictive alerts for potential health issues or equipment
+                  malfunctions <em>before</em> they become critical problems,
+                  based on subtle patterns humans can&apos;t see.
+                </p>
+              </div>
+            </div>
+            {/* AI Card 2 */}
+            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-8 rounded-lg shadow-lg flex items-start space-x-6 border border-gray-600/50 dark:border-white/10">
+              <div className="bg-green-500 p-3 rounded-full shrink-0">
+                <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+              <div>
+                <h3 className="text-xl font-bold mb-2">Natural Language Reporting</h3>
+                <p className="text-gray-300">
+                  Ask your farm questions in plain English. &quot;Summarize the
+                  farrowing performance for Barn 3 this month&quot; or
+                  &quot;What&apos;s my average daily energy and water
+                  consumption?&quot; and get instant, easy-to-understand answers
+                  from your data.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Mission / About Section */}
+      <section id="about" className="py-20 bg-gray-900 dark:bg-[#0a0a0a] text-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h3 className="text-xl font-semibold text-green-400 mb-4">Our Mission</h3>
+          <p className="text-2xl sm:text-3xl max-w-4xl mx-auto mb-10 italic leading-relaxed">
+            To empower farmers across the globe with robust, intuitive
+            technology, leading to more productive, sustainable, and profitable
+            operations for generations to come.
+          </p>
+          <div className="border-t border-gray-600 max-w-md mx-auto" />
+          <h3 className="text-xl font-semibold text-green-400 mt-10 mb-4">About SproutLake</h3>
+          <p className="text-gray-300 max-w-3xl mx-auto mb-6">
+            SproutLake is a proud joint venture between leaders in agricultural
+            IoT hardware and enterprise cloud software. We&apos;ve combined
+            decades of experience in building durable, reliable farm technology
+            with cutting-edge data analytics to create a single, powerful
+            platform built for the future of agriculture.
+          </p>
+          <Link
+            href="/about"
+            className="inline-block bg-green-500 text-black font-semibold py-2 px-6 rounded-lg hover:bg-green-400 transition-colors"
+          >
+            More
+          </Link>
         </div>
       </section>
 
@@ -202,7 +359,7 @@ export default function HomePage() {
             <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
               Pricing
             </span>
-            <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+            <h2 className="text-3xl sm:text-4xl font-bold mt-3 text-gray-900 dark:text-white">
               Plans for Every Farm Size
             </h2>
             <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-2xl mx-auto">
@@ -218,8 +375,8 @@ export default function HomePage() {
                   key={plan.id}
                   className={`relative rounded-2xl p-8 ${
                     highlighted
-                      ? "bg-green-500/5 border-2 border-green-500/40"
-                      : "bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/5"
+                      ? "bg-green-50 dark:bg-green-500/5 border-2 border-green-500/40"
+                      : "bg-gray-50 dark:bg-[#141414] border border-gray-200 dark:border-white/5"
                   }`}
                 >
                   {highlighted && (
@@ -229,14 +386,14 @@ export default function HomePage() {
                       </span>
                     </div>
                   )}
-                  <h3 className="text-xl font-bold">
+                  <h3 className="text-xl font-bold text-gray-900 dark:text-white">
                     {plan.data.planName as string}
                   </h3>
                   <p className="text-sm text-gray-500 dark:text-gray-400 mt-1">
                     {plan.data.maxSows as string}
                   </p>
                   <div className="mt-6">
-                    <span className="text-4xl font-bold">
+                    <span className="text-4xl font-bold text-gray-900 dark:text-white">
                       {plan.data.priceAnnual as string}
                     </span>
                     {(plan.data.priceAnnual as string) !== "Contact us" && (
@@ -296,7 +453,7 @@ export default function HomePage() {
                     className={`mt-8 block text-center py-3 rounded-lg font-semibold transition-colors ${
                       highlighted
                         ? "bg-green-500 text-black hover:bg-green-400"
-                        : "bg-white/5 text-white hover:bg-white/10"
+                        : "bg-gray-200 dark:bg-white/5 text-gray-900 dark:text-white hover:bg-gray-300 dark:hover:bg-white/10"
                     }`}
                   >
                     {(plan.data.priceAnnual as string) === "Contact us"
@@ -316,7 +473,7 @@ export default function HomePage() {
           <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">
             Get in Touch
           </span>
-          <h2 className="text-3xl sm:text-4xl font-bold mt-3">
+          <h2 className="text-3xl sm:text-4xl font-bold mt-3 text-gray-900 dark:text-white">
             Ready to See the Difference Data Can Make?
           </h2>
           <p className="mt-4 text-gray-500 dark:text-gray-400 text-lg max-w-xl mx-auto">
@@ -328,17 +485,17 @@ export default function HomePage() {
             <input
               type="text"
               placeholder="Your name"
-              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#141414] border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20"
             />
             <input
               type="email"
               placeholder="Your email"
-              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#141414] border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20"
             />
             <textarea
               placeholder="Tell us about your farm"
               rows={4}
-              className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-[#141414] border border-gray-200 dark:border-white/10 text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 resize-none"
+              className="w-full px-4 py-3 rounded-lg bg-white dark:bg-[#141414] border border-gray-300 dark:border-white/10 text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus:border-green-500/50 focus:ring-2 focus:ring-green-500/20 resize-none"
             />
             <button
               type="submit"
