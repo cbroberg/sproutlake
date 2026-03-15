@@ -27,7 +27,7 @@ export default async function PodcastPage({ params }: Props) {
 
   return (
     <section className="py-24">
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link href="/podcasts" className="text-sm text-green-500 hover:text-green-400 mb-8 inline-block">
           &larr; Back to Podcasts
         </Link>

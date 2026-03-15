@@ -12,7 +12,7 @@ export default function PodcastsPage() {
 
   return (
     <section className="py-24">
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-12">
           <span className="text-green-500 font-semibold text-sm uppercase tracking-wider">Podcasts</span>
           <h1 className="text-3xl sm:text-4xl font-bold mt-3 text-gray-900 dark:text-white">

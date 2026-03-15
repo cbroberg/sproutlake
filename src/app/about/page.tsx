@@ -16,7 +16,7 @@ export default function AboutPage() {
   return (
     <>
       <section className="py-24 sm:py-32">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-12">
             <h1 className="text-4xl sm:text-5xl font-bold">
               {page.data.heroTitle as string}

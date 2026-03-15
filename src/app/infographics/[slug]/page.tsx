@@ -42,7 +42,7 @@ export default async function InfographicPage({
 
   return (
     <section className="py-24 sm:py-32">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <Link
           href="/infographics"
           className="text-sm text-gray-500 hover:text-green-400 transition-colors mb-8 inline-flex items-center gap-1"
