@@ -33,6 +33,9 @@ export function Navbar() {
             <Link href="/infographics" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors">
               Infographics
             </Link>
+            <Link href="/podcasts" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors">
+              Podcasts
+            </Link>
             <Link href="/#pricing" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors">
               Pricing
             </Link>

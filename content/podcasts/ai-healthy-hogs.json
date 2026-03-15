@@ -1,0 +1,22 @@
+{
+  "id": "ai-healthy-hogs",
+  "slug": "ai-healthy-hogs",
+  "collection": "podcasts",
+  "status": "published",
+  "data": {
+    "title": "AI for Healthy Hogs: How Anomaly Detection Saves Farms $400 Per Sow",
+    "description": "The economics of AI-powered health monitoring — how early detection prevents costly losses during farrowing.",
+    "audioFile": "/audio/ai-healthy-hogs.mp3",
+    "transcript": "",
+    "date": "2026-03-15",
+    "duration": "4 min",
+    "tags": [
+      "ai",
+      "economics",
+      "farrowing"
+    ]
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T17:00:00.000Z",
+  "updatedAt": "2026-03-15T17:00:00.000Z"
+}
