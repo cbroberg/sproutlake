@@ -27,8 +27,8 @@ export function renderMarkdown(md: string): string {
       /\[([^\]]+)\]\(([^)]+)\)/g,
       '<a href="$2" class="text-green-400 underline hover:text-green-300">$1</a>'
     )
-    // Paragraphs (lines that aren't already HTML)
-    .replace(/^(?!<[huplo]|$)(.+)$/gm, '<p class="text-gray-300 mb-4 leading-relaxed">$1</p>');
+    // Paragraphs (lines that aren't already HTML — skip tags like <a, <div, <iframe, <audio, <pre, <section)
+    .replace(/^(?!<[a-z/!]|$)(.+)$/gm, '<p class="text-gray-300 mb-4 leading-relaxed">$1</p>');
 
   return html;
 }
