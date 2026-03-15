@@ -1,0 +1,17 @@
+{
+  "id": "sl-feat-analytics",
+  "slug": "advanced-analytics",
+  "collection": "features",
+  "status": "published",
+  "data": {
+    "title": "Advanced Analytics & Reporting",
+    "description": "Uncover long-term trends in your herd's performance. Compare cycles, optimize feed strategies, and plan for the future.",
+    "icon": "PieChart",
+    "category": "analytics",
+    "featured": true,
+    "sortOrder": 4
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:02:03.000Z",
+  "updatedAt": "2026-03-15T12:02:03.000Z"
+}

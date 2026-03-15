@@ -1,0 +1,17 @@
+{
+  "id": "sl-feat-farrowing",
+  "slug": "farrowing-monitoring",
+  "collection": "features",
+  "status": "published",
+  "data": {
+    "title": "24/7 Farrowing Monitoring",
+    "description": "Receive real-time alerts on sow activity and welfare. Reduce piglet mortality and intervene precisely when needed.",
+    "icon": "Users",
+    "category": "monitoring",
+    "featured": true,
+    "sortOrder": 1
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:02:00.000Z",
+  "updatedAt": "2026-03-15T12:02:00.000Z"
+}

@@ -1,0 +1,16 @@
+{
+  "id": "sl-prob-energy",
+  "slug": "energy-costs",
+  "collection": "problems",
+  "status": "published",
+  "data": {
+    "title": "Rising Energy Costs",
+    "description": "Struggling to optimize climate and resource consumption without precise data.",
+    "icon": "Zap",
+    "impact": "Without granular energy monitoring, farms overspend on heating, ventilation, and water systems with no visibility into waste.",
+    "sortOrder": 3
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:03:02.000Z",
+  "updatedAt": "2026-03-15T12:03:02.000Z"
+}

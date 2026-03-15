@@ -1,0 +1,17 @@
+{
+  "id": "sl-info-hybrid",
+  "slug": "hybrid-ai-engine",
+  "collection": "infographics",
+  "status": "published",
+  "data": {
+    "title": "The Hybrid AI Analysis Engine",
+    "description": "From Raw Data to Correlated Diagnosis. Learn how SproutLake's two-tiered hybrid AI system filters noise and finds the 0.1% of data that matters.",
+    "category": "ai",
+    "content": "<h2>The Challenge: Alert Fatigue</h2><p>A modern farm is a constant stream of data. Simple alerts for \"high\" or \"low\" values are noisy and lack context. They tell you <em>what</em> happened, but not <em>why</em>. This leads to wasted time and missed opportunities to find the root cause of a problem.</p><p><strong>99.9% of data is routine.</strong> SproutLake's engine is designed to find the 0.1% that matters.</p><h2>Our Solution: A Two-Tiered Hybrid System</h2><h3>Tier 1: Statistical Gatekeeper</h3><p>A lightweight statistical model runs every 5 minutes, analyzing data against its recent history to identify significant deviations. 99.9% of the time, data is normal and continues monitoring with no action needed. When the 0.1% anomaly is detected, it is escalated for deep analysis.</p><h3>Tier 2: Gemini AI Correlated Analysis</h3><p>All relevant data streams are sent to the Gemini AI to find the root cause and understand how events are related.</p><h2>SproutLake AI: Holistic Report</h2><p>Instead of three separate alarms, you get one intelligent diagnosis. The system provides:</p><ul><li><strong>Overall Status:</strong> Critical Temperature Drop in Farrowing Box FB-A03</li><li><strong>Correlated Diagnosis:</strong> A sudden, severe temperature drop was detected. This almost certainly triggered a high-power state in the heating system, causing the simultaneous and massive spike in the barn's overall energy consumption. The two events are directly linked.</li><li><strong>Primary Recommendation:</strong> Immediately inspect the heating element and environmental conditions in Farrowing Box FB-A03. The temperature drop indicates a potential heater failure or a significant draft.</li></ul>",
+    "audioFile": "",
+    "audioScript": ""
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:04:00.000Z",
+  "updatedAt": "2026-03-15T12:04:00.000Z"
+}

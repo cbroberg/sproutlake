@@ -1,0 +1,17 @@
+{
+  "id": "sl-feat-platform",
+  "slug": "centralized-data-platform",
+  "collection": "features",
+  "status": "published",
+  "data": {
+    "title": "Centralized Data Platform",
+    "description": "Access all your critical data in one place, from any device. Spend less time checking and more time managing.",
+    "icon": "Monitor",
+    "category": "analytics",
+    "featured": true,
+    "sortOrder": 3
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:02:02.000Z",
+  "updatedAt": "2026-03-15T12:02:02.000Z"
+}

@@ -1,0 +1,18 @@
+{
+  "id": "sl-post-anomaly",
+  "slug": "how-ai-anomaly-detection-works",
+  "collection": "posts",
+  "status": "published",
+  "data": {
+    "title": "How AI Anomaly Detection Saves Farms $400 Per Sow",
+    "excerpt": "A single missed health event during farrowing can cost over $400 in potential revenue. Learn how SproutLake's two-tiered hybrid AI system detects problems before they become crises.",
+    "content": "<p>A single missed health event during farrowing can cost over <strong>$400</strong> in potential revenue. Early detection is everything.</p><h2>The Silent Problem in the Crate</h2><p>A sow's water consumption is a vital sign. Deviations are often the first and only indicator of a problem. But can you spot the danger in time?</p><ul><li><strong>Critical Low (&lt; 0.5 L/hr):</strong> A major red flag for illness, pain, or a blocked water nipple.</li><li><strong>Healthy Range (0.8-1.5 L/hr):</strong> Consistent consumption indicates a healthy, comfortable sow.</li><li><strong>Warning High (&gt; 3.0 L/hr):</strong> A potential sign of fever, mastitis, or infection.</li></ul><h2>Our Two-Tiered Approach</h2><h3>Tier 1: The Statistical Gatekeeper</h3><p>A lightweight statistical model runs every 5 minutes, using a Moving Average with Standard Deviation Threshold. This dynamic method learns what's \"normal\" for the immediate past and intelligently detects what's abnormal right now. 99.9% of data passes through as normal. Only the 0.1% that matters gets escalated.</p><h3>Tier 2: Gemini AI Correlated Analysis</h3><p>When an anomaly is detected, all relevant data streams are sent to the Gemini AI. Instead of three separate alarms, you get one intelligent diagnosis that finds the root cause and explains how events are related.</p><h2>From Data to Actionable Insights</h2><p>SproutLake doesn't just send you a number; it sends you a plan. AI-generated alerts include the timestamp, consumption data, analysis, and a specific recommendation for action.</p>",
+    "date": "2025-07-15T08:00:00.000Z",
+    "author": "SproutLake Engineering",
+    "tags": ["ai", "anomaly-detection", "farrowing", "technology"],
+    "category": "engineering"
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:06:01.000Z",
+  "updatedAt": "2026-03-15T12:06:01.000Z"
+}

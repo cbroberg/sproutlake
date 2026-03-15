@@ -1,0 +1,17 @@
+{
+  "id": "sl-feat-nlr",
+  "slug": "natural-language-reporting",
+  "collection": "features",
+  "status": "published",
+  "data": {
+    "title": "Natural Language Reporting",
+    "description": "Ask your farm questions in plain English. \"Summarize the farrowing performance for Barn 3 this month\" or \"What's my average daily energy and water consumption?\" and get instant, easy-to-understand answers from your data.",
+    "icon": "Info",
+    "category": "ai",
+    "featured": true,
+    "sortOrder": 6
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:02:05.000Z",
+  "updatedAt": "2026-03-15T12:02:05.000Z"
+}

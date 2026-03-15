@@ -1,0 +1,17 @@
+{
+  "id": "sl-info-stats",
+  "slug": "statistical-anomaly-detection",
+  "collection": "infographics",
+  "status": "published",
+  "data": {
+    "title": "Tier 1 Statistical Anomaly Detection",
+    "description": "The Smart Gatekeeper. How SproutLake's Tier 1 Statistical Analysis uses dynamic moving averages to efficiently filter noise and find real anomalies.",
+    "category": "technology",
+    "content": "<h2>The Smart Gatekeeper</h2><p>How SproutLake's Tier 1 Statistical Analysis Works.</p><h2>The Data Deluge</h2><p>A single farm produces thousands of data points every hour. Analyzing every single point with advanced AI is inefficient and costly. The real challenge isn't just finding problems — it's filtering out the noise to find the signals that truly matter.</p><p><strong>99.9% of data is normal.</strong> Our Tier 1 system is the smart gatekeeper. It uses efficient statistical analysis to instantly identify the tiny fraction of data that requires deeper investigation, saving cost and focusing attention where it's needed most.</p><h2>The Solution: A Moving Target</h2><p>Instead of static \"high\" or \"low\" limits which cause false alarms, our system uses a dynamic method called Moving Average with a Standard Deviation Threshold. It learns what's \"normal\" for the immediate past to intelligently detect what's abnormal right now.</p><h2>From Signal to Insight: The Hybrid Approach</h2><ol><li><strong>Tier 1:</strong> Statistical analysis flags an anomaly.</li><li><strong>Tier 2:</strong> Event is escalated to SproutLake AI for deep analysis.</li><li><strong>Actionable Insight:</strong> Farmer receives a detailed diagnosis and recommendation.</li></ol>",
+    "audioFile": "",
+    "audioScript": ""
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:04:02.000Z",
+  "updatedAt": "2026-03-15T12:04:02.000Z"
+}

@@ -1,0 +1,17 @@
+{
+  "id": "sl-feat-anomaly",
+  "slug": "ai-anomaly-detection",
+  "collection": "features",
+  "status": "published",
+  "data": {
+    "title": "AI-Powered Anomaly Detection",
+    "description": "Let SproutLake AI analyze your data streams 24/7. Get predictive alerts for potential health issues or equipment malfunctions before they become critical problems, based on subtle patterns humans can't see.",
+    "icon": "MessageSquare",
+    "category": "ai",
+    "featured": true,
+    "sortOrder": 5
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:02:04.000Z",
+  "updatedAt": "2026-03-15T12:02:04.000Z"
+}

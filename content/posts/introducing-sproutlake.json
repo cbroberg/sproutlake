@@ -1,0 +1,18 @@
+{
+  "id": "sl-post-intro",
+  "slug": "introducing-sproutlake",
+  "collection": "posts",
+  "status": "published",
+  "data": {
+    "title": "Introducing SproutLake: From Data to Decisions",
+    "excerpt": "SproutLake is a new AI-powered IoT platform designed to transform how farmers manage their operations. A joint venture between Senti and Comadan A/S, we are building the future of precision farming.",
+    "content": "<p>We are excited to introduce SproutLake — an intelligent, AI-driven platform that transforms your farm's critical data into a source of clarity, confidence, and measurable growth.</p><h2>The Problem We Solve</h2><p>Managing a modern farm is more complex than ever. You can't be everywhere at once, and small issues can quickly turn into costly problems. From time-consuming manual checks to unexpected animal health issues, rising energy costs, and decisions based on guesswork — the challenges are real.</p><h2>Our Solution</h2><p>SproutLake bridges the gap between your animals, your equipment, and you. Our network of durable IoT sensors monitors your operations 24/7 and delivers clear, actionable insights directly to your phone, tablet, or computer.</p><p>The platform combines rugged hardware with cutting-edge AI to provide:</p><ul><li>24/7 Farrowing Monitoring with real-time alerts</li><li>Environmental sensors for temperature, humidity, and air quality</li><li>A centralized data platform accessible from any device</li><li>Advanced analytics and reporting for long-term trend analysis</li><li>AI-Powered Anomaly Detection</li><li>Natural Language Reporting</li></ul><h2>A Joint Venture</h2><p>SproutLake is a proud joint venture between leaders in agricultural IoT hardware and enterprise cloud software. We've combined decades of experience in building durable, reliable farm technology with cutting-edge data analytics to create a single, powerful platform built for the future of agriculture.</p><p>Our mission: To empower farmers across the globe with robust, intuitive technology, leading to more productive, sustainable, and profitable operations for generations to come.</p>",
+    "date": "2025-06-01T08:00:00.000Z",
+    "author": "SproutLake Team",
+    "tags": ["launch", "iot", "farming", "ai"],
+    "category": "company"
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:06:00.000Z",
+  "updatedAt": "2026-03-15T12:06:00.000Z"
+}

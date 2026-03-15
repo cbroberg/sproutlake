@@ -1,0 +1,16 @@
+{
+  "id": "sl-prob-guesswork",
+  "slug": "guesswork",
+  "collection": "problems",
+  "status": "published",
+  "data": {
+    "title": "Decisions Based on Guesswork",
+    "description": "Relying on instinct when data could provide a clearer path to profitability.",
+    "icon": "HelpCircle",
+    "impact": "Without data-driven insights, farms miss optimization opportunities in feed strategies, breeding cycles, and resource allocation.",
+    "sortOrder": 4
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:03:03.000Z",
+  "updatedAt": "2026-03-15T12:03:03.000Z"
+}

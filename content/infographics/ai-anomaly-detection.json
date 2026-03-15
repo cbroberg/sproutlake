@@ -1,0 +1,17 @@
+{
+  "id": "sl-info-anomaly",
+  "slug": "ai-anomaly-detection",
+  "collection": "infographics",
+  "status": "published",
+  "data": {
+    "title": "Introducing SproutLake AI Anomaly Detection",
+    "description": "Don't Just Monitor. Understand. We turn raw sensor data into expert advice, protecting your most valuable assets when it matters most.",
+    "category": "ai",
+    "content": "<h2>Don't Just Monitor. Understand.</h2><p>Introducing SproutLake AI Anomaly Detection, powered by Senti AI. We turn raw sensor data into expert advice, protecting your most valuable assets when it matters most.</p><p>A single missed health event during farrowing can cost over <strong>$400</strong> in potential revenue. Early detection is everything.</p><h2>The Silent Problem in the Crate</h2><p>A sow's water consumption is a vital sign. Deviations are often the first and only indicator of a problem.</p><ul><li><strong>Critical Low (&lt; 0.5 L/hr):</strong> A major red flag for illness, pain, or a blocked water nipple. Requires immediate action.</li><li><strong>Healthy Range (0.8-1.5 L/hr):</strong> Consistent consumption indicates a healthy, comfortable, and productive sow.</li><li><strong>Warning High (&gt; 3.0 L/hr):</strong> A potential sign of fever, mastitis, or infection. Requires investigation.</li></ul><h2>The AI Difference: From Sensor to Solution</h2><p>Our system goes beyond simple thresholds. We use AI to analyze patterns and provide expert-level reasoning:</p><ol><li><strong>Collect Data</strong> — Sensors monitor water flow 24/7.</li><li><strong>Stream to Platform</strong> — Data is sent to the secure SproutLake cloud.</li><li><strong>AI Analysis</strong> — SproutLake AI analyzes data against health models.</li><li><strong>Get Actionable Alerts</strong> — Receive expert advice on your device.</li></ol><h2>The SproutLake AI Advantage</h2><ul><li>Reduce Piglet Mortality</li><li>Lower Vet Costs</li><li>Improve Animal Welfare</li><li>Gain Peace of Mind</li></ul>",
+    "audioFile": "",
+    "audioScript": ""
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:04:01.000Z",
+  "updatedAt": "2026-03-15T12:04:01.000Z"
+}

@@ -1,0 +1,30 @@
+{
+  "id": "sl-price-pro",
+  "slug": "professional",
+  "collection": "pricing",
+  "status": "published",
+  "data": {
+    "planName": "Professional",
+    "description": "Full-featured platform with AI-powered anomaly detection, advanced analytics, and real-time mobile alerts.",
+    "priceAnnual": "14,400",
+    "currency": "DKK",
+    "maxSows": "Up to 200 sows",
+    "featuresIncluded": [
+      "All Starter features",
+      "AI Anomaly Detection",
+      "Advanced analytics & reporting",
+      "Mobile app with push notifications",
+      "Energy consumption monitoring",
+      "90-day data history",
+      "Natural language queries"
+    ],
+    "highlighted": true,
+    "addons": [
+      { "name": "Proactive Health Forecaster", "price": "2,400 DKK/year" },
+      { "name": "Additional barn sensors", "price": "600 DKK/sensor/year" }
+    ]
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:05:01.000Z",
+  "updatedAt": "2026-03-15T12:05:01.000Z"
+}

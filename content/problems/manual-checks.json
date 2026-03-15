@@ -1,0 +1,16 @@
+{
+  "id": "sl-prob-manual",
+  "slug": "manual-checks",
+  "collection": "problems",
+  "status": "published",
+  "data": {
+    "title": "Time-Consuming Manual Checks",
+    "description": "Wasting valuable hours on manual monitoring that could be automated.",
+    "icon": "Clock",
+    "impact": "Labor inefficiency and delayed response to critical events reduce overall farm productivity.",
+    "sortOrder": 1
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:03:00.000Z",
+  "updatedAt": "2026-03-15T12:03:00.000Z"
+}

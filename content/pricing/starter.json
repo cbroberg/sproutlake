@@ -1,0 +1,25 @@
+{
+  "id": "sl-price-starter",
+  "slug": "starter",
+  "collection": "pricing",
+  "status": "published",
+  "data": {
+    "planName": "Starter",
+    "description": "Perfect for small farms getting started with IoT monitoring. Core sensor data and basic dashboards.",
+    "priceAnnual": "4,800",
+    "currency": "DKK",
+    "maxSows": "Up to 50 sows",
+    "featuresIncluded": [
+      "Temperature monitoring",
+      "Water consumption tracking",
+      "Basic dashboard",
+      "Email alerts",
+      "7-day data history"
+    ],
+    "highlighted": false,
+    "addons": []
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:05:00.000Z",
+  "updatedAt": "2026-03-15T12:05:00.000Z"
+}

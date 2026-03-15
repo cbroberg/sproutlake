@@ -1,0 +1,29 @@
+{
+  "id": "sl-price-enterprise",
+  "slug": "enterprise",
+  "collection": "pricing",
+  "status": "published",
+  "data": {
+    "planName": "Enterprise",
+    "description": "Custom-tailored solution for large-scale operations with dedicated support, unlimited history, and full AI capabilities.",
+    "priceAnnual": "Contact us",
+    "currency": "DKK",
+    "maxSows": "Unlimited",
+    "featuresIncluded": [
+      "All Professional features",
+      "Proactive Health Forecaster (PHF)",
+      "Three-Lane AI Highway (voice commands)",
+      "Actuator control with safety confirmation",
+      "Unlimited data history",
+      "Multi-farm management",
+      "Dedicated account manager",
+      "Custom integrations & API access",
+      "On-site training"
+    ],
+    "highlighted": false,
+    "addons": []
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:05:02.000Z",
+  "updatedAt": "2026-03-15T12:05:02.000Z"
+}

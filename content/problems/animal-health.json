@@ -1,0 +1,16 @@
+{
+  "id": "sl-prob-health",
+  "slug": "animal-health",
+  "collection": "problems",
+  "status": "published",
+  "data": {
+    "title": "Unexpected Animal Health Issues",
+    "description": "Losing valuable livestock during critical periods like farrowing due to unforeseen complications.",
+    "icon": "Heart",
+    "impact": "A single missed health event during farrowing can cost over $400 in potential revenue. Early detection is everything.",
+    "sortOrder": 2
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-15T12:03:01.000Z",
+  "updatedAt": "2026-03-15T12:03:01.000Z"
+}
