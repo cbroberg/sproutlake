@@ -2,6 +2,18 @@ export function renderMarkdown(md: string): string {
   if (!md) return "";
 
   let html = md
+    // CMS embedded nodes — must be FIRST before any other processing
+    // File attachments: !!FILE[src|filename|size]
+    .replace(/^!!FILE\[([^|]+)\|([^|]*)\|?(.*?)\]$/gm,
+      '<a href="$1" download class="cms-file-attachment">$2</a>')
+    // Interactive embeds: !!INTERACTIVE[id|title]
+    .replace(/^!!INTERACTIVE\[([^|]+)\|?(.*?)\]$/gm,
+      '<iframe src="/interactives/$1.html" data-interactive="$1" title="$2" style="width:100%;min-height:600px;border:none;border-radius:0.75rem;margin:1.5rem 0;"></iframe>')
+    // Legacy HTML comment tokens (backwards compatibility)
+    .replace(/^<!-- file:([^|]+)\|([^|]*)\|?(.*?) -->$/gm,
+      '<a href="$1" download class="cms-file-attachment">$2</a>')
+    .replace(/^<!-- interactive:([^|]+)\|?(.*?) -->$/gm,
+      '<iframe src="/interactives/$1.html" data-interactive="$1" title="$2" style="width:100%;min-height:600px;border:none;border-radius:0.75rem;margin:1.5rem 0;"></iframe>')
     // Code blocks (must be before inline code)
     .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
     // Headings
