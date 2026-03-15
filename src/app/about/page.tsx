@@ -26,7 +26,7 @@ export default function AboutPage() {
             </p>
           </div>
           <div
-            className="prose prose-invert max-w-none"
+            className="prose dark:prose-invert max-w-none prose-gray"
             dangerouslySetInnerHTML={{
               __html: renderMarkdown(page.data.content as string),
             }}

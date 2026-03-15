@@ -79,7 +79,7 @@ export default async function BlogPostPage({
         </div>
         <hr className="border-gray-200 dark:border-white/10 my-10" />
         <div
-          className="prose prose-invert max-w-none"
+          className="prose dark:prose-invert max-w-none prose-gray"
           dangerouslySetInnerHTML={{
             __html: renderMarkdown(post.data.content as string),
           }}
