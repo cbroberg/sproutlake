@@ -4,9 +4,17 @@
   "collection": "posts",
   "status": "draft",
   "data": {
-    "title": "newway"
+    "title": "newway",
+    "date": "2026-03-16",
+    "excerpt": "This is the new way to create posts or pages. ",
+    "sections": [
+      {
+        "_block": "text",
+        "body": ""
+      }
+    ]
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-16T21:39:12.561Z"
+  "updatedAt": "2026-03-16T21:42:37.545Z"
 }
