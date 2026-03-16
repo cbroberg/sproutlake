@@ -41,11 +41,13 @@ function renderBlock(block: Record<string, unknown>, index: number) {
           dangerouslySetInnerHTML={{ __html: renderMarkdown(block.body as string || "") }}
         />
       );
-    case "interactive":
+    case "interactive": {
+      const intId = block.interactiveId as string;
+      if (!intId) return null;
       return (
         <div key={index} className="my-8">
           <iframe
-            src={`/interactives/${block.interactiveId}.html`}
+            src={`/interactives/${intId}.html`}
             title={block.caption as string || "Interactive"}
             style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
             sandbox="allow-scripts allow-same-origin"
@@ -55,6 +57,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
           )}
         </div>
       );
+    }
     case "image":
       return (
         <figure key={index} className="my-8">
