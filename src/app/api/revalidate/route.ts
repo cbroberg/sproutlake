@@ -1,34 +1,42 @@
 import { revalidatePath } from "next/cache";
 import { NextRequest, NextResponse } from "next/server";
 import crypto from "node:crypto";
-import { execFile } from "node:child_process";
-import { promisify } from "node:util";
+import fs from "node:fs/promises";
+import path from "node:path";
+import { notifyContentChange } from "@/lib/content-stream";
 
-const exec = promisify(execFile);
 const SECRET = process.env.REVALIDATE_SECRET;
 
 /**
- * Pull latest content from GitHub before revalidating.
- * In dev mode this triggers HMR; in production it updates the local checkout.
+ * Write or delete a content file on disk.
+ * CMS pushes the full document JSON — no git pull needed.
  */
-async function gitPull(): Promise<string[]> {
-  try {
-    const cwd = process.cwd();
-    await exec("git", ["fetch", "origin", "--quiet"], { cwd });
-    const { stdout: before } = await exec("git", ["rev-parse", "HEAD"], { cwd });
-    const { stdout: remote } = await exec("git", ["rev-parse", "origin/main"], { cwd });
+async function writeContent(
+  collection: string,
+  slug: string,
+  action: string,
+  document: Record<string, unknown> | null,
+): Promise<"written" | "deleted" | "skipped"> {
+  const contentDir = path.join(process.cwd(), "content", collection);
+  const filePath = path.join(contentDir, `${slug}.json`);
 
-    if (before.trim() === remote.trim()) return []; // Already up to date
-
-    // Get changed files before pulling
-    const { stdout: diff } = await exec("git", ["diff", "--name-only", before.trim(), remote.trim()], { cwd });
-    await exec("git", ["pull", "--ff-only", "--quiet"], { cwd });
-
-    return diff.trim().split("\n").filter(Boolean);
-  } catch (err) {
-    console.warn("[revalidate] git pull failed:", err);
-    return [];
+  // Delete actions: remove file from disk
+  if (action === "deleted" || action === "unpublished") {
+    try {
+      await fs.unlink(filePath);
+      return "deleted";
+    } catch {
+      return "skipped"; // File didn't exist
+    }
   }
+
+  // No document in payload (test ping or legacy) — skip
+  if (!document) return "skipped";
+
+  // Write document to disk
+  await fs.mkdir(contentDir, { recursive: true });
+  await fs.writeFile(filePath, JSON.stringify(document, null, 2));
+  return "written";
 }
 
 export async function POST(request: NextRequest) {
@@ -53,21 +61,32 @@ export async function POST(request: NextRequest) {
   const payload = JSON.parse(body);
   const paths: string[] = payload.paths ?? ["/"];
 
-  // Pull latest from GitHub, then revalidate
-  const changedFiles = await gitPull();
-
-  for (const path of paths) {
-    revalidatePath(path);
+  // Content push: write document to disk (or delete it)
+  let contentResult: "written" | "deleted" | "skipped" = "skipped";
+  if (payload.collection && payload.slug && payload.collection !== "_test") {
+    contentResult = await writeContent(
+      payload.collection,
+      payload.slug,
+      payload.action,
+      payload.document ?? null,
+    );
   }
 
+  for (const p of paths) {
+    revalidatePath(p);
+  }
+
+  // Notify connected browsers to refresh
+  notifyContentChange(paths);
+
   console.log(
-    `[revalidate] ${payload.action ?? "unknown"} → ${paths.join(", ")}${changedFiles.length ? ` (pulled ${changedFiles.length} files)` : ""}`
+    `[revalidate] ${payload.action ?? "unknown"} → ${paths.join(", ")} (${contentResult})`
   );
 
   return NextResponse.json({
     revalidated: true,
     paths,
-    pulled: changedFiles.length,
+    contentResult,
     timestamp: new Date().toISOString(),
   });
 }
