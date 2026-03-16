@@ -61,5 +61,14 @@
     "status": "trashed",
     "createdAt": "2026-03-15T21:07:52.293Z",
     "updatedAt": "2026-03-15T21:08:14.401Z"
+  },
+  {
+    "id": "pricing-fd",
+    "name": "pricing-fd",
+    "filename": "pricing-fd.html",
+    "size": 52743,
+    "status": "draft",
+    "createdAt": "2026-03-16T18:57:56.141Z",
+    "updatedAt": "2026-03-16T18:57:56.141Z"
   }
 ]
