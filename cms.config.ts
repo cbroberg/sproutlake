@@ -18,14 +18,6 @@ export default defineConfig({
       ],
     }),
     defineBlock({
-      name: "file",
-      label: "File Attachment",
-      fields: [
-        { name: "src", type: "text", label: "File URL", required: true },
-        { name: "filename", type: "text", label: "Display Name" },
-      ],
-    }),
-    defineBlock({
       name: "image",
       label: "Image",
       fields: [
