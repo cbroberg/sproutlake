@@ -4,8 +4,14 @@ export function renderMarkdown(md: string): string {
   let html = md
     // CMS embedded nodes — must be FIRST before any other processing
     // File attachments: !!FILE[src|filename|size]
-    .replace(/^!!FILE\[([^|]+)\|([^|]*)\|?(.*?)\]$/gm,
-      '<a href="$1" download class="cms-file-attachment">$2</a>')
+    .replace(/^!!FILE\[([^|]+)\|([^|]*)\|?(.*?)\]$/gm, (_match, src, filename, sizeStr) => {
+      const size = parseInt(sizeStr) || 0;
+      const sizeLabel = size < 1024 ? `${size} B` : size < 1024 * 1024 ? `${(size / 1024).toFixed(1)} KB` : `${(size / (1024 * 1024)).toFixed(1)} MB`;
+      return `<a href="${src}" download="${filename}" class="cms-file-attachment" style="display:inline-flex;align-items:center;gap:0.5rem;padding:0.75rem 1rem;border-radius:0.5rem;border:1px solid rgba(255,255,255,0.15);background:rgba(255,255,255,0.05);color:#86efac;text-decoration:none;font-size:0.875rem;margin:0.5rem 0;">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+        <span>${filename}</span>${size > 0 ? `<span style="color:rgba(255,255,255,0.4);font-size:0.75rem">${sizeLabel}</span>` : ""}
+      </a>`;
+    })
     // Interactive embeds: !!INTERACTIVE[id|title|width:Xpx|height:Ypx]
     .replace(/^!!INTERACTIVE\[([^\]]+)\]$/gm, (_match, inner) => {
       const parts = inner.split("|");
@@ -45,7 +51,23 @@ export function renderMarkdown(md: string): string {
       '<ul class="list-disc pl-4 my-4 space-y-2">$&</ul>'
     )
     // Ordered lists
-    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 text-gray-300">$1</li>')
+    .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 text-gray-300">$1</li>');
+
+  // GFM Tables: detect header | separator | body rows
+  html = html.replace(
+    /^(\|.+\|)\n(\|[\s:|-]+\|)\n((?:\|.+\|\n?)+)/gm,
+    (_match, headerLine: string, _sep: string, bodyBlock: string) => {
+      const headers = headerLine.split("|").filter((c: string) => c.trim()).map((c: string) => c.trim());
+      const thCells = headers.map((h: string) => `<th style="padding:0.5rem 0.75rem;text-align:left;border-bottom:2px solid rgba(255,255,255,0.2);color:#fff;font-weight:600">${h}</th>`).join("");
+      const rows = bodyBlock.trim().split("\n").map((row: string) => {
+        const cells = row.split("|").filter((c: string) => c.trim()).map((c: string) => c.trim());
+        return `<tr>${cells.map((c: string) => `<td style="padding:0.5rem 0.75rem;border-bottom:1px solid rgba(255,255,255,0.08);color:#d1d5db">${c}</td>`).join("")}</tr>`;
+      }).join("");
+      return `<table style="width:100%;border-collapse:collapse;margin:1.5rem 0;font-size:0.875rem"><thead><tr>${thCells}</tr></thead><tbody>${rows}</tbody></table>`;
+    }
+  );
+
+  html = html
     // Images with optional title containing style hints: ![alt](url "float:left|width:300px")
     .replace(
       /!\[([^\]]*)\]\(([^\s)]+)(?:\s+"([^"]*)")?\)/g,
