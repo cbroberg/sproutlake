@@ -34,6 +34,11 @@ export function renderMarkdown(md: string): string {
     )
     // Ordered lists
     .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 text-gray-300">$1</li>')
+    // Images (must be before links — ![alt](url) vs [text](url))
+    .replace(
+      /!\[([^\]]*)\]\(([^)]+)\)/g,
+      '<img src="$2" alt="$1" class="rounded-lg my-6 max-w-full" />'
+    )
     // Links
     .replace(
       /\[([^\]]+)\]\(([^)]+)\)/g,
