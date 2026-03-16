@@ -34,10 +34,23 @@ export function renderMarkdown(md: string): string {
     )
     // Ordered lists
     .replace(/^\d+\. (.+)$/gm, '<li class="ml-4 text-gray-300">$1</li>')
-    // Images (must be before links — ![alt](url) vs [text](url))
+    // Images with optional title containing style hints: ![alt](url "float:left|width:300px")
     .replace(
-      /!\[([^\]]*)\]\(([^)]+)\)/g,
-      '<img src="$2" alt="$1" class="rounded-lg my-6 max-w-full" />'
+      /!\[([^\]]*)\]\(([^\s)]+)(?:\s+"([^"]*)")?\)/g,
+      (_match, alt, src, title) => {
+        let style = "";
+        let cls = "rounded-lg my-6 max-w-full";
+        if (title) {
+          const parts = title.split("|");
+          for (const p of parts) {
+            const [k, v] = p.split(":");
+            if (k === "float" && v === "left") { style += "float:left;margin:0 1.5rem 1rem 0;"; cls += " clear-left"; }
+            else if (k === "float" && v === "right") { style += "float:right;margin:0 0 1rem 1.5rem;"; }
+            else if (k === "width") { style += `width:${v};max-width:100%;height:auto;`; }
+          }
+        }
+        return `<img src="${src}" alt="${alt}" class="${cls}"${style ? ` style="${style}"` : ""} />`;
+      }
     )
     // Links
     .replace(
