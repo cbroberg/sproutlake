@@ -1,0 +1,1528 @@
+<!DOCTYPE html>
+<html lang="da">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FD — Drifts- & Serviceaftale</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap');
+
+    :root {
+      --brand: #77B729;
+      --brand-dark: #5a8f1e;
+      --brand-light: #e8f5d3;
+      --blue: #3B82F6;
+      --blue-dark: #2563EB;
+      --blue-light: #DBEAFE;
+      --dark: #1a1a2e;
+      --dark-soft: #2d2d44;
+      --text: #333;
+      --text-muted: #6b7280;
+      --bg: #f8f9fb;
+      --white: #ffffff;
+      --border: #e5e7eb;
+      --shadow: 0 1px 3px rgba(0,0,0,0.06), 0 1px 2px rgba(0,0,0,0.04);
+      --shadow-lg: 0 10px 40px rgba(0,0,0,0.08), 0 2px 10px rgba(0,0,0,0.04);
+      --shadow-xl: 0 20px 60px rgba(0,0,0,0.12), 0 4px 20px rgba(0,0,0,0.06);
+      --radius: 16px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+      color: white;
+      padding: 60px 24px 100px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 50%, rgba(119, 183, 41, 0.08) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 80%, rgba(59, 130, 246, 0.06) 0%, transparent 40%);
+    }
+
+    .hero-content {
+      position: relative;
+      max-width: 740px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(119, 183, 41, 0.15);
+      border: 1px solid rgba(119, 183, 41, 0.3);
+      color: var(--brand);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    .hero h1 {
+      font-size: clamp(28px, 5vw, 42px);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 16px;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 .green { color: var(--brand); }
+    .hero h1 .blue { color: var(--blue); }
+
+    .hero p {
+      font-size: 17px;
+      color: rgba(255,255,255,0.7);
+      max-width: 560px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* Main content */
+    .container {
+      max-width: 1040px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Pricing cards row */
+    .pricing-section {
+      margin-top: -60px;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 32px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      align-items: start;
+    }
+
+    @media (max-width: 768px) {
+      .pricing-grid { grid-template-columns: 1fr; }
+    }
+
+    .price-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-xl);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      position: relative;
+    }
+
+    .price-card.primary {
+      border: 2px solid var(--brand);
+    }
+
+    .price-card.addon {
+      border: 2px solid var(--blue);
+    }
+
+    .price-header {
+      padding: 32px 32px 28px;
+      text-align: center;
+    }
+
+    .price-card.primary .price-header {
+      background: linear-gradient(135deg, var(--brand) 0%, var(--brand-dark) 100%);
+      color: white;
+    }
+
+    .price-card.addon .price-header {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dark) 100%);
+      color: white;
+    }
+
+    .price-header .label {
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      opacity: 0.9;
+      margin-bottom: 4px;
+    }
+
+    .price-header .product-name {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 12px;
+    }
+
+    .price-amount {
+      display: flex;
+      align-items: baseline;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .price-amount .currency {
+      font-size: 20px;
+      font-weight: 600;
+      opacity: 0.9;
+    }
+
+    .price-amount .number {
+      font-size: 52px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      line-height: 1;
+    }
+
+    .price-amount .period {
+      font-size: 16px;
+      font-weight: 400;
+      opacity: 0.8;
+      margin-left: 4px;
+    }
+
+    .price-subtitle {
+      margin-top: 6px;
+      font-size: 13px;
+      opacity: 0.8;
+    }
+
+    .price-body {
+      padding: 28px 28px 32px;
+    }
+
+    .platform-badges {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .platform-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: rgba(255,255,255,0.2);
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+    }
+
+    .price-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 12px;
+      border-radius: 8px;
+      background: var(--bg);
+      transition: background 0.2s;
+      margin-bottom: 6px;
+    }
+
+    .price-item:last-child { margin-bottom: 0; }
+
+    .price-item:hover { background: #eef1f5; }
+    .price-card.primary .price-item:hover { background: var(--brand-light); }
+    .price-card.addon .price-item:hover { background: var(--blue-light); }
+
+    .price-item .check {
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 1px;
+    }
+
+    .price-card.primary .check { background: var(--brand); }
+    .price-card.addon .check { background: var(--blue); }
+
+    .price-item .check svg {
+      width: 12px;
+      height: 12px;
+    }
+
+    .price-item-text {
+      font-size: 13.5px;
+      font-weight: 500;
+      color: var(--text);
+    }
+
+    .price-item-text small {
+      display: block;
+      font-weight: 400;
+      color: var(--text-muted);
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    /* Total card */
+    .total-section {
+      margin-bottom: 56px;
+    }
+
+    .total-card {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+      border-radius: var(--radius);
+      padding: 32px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      color: white;
+      box-shadow: var(--shadow-xl);
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+
+    .total-left h3 {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .total-left p {
+      color: rgba(255,255,255,0.6);
+      font-size: 14px;
+    }
+
+    .total-right {
+      text-align: right;
+    }
+
+    .total-amount {
+      display: flex;
+      align-items: baseline;
+      gap: 4px;
+    }
+
+    .total-amount .currency {
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--brand);
+    }
+
+    .total-amount .number {
+      font-size: 44px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      color: var(--brand);
+    }
+
+    .total-amount .period {
+      font-size: 16px;
+      color: rgba(255,255,255,0.6);
+      margin-left: 2px;
+    }
+
+    .total-savings {
+      font-size: 13px;
+      color: rgba(255,255,255,0.5);
+      margin-top: 2px;
+    }
+
+    /* Sections */
+    .section {
+      margin-bottom: 48px;
+    }
+
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px;
+    }
+
+    .section-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--brand-light);
+      color: var(--brand-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .section-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--dark);
+      letter-spacing: -0.3px;
+    }
+
+    .section h2 span {
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 15px;
+      margin-left: 4px;
+    }
+
+    /* Cost breakdown table */
+    .cost-table {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .cost-row {
+      display: grid;
+      grid-template-columns: 1fr auto auto;
+      gap: 16px;
+      padding: 14px 24px;
+      align-items: center;
+      border-bottom: 1px solid var(--border);
+      font-size: 14px;
+    }
+
+    .cost-row:last-child { border-bottom: none; }
+
+    .cost-row.header {
+      background: var(--bg);
+      font-weight: 600;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      color: var(--text-muted);
+      padding: 10px 24px;
+    }
+
+    .cost-row.total {
+      background: var(--dark);
+      color: white;
+      font-weight: 700;
+      font-size: 14.5px;
+    }
+
+    .cost-row.shared {
+      background: #FFFBEB;
+    }
+
+    .cost-name { font-weight: 500; }
+
+    .cost-name small {
+      display: block;
+      color: var(--text-muted);
+      font-weight: 400;
+      font-size: 12px;
+      margin-top: 1px;
+    }
+
+    .cost-detail {
+      color: var(--text-muted);
+      font-size: 12.5px;
+      text-align: right;
+    }
+
+    .cost-price {
+      font-weight: 600;
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .cost-row.total .cost-detail {
+      color: rgba(255,255,255,0.7);
+    }
+
+    .shared-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      background: #FEF3C7;
+      color: #92400E;
+      font-size: 10px;
+      font-weight: 600;
+      padding: 2px 8px;
+      border-radius: 100px;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+
+    /* Service cards */
+    .service-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .service-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 24px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .service-card:hover {
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .service-card h3 {
+      font-size: 15px;
+      font-weight: 700;
+      margin-bottom: 6px;
+      color: var(--dark);
+    }
+
+    .service-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .service-card .service-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      font-size: 18px;
+    }
+
+    .service-card .service-icon.hosting { background: #EEF2FF; }
+    .service-card .service-icon.security { background: #FEF3C7; }
+    .service-card .service-icon.apps { background: #ECFDF5; }
+    .service-card .service-icon.support { background: #FDE8E8; }
+    .service-card .service-icon.updates { background: #E0E7FF; }
+    .service-card .service-icon.gdpr { background: #F3E8FF; }
+
+    /* Future expansion */
+    .future-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .future-intro {
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .future-intro p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.7;
+    }
+
+    .future-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0;
+    }
+
+    @media (max-width: 640px) {
+      .future-grid { grid-template-columns: 1fr; }
+    }
+
+    .future-item {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+      border-right: 1px solid var(--border);
+      transition: background 0.2s;
+    }
+
+    .future-item:hover { background: var(--bg); }
+
+    .future-item:nth-child(2n) { border-right: none; }
+
+    .future-item:nth-last-child(-n+2) { border-bottom: none; }
+
+    @media (max-width: 640px) {
+      .future-item { border-right: none; }
+      .future-item:nth-last-child(-n+2) { border-bottom: 1px solid var(--border); }
+      .future-item:last-child { border-bottom: none; }
+    }
+
+    .future-item-icon {
+      font-size: 28px;
+      margin-bottom: 12px;
+    }
+
+    .future-item h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+
+    .future-item p {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .future-item .future-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-top: 10px;
+      padding: 3px 10px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.3px;
+    }
+
+    .future-tag.ai {
+      background: #EDE9FE;
+      color: #6D28D9;
+    }
+
+    .future-tag.engagement {
+      background: #DBEAFE;
+      color: #1D4ED8;
+    }
+
+    .future-tag.revenue {
+      background: #D1FAE5;
+      color: #065F46;
+    }
+
+    .future-tag.website {
+      background: #FEE2E2;
+      color: #991B1B;
+    }
+
+    .future-item.full-width {
+      grid-column: 1 / -1;
+      border-right: none;
+      border-bottom: none;
+      background: linear-gradient(135deg, #FAFAFA 0%, #F3F4F6 100%);
+      padding: 32px;
+    }
+
+    .future-item.full-width:hover {
+      background: linear-gradient(135deg, #F5F5F5 0%, #EEF0F3 100%);
+    }
+
+    .future-full-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      margin-top: 16px;
+    }
+
+    @media (max-width: 640px) {
+      .future-full-grid { grid-template-columns: 1fr; }
+    }
+
+    .future-detail {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      padding: 10px 14px;
+      background: var(--white);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .future-detail-icon {
+      flex-shrink: 0;
+      font-size: 16px;
+      margin-top: 1px;
+    }
+
+    .future-detail strong {
+      color: var(--text);
+      display: block;
+      font-size: 13px;
+      margin-bottom: 2px;
+    }
+
+    .future-arrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--brand-dark);
+    }
+
+    .future-arrow svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Shared infra callout */
+    .shared-callout {
+      background: linear-gradient(135deg, #FFFBEB 0%, #FEF3C7 100%);
+      border: 1px solid #F59E0B;
+      border-radius: var(--radius);
+      padding: 24px 28px;
+      display: flex;
+      gap: 16px;
+      align-items: flex-start;
+      margin-bottom: 24px;
+    }
+
+    .shared-callout .callout-icon {
+      font-size: 24px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .shared-callout h4 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #92400E;
+      margin-bottom: 4px;
+    }
+
+    .shared-callout p {
+      font-size: 13.5px;
+      color: #78350F;
+      line-height: 1.6;
+    }
+
+    /* Comparison */
+    .comparison-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      padding: 32px;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+      margin-top: 20px;
+    }
+
+    @media (max-width: 640px) {
+      .comparison-grid { grid-template-columns: 1fr; }
+    }
+
+    .comparison-col h4 {
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 12px;
+      color: var(--dark);
+    }
+
+    .comparison-col.alt h4 { color: var(--text-muted); }
+
+    .comparison-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 7px 0;
+      font-size: 13px;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .comparison-item:last-child { border-bottom: none; }
+
+    .comparison-item .dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .comparison-item .dot.green { background: var(--brand); }
+    .comparison-item .dot.gray { background: #d1d5db; }
+
+    .comparison-item .price-tag {
+      margin-left: auto;
+      font-weight: 600;
+      font-size: 12.5px;
+      color: var(--text);
+    }
+
+    .comparison-col.alt .comparison-item .price-tag { color: #ef4444; }
+
+    /* Bottom CTA */
+    .cta-section {
+      background: linear-gradient(135deg, var(--dark) 0%, var(--dark-soft) 100%);
+      border-radius: var(--radius);
+      padding: 48px 40px;
+      text-align: center;
+      color: white;
+      margin-bottom: 48px;
+    }
+
+    .cta-section h2 {
+      font-size: 24px;
+      font-weight: 700;
+      margin-bottom: 12px;
+    }
+
+    .cta-section p {
+      color: rgba(255,255,255,0.7);
+      font-size: 15px;
+      max-width: 540px;
+      margin: 0 auto 28px;
+      line-height: 1.7;
+    }
+
+    .cta-badges {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .cta-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      border-radius: 100px;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    .cta-badge.green {
+      background: rgba(119, 183, 41, 0.15);
+      border: 1px solid rgba(119, 183, 41, 0.3);
+      color: var(--brand);
+    }
+
+    .cta-badge.blue {
+      background: rgba(59, 130, 246, 0.15);
+      border: 1px solid rgba(59, 130, 246, 0.3);
+      color: var(--blue);
+    }
+
+    .cta-badge.total-badge {
+      background: rgba(255, 255, 255, 0.1);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      color: white;
+      font-size: 16px;
+      padding: 12px 28px;
+    }
+
+    /* Development investment */
+    .dev-investment-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      overflow: hidden;
+    }
+
+    .dev-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      border-bottom: 1px solid var(--border);
+    }
+
+    @media (max-width: 640px) {
+      .dev-grid { grid-template-columns: 1fr; }
+    }
+
+    .dev-stat {
+      padding: 28px 24px;
+      text-align: center;
+      border-right: 1px solid var(--border);
+    }
+
+    .dev-stat:last-child { border-right: none; }
+
+    @media (max-width: 640px) {
+      .dev-stat { border-right: none; border-bottom: 1px solid var(--border); }
+      .dev-stat:last-child { border-bottom: none; }
+    }
+
+    .dev-stat.highlight {
+      background: linear-gradient(135deg, var(--brand-light) 0%, #f0f9e0 100%);
+    }
+
+    .dev-stat-number {
+      font-size: 36px;
+      font-weight: 900;
+      color: var(--dark);
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+
+    .dev-stat.highlight .dev-stat-number {
+      color: var(--brand-dark);
+    }
+
+    .dev-stat-label {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+    }
+
+    .dev-stat-detail {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-top: 2px;
+      opacity: 0.8;
+    }
+
+    .dev-delivered {
+      padding: 24px 28px;
+      border-bottom: 1px solid var(--border);
+    }
+
+    .dev-delivered h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--dark);
+      margin-bottom: 14px;
+    }
+
+    .dev-delivered-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    @media (max-width: 640px) {
+      .dev-delivered-grid { grid-template-columns: 1fr; }
+    }
+
+    .dev-delivered-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 10px 14px;
+      background: var(--bg);
+      border-radius: 8px;
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .dev-num {
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--brand);
+      min-width: 28px;
+      text-align: center;
+    }
+
+    .dev-roi {
+      padding: 24px 28px;
+      background: linear-gradient(135deg, #F0FDF4 0%, #ECFDF5 100%);
+    }
+
+    .dev-roi h4 {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--brand-dark);
+      margin-bottom: 8px;
+    }
+
+    .dev-roi p {
+      font-size: 13.5px;
+      color: #374151;
+      line-height: 1.7;
+    }
+
+    .dev-roi strong {
+      color: var(--dark);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+
+    .footer strong { color: var(--text); }
+
+    /* Divider */
+    .divider {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin: 40px 0;
+      color: var(--text-muted);
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .hero { padding: 40px 20px 80px; }
+      .price-header { padding: 24px 20px 20px; }
+      .price-amount .number { font-size: 40px; }
+      .price-body { padding: 20px; }
+      .cost-row { grid-template-columns: 1fr auto; }
+      .cost-detail { display: none; }
+      .cta-section { padding: 36px 24px; }
+      .total-card { flex-direction: column; text-align: center; }
+      .total-right { text-align: center; }
+      .total-amount { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Hero -->
+  <div class="hero">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+        Drifts- &amp; Serviceaftale
+      </div>
+      <h1><span class="green">FD Sport</span> + <span class="blue">FD Sundhedsordning</span></h1>
+      <p>Komplet drift, vedligeholdelse og service af to platforme med i alt seks apps til FysioDanmark Aalborg.</p>
+    </div>
+  </div>
+
+  <div class="container">
+
+    <!-- Two price cards -->
+    <div class="pricing-section">
+      <div class="pricing-grid">
+
+        <!-- Sport -->
+        <div class="price-card primary">
+          <div class="price-header">
+            <div class="label">Platform 1</div>
+            <div class="product-name">FD Sport</div>
+            <div class="price-amount">
+              <span class="currency">DKK</span>
+              <span class="number">2.000</span>
+              <span class="period">/md.</span>
+            </div>
+            <div class="price-subtitle">Ekskl. moms</div>
+            <div class="platform-badges">
+              <span class="platform-badge">Web</span>
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">Android</span>
+            </div>
+          </div>
+          <div class="price-body">
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Server, database &amp; hosting<small>Sikker cloud-hosting, Supabase, SSL</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">iOS- &amp; Android-apps<small>App Store + Google Play</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Email-notifikationer<small>Automatiske e-mail notifikationer</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Automatisk udrulning<small>Automatisk build, test &amp; udrulning</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Sikkerhed &amp; opdateringer<small>Alle software-komponenter, SSL-certifikater</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Fejlrettelser &amp; support<small>L&oslash;bende fejlrettelser og assistance</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">App Store compliance<small>Apple &amp; Google review-krav</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">GDPR-overholdelse<small>5-&aring;rs auto-sletning, aktivitetslog</small></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sundhedsordningen -->
+        <div class="price-card addon">
+          <div class="price-header">
+            <div class="label">Platform 2 — tilk&oslash;b</div>
+            <div class="product-name">FD Sundhedsordningen</div>
+            <div class="price-amount">
+              <span class="currency">DKK</span>
+              <span class="number">3.500</span>
+              <span class="period">/md.</span>
+            </div>
+            <div class="price-subtitle">Ekskl. moms &middot; Kr&aelig;ver Sport-aftalen</div>
+            <div class="platform-badges">
+              <span class="platform-badge">Web</span>
+              <span class="platform-badge">iOS</span>
+              <span class="platform-badge">Android</span>
+            </div>
+          </div>
+          <div class="price-body">
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Delt server &amp; database<small>Samme infrastruktur som Sport</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">iOS- &amp; Android-apps<small>Selvst&aelig;ndige apps i begge butikker</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Delt bagvedliggende system<small>Genbrugt system-logik og login</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Email-notifikationer<small>Delt e-mail service</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Automatisk udrulning<small>Selvst&aelig;ndig udrulning</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Sikkerhed &amp; opdateringer<small>Selvst&aelig;ndige software-moduler</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">Fejlrettelser &amp; support<small>L&oslash;bende fejlrettelser og assistance</small></div>
+            </div>
+            <div class="price-item">
+              <div class="check"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg></div>
+              <div class="price-item-text">App Store compliance &amp; GDPR<small>Begge butikker + fuld compliance</small></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Total bar -->
+    <div class="total-section">
+      <div class="total-card">
+        <div class="total-left">
+          <h3>Samlet m&aring;nedlig pris — begge platforme</h3>
+          <p>2 web-apps &middot; 2 iOS-apps &middot; 2 Android-apps &middot; Delt infrastruktur</p>
+        </div>
+        <div class="total-right">
+          <div class="total-amount">
+            <span class="currency">DKK</span>
+            <span class="number">5.500</span>
+            <span class="period">/md.</span>
+          </div>
+          <div class="total-savings">Ekskl. moms &middot; 12 m&aring;neders aftaleperiode</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Conditional pricing note -->
+    <div class="shared-callout" style="background: #FEF9EC; border-left: 4px solid #F59E0B; margin-top: 12px;">
+      <div class="callout-icon">&#9888;&#65039;</div>
+      <div>
+        <h4 style="color: #92400E;">Betinget prisstruktur</h4>
+        <p style="color: #78350F;">Prisen på FD Sport på <strong>2.000 kr./md.</strong> forudsætter at Aalborg Kommune indgår aftale om FD Sundhedsordningen. Såfremt aftalen med kommunen ikke gennemføres, justeres prisen på FD Sport til <strong>3.500 kr./md.</strong> — svarende til den fulde markedsværdi for en selvstændig platform.</p>
+      </div>
+    </div>
+
+    <!-- Development investment -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <h2>Udviklingsv&aelig;rdi <span>— hvad platformen er bygget for</span></h2>
+      </div>
+
+      <div class="dev-investment-card">
+        <div class="dev-grid">
+          <div class="dev-stat">
+            <div class="dev-stat-number">130</div>
+            <div class="dev-stat-label">udviklingstimer</div>
+            <div class="dev-stat-detail">ca. 3,5 fulde arbejdsuger</div>
+          </div>
+          <div class="dev-stat">
+            <div class="dev-stat-number">800 <small style="font-size: 18px; font-weight: 400;">kr.</small></div>
+            <div class="dev-stat-label">timepris</div>
+            <div class="dev-stat-detail">Senior full-stack udvikler</div>
+          </div>
+          <div class="dev-stat highlight">
+            <div class="dev-stat-number">103.712 <small style="font-size: 18px; font-weight: 400;">kr.</small></div>
+            <div class="dev-stat-label">udviklingsv&aelig;rdi</div>
+            <div class="dev-stat-detail">Samlet platforminvestering</div>
+          </div>
+        </div>
+
+        <div class="dev-delivered">
+          <h4>Leveret til FD for denne investering:</h4>
+          <div class="dev-delivered-grid">
+            <div class="dev-delivered-item">
+              <span class="dev-num">6</span>
+              <span>apps i alt (2&times; web, 2&times; iOS, 2&times; Android)</span>
+            </div>
+            <div class="dev-delivered-item">
+              <span class="dev-num">2</span>
+              <span>komplette platforme med administration, rollebaseret adgangskontrol og dashboard</span>
+            </div>
+            <div class="dev-delivered-item">
+              <span class="dev-num">1</span>
+              <span>delt database med sikkerhed, aktivitetslog og GDPR-overholdelse</span>
+            </div>
+            <div class="dev-delivered-item">
+              <span class="dev-num">1</span>
+              <span>automatiseret udrulnings-pipeline</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="dev-roi">
+          <div class="dev-roi-header">
+            <h4>Hvad betyder det for prisen?</h4>
+          </div>
+          <p>Den samlede udviklingsv&aelig;rdi p&aring; <strong>103.712 kr.</strong> er allerede investeret i platformen. Den m&aring;nedlige driftsaftale p&aring; <strong>5.500 kr.</strong> d&aelig;kker udelukkende fremadrettet drift, vedligeholdelse og service — ikke tilbagebetaling af udvikling. FD f&aring;r dermed en platform til en br&oslash;kdel af hvad tilsvarende l&oslash;sninger koster hos danske bureauer, der typisk fakturerer <strong>200.000–500.000 kr.</strong> for sammenlignelig funktionalitet.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Infrastructure costs -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        </div>
+        <h2>Infrastrukturomkostninger <span>— hvad det faktisk koster</span></h2>
+      </div>
+
+      <div class="cost-table">
+        <div class="cost-row header">
+          <div>Service</div>
+          <div>Detaljer</div>
+          <div>M&aring;nedlig pris</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">Server hosting <span class="shared-badge">Delt</span><small>Cloud hosting — Stockholm, Sverige</small></div>
+          <div class="cost-detail">Sikker cloud-hosting med automatisk skalering</div>
+          <div class="cost-price">~500 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">Supabase Pro <span class="shared-badge">Delt</span><small>PostgreSQL database &amp; autentifikation</small></div>
+          <div class="cost-detail">Realtidsopdateringer, backups</div>
+          <div class="cost-price">~200 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">Apple Developer Program <span class="shared-badge">Delt</span><small>Begge iOS-apps under samme konto</small></div>
+          <div class="cost-detail">$99/&aring;r</div>
+          <div class="cost-price">~58 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">E-mail service <span class="shared-badge">Delt</span><small>Automatiske e-mails for begge apps</small></div>
+          <div class="cost-detail">Notifikationer, p&aring;mindelser</div>
+          <div class="cost-price">225,00 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">Dom&aelig;ne &amp; DNS <span class="shared-badge">Delt</span><small>sport. + sundhed.fdaalborg.dk + fdsport.net</small></div>
+          <div class="cost-detail">SSL via Let's Encrypt</div>
+          <div class="cost-price">~25 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">Versionsstyring &amp; udrulning <span class="shared-badge">Delt</span><small>Kodestyring &amp; automatisk udrulning for begge</small></div>
+          <div class="cost-detail">Automatisk udrulning</div>
+          <div class="cost-price">125,00 kr.</div>
+        </div>
+        <div class="cost-row shared">
+          <div class="cost-name">AI-assisteret udvikling <span class="shared-badge">Delt</span><small>Intelligent udviklingsassistent til begge platforme</small></div>
+          <div class="cost-detail">Kodeanalyse, fejlfinding, optimering</div>
+          <div class="cost-price">850,00 kr.</div>
+        </div>
+        <div class="cost-row total">
+          <div>Infrastruktur i alt (begge platforme)</div>
+          <div class="cost-detail">Delte faste udgifter</div>
+          <div class="cost-price">~1.983 kr./md.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="divider">Hvad d&aelig;kker de resterende ~3.517 kr.</div>
+
+    <!-- Service breakdown -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg>
+        </div>
+        <h2>L&oslash;bende vedligeholdelse &amp; service</h2>
+      </div>
+
+      <div class="service-grid">
+        <div class="service-card">
+          <div class="service-icon hosting">&#128421;&#65039;</div>
+          <h3>Server &amp; oppetid</h3>
+          <p>Overv&aring;gning af server-sundhed, applikationsprocesser og disk/memory. Genstart ved nedbrud. Log-analyse og performance-optimering for begge platforme.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon security">&#128274;</div>
+          <h3>Sikkerhedsopdateringer</h3>
+          <p>L&oslash;bende opdatering af alle software-komponenter og eksterne moduler for to separate software-kodebaser. Patch af kendte s&aring;rbarheder. OS-opdateringer.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon apps">&#128241;</div>
+          <h3>4 native apps i butikkerne</h3>
+          <p>Fire separate apps (2&times; iOS, 2&times; Android) der l&oslash;bende skal opdateres ifht. Apple og Googles skiftende krav — SDK-versioner, privacy manifests, review-guidelines.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon support">&#128736;</div>
+          <h3>Fejlrettelser &amp; support</h3>
+          <p>L&oslash;bende fejlrettelser, kompatibilitetsproblemer og bruger-rapporterede fejl p&aring; tv&aelig;rs af begge platforme. Mindre justeringer inden for rimelig tid.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon updates">&#128640;</div>
+          <h3>Udrulning &amp; automatisering</h3>
+          <p>Vedligeholdelse af to udrulnings-pipelines og automatiserede udrulnings-processer. Sikring af stabile og hurtige opdateringer for begge apps.</p>
+        </div>
+        <div class="service-card">
+          <div class="service-icon gdpr">&#128203;</div>
+          <h3>GDPR &amp; compliance</h3>
+          <p>Vedligeholdelse af GDPR-processer for begge platforme: automatisk datasletning, aktivitetslog, samtykke-h&aring;ndtering og privatlivspolitikker.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Market comparison -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>
+        </div>
+        <h2>Markedspris som reference</h2>
+      </div>
+
+      <div class="comparison-card">
+        <p style="color: var(--text-muted); font-size: 14px; line-height: 1.7;">
+          Herunder ses typiske markedspriser for tilsvarende ydelser hos danske bureauer. FD-aftalen samler alt i &eacute;n fast, lav m&aring;nedspris — med besparelse via delt infrastruktur.
+        </p>
+
+        <div class="comparison-grid">
+          <div class="comparison-col">
+            <h4>FD-aftalen (begge platforme)</h4>
+            <div class="comparison-item">
+              <div class="dot green"></div>
+              Hosting &amp; database (delt)
+              <span class="price-tag">inkl.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot green"></div>
+              2&times; iOS-app vedligeholdelse
+              <span class="price-tag">inkl.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot green"></div>
+              2&times; Android-app vedligeholdelse
+              <span class="price-tag">inkl.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot green"></div>
+              2&times; Web-app vedligeholdelse
+              <span class="price-tag">inkl.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot green"></div>
+              Sikkerhed, GDPR &amp; support
+              <span class="price-tag">inkl.</span>
+            </div>
+            <div class="comparison-item" style="border-top: 2px solid var(--brand); padding-top: 10px; margin-top: 4px;">
+              <div class="dot green"></div>
+              <strong style="color: var(--dark);">I alt</strong>
+              <span class="price-tag" style="color: var(--brand); font-size: 14px;">5.500 kr./md.</span>
+            </div>
+          </div>
+
+          <div class="comparison-col alt">
+            <h4>Typisk markedspris (2 platforme)</h4>
+            <div class="comparison-item">
+              <div class="dot gray"></div>
+              Managed hosting &amp; DB
+              <span class="price-tag">1.000–2.500 kr.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot gray"></div>
+              2&times; iOS-app vedligeholdelse
+              <span class="price-tag">2.000–6.000 kr.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot gray"></div>
+              2&times; Android-app vedligeholdelse
+              <span class="price-tag">2.000–6.000 kr.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot gray"></div>
+              2&times; Web-app vedligeholdelse
+              <span class="price-tag">1.000–3.000 kr.</span>
+            </div>
+            <div class="comparison-item">
+              <div class="dot gray"></div>
+              Sikkerhed, GDPR &amp; support
+              <span class="price-tag">1.500–3.000 kr.</span>
+            </div>
+            <div class="comparison-item" style="border-top: 2px solid #ef4444; padding-top: 10px; margin-top: 4px;">
+              <div class="dot gray"></div>
+              <strong>Typisk i alt</strong>
+              <span class="price-tag" style="font-size: 14px;">8.000–20.000 kr.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Future expansion -->
+    <div class="section">
+      <div class="section-header">
+        <div class="section-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+        </div>
+        <h2>Fremtidige muligheder <span>— platformen er klar til at vokse</span></h2>
+      </div>
+
+      <div class="future-card">
+        <div class="future-intro">
+          <p>FD-platformen er fundamentet for noget st&oslash;rre. N&aelig;ste skridt er <strong style="color: var(--dark);">FysioDK Aalborg</strong> — en dedikeret kundeapp til b&aring;de eksisterende og nye patienter, bygget oven p&aring; den samme platform. En app der g&oslash;r FysioDanmark Aalborg til mere end en klinik man bes&oslash;ger — den bliver en <strong style="color: var(--dark);">sundhedspartner i lommen p&aring; jeres kunder</strong>, klar til at levere v&aelig;rdi d&oslash;gnet rundt. Med appen installeret p&aring; patientens telefon &aring;bner der sig en direkte kanal til kommunikation, fastholdelse og v&aelig;kst.</p>
+        </div>
+        <div class="future-grid">
+          <div class="future-item">
+            <div class="future-item-icon">&#129302;</div>
+            <h4>AI-assistent til patienter</h4>
+            <p>En intelligent chatbot der hj&aelig;lper patienten f&oslash;r bes&oslash;get: forberedelse, forventningsafstemning og forslag til selv&oslash;velser baseret p&aring; klinikkens egen vidensbase. Reducerer un&oslash;dvendige henvendelser og giver patienten en bedre oplevelse fra f&oslash;rste kontakt.</p>
+            <span class="future-tag ai">AI-modul</span>
+          </div>
+          <div class="future-item">
+            <div class="future-item-icon">&#128200;</div>
+            <h4>AI-baseret kundepleje</h4>
+            <p>Intelligent opf&oslash;lgning der automatisk identificerer muligheder for mersalg og eftersalg — f.eks. forebyggende forl&oslash;b, genoptræningstilkøb eller sundhedstjek. Baseret p&aring; patientens historik og behandlingsforl&oslash;b.</p>
+            <span class="future-tag revenue">Mersalg</span>
+          </div>
+          <div class="future-item">
+            <div class="future-item-icon">&#128276;</div>
+            <h4>Personlige push-p&aring;mindelser</h4>
+            <p>Skub relevante p&aring;mindelser direkte til patientens telefon: &oslash;velsesprogrammer mellem bes&oslash;g, aftale-p&aring;mindelser, opf&oslash;lgning efter endt forl&oslash;b og s&aelig;sonbaserede sundhedstips. Holder klinikken top-of-mind — uden at patienten selv skal huske det.</p>
+            <span class="future-tag engagement">Fastholdelse</span>
+          </div>
+          <div class="future-item">
+            <div class="future-item-icon">&#127873;</div>
+            <h4>Loyalitetsprogram &amp; fordele</h4>
+            <p>FDA tilbyder allerede tr&aelig;ningslokale og tr&aelig;ningsprogrammer — en oplagt mulighed for fastholdelse og forebyggelse. Via appen kan patienter f&aring; adgang til tr&aelig;ningstilbud, personlige programmer og fordele der g&oslash;r det naturligt at blive i klinikkens &oslash;kosystem. Profylakse bliver en aktiv del af kunderejsen — ikke bare noget der n&aelig;vnes ved udskrivning.</p>
+            <span class="future-tag engagement">Fastholdelse</span>
+          </div>
+
+          <!-- Full-width website takeover -->
+          <div class="future-item full-width">
+            <div class="future-item-icon">&#127760;</div>
+            <h4>fdaalborg.dk — Fra WordPress til moderne platform</h4>
+            <p>FysioDanmark Aalborgs nuv&aelig;rende hjemmeside er bygget p&aring; WordPress med Divi-page builder, 40+ undersider, tunge tracking-scripts og langsom indl&aelig;sning. Indholdet er godt — men teknologien holder det tilbage. Vi erstatter WordPress med et <strong style="color: var(--dark);">skr&aelig;ddersyet CMS</strong> bygget direkte ind i FD-platformen: moderne, lynhurtigt og med direkte integration til alle apps og services. Hjemmesiden bliver indgangen til hele &oslash;kosystemet — ikke en isoleret WordPress-&oslash; der lever sit eget liv. Alt indhold kan selvf&oslash;lgelig fortsat opdateres af klinikkens egne marketing-medarbejdere — pr&aelig;cis som i dag, bare nemmere og hurtigere.</p>
+
+            <div class="future-full-grid">
+              <div class="future-detail">
+                <span class="future-detail-icon">&#9889;</span>
+                <div>
+                  <strong>Hastighed &amp; SEO</strong>
+                  Nuv&aelig;rende site indl&aelig;ser massive CSS-filer, Google Fonts, Hotjar, Facebook Pixel og Buttonizer. Et moderne setup reducerer indl&aelig;sningstiden markant og forbedrer Google-placeringen.
+                </div>
+              </div>
+              <div class="future-detail">
+                <span class="future-detail-icon">&#128221;</span>
+                <div>
+                  <strong>Nemt at vedligeholde</strong>
+                  Et visuelt CMS hvor medarbejdere, behandlinger, specialer, holdplaner og priser kan opdateres uden teknisk viden — ingen WordPress-plugins, ingen sikkerhedshuller, ingen dyre opdateringer.
+                </div>
+              </div>
+              <div class="future-detail">
+                <span class="future-detail-icon">&#128279;</span>
+                <div>
+                  <strong>Direkte app-integration</strong>
+                  Booking, skadesregistrering, tr&aelig;ningsprogrammer og kundepleje integreret direkte p&aring; hjemmesiden. Patienter kan starte deres rejse p&aring; fdaalborg.dk og forts&aelig;tte s&oslash;ml&oslash;st i appen.
+                </div>
+              </div>
+              <div class="future-detail">
+                <span class="future-detail-icon">&#129302;</span>
+                <div>
+                  <strong>AI-kundepleje fra dag &eacute;t</strong>
+                  Hjemmesiden bliver launch-platform for AI-assistenten: patienter kan chatte, forberede bes&oslash;g og f&aring; anbefalinger direkte p&aring; fdaalborg.dk — f&oslash;r de overhovedet har downloadet appen.
+                </div>
+              </div>
+            </div>
+
+            <div class="future-arrow">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 16 16 12 12 8"/><line x1="8" y1="12" x2="16" y2="12"/></svg>
+              Alt indhold fra de eksisterende ~40 sider overf&oslash;res — intet g&aring;r tabt
+            </div>
+            <div style="margin-top: 8px;">
+              <span class="future-tag website">Website</span>
+              <span class="future-tag ai">AI-modul</span>
+              <span class="future-tag revenue">Mersalg</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA -->
+    <div class="cta-section">
+      <h2>Faste priser — ingen overraskelser</h2>
+      <p>Alt er inkluderet i faste m&aring;nedlige priser. Ingen timepris og ingen skjulte gebyrer. Aftalen l&oslash;ber i 12 m&aring;neder og fornyes automatisk for en ny periode. Opsigelse kan ske med 3 m&aring;neders varsel til periodens udl&oslash;b.</p>
+      <div class="cta-badges">
+        <div class="cta-badge green">FD Sport: DKK 2.000/md.</div>
+        <div class="cta-badge blue">FD Sundhedsordning: DKK 3.500/md.</div>
+      </div>
+      <div style="margin-top: 16px;">
+        <div class="cta-badge total-badge">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          Samlet: DKK 5.500 / m&aring;ned ekskl. moms
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <strong>WebHouse ApS</strong> &middot; Udarbejdet af Christian Broberg, februar 2026 &middot; Alle priser ekskl. moms
+  </div>
+
+</body>
+</html>
