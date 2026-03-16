@@ -26,7 +26,7 @@ export default defineConfig({
         { name: "caption", type: "text", label: "Caption" },
       ],
     }),
-  ]
+  ],
   collections: [
     defineCollection({
       name: "pages",
