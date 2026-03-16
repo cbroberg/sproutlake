@@ -4,7 +4,7 @@
   "collection": "posts",
   "status": "published",
   "data": {
-    "title": "newway",
+    "title": "New Way",
     "date": "2026-03-16",
     "excerpt": "This is the new way to create posts or pages. ",
     "sections": [
@@ -16,5 +16,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-16T21:42:46.339Z"
+  "updatedAt": "2026-03-16T21:43:10.974Z"
 }
