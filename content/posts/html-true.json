@@ -2,7 +2,7 @@
   "id": "bchi6Z964zc3KQ5L5AwS1",
   "slug": "html-true",
   "collection": "posts",
-  "status": "draft",
+  "status": "published",
   "data": {
     "title": "html-true",
     "date": "2026-03-15",
@@ -11,5 +11,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T23:07:56.567Z",
-  "updatedAt": "2026-03-16T10:40:44.994Z"
+  "updatedAt": "2026-03-16T10:54:29.787Z"
 }
