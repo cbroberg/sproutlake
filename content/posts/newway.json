@@ -29,7 +29,7 @@
             },
             {
               "_block": "file",
-              "src": "",
+              "src": "/uploads/files/markdown-file.md",
               "filename": ""
             }
           ],
@@ -80,5 +80,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-16T23:15:02.547Z"
+  "updatedAt": "2026-03-16T23:20:03.433Z"
 }
