@@ -106,6 +106,13 @@ html.dark .prose .callout-tip {
   color: #86efac;
 }
 
+/* ─── Columns responsive ─── */
+@media (max-width: 768px) {
+  .cms-columns {
+    grid-template-columns: 1fr !important;
+  }
+}
+
 /* ─── Interactive embeds ─── */
 .prose iframe[data-interactive],
 .prose div[data-interactive-embed] {
