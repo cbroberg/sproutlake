@@ -6,9 +6,21 @@ export function renderMarkdown(md: string): string {
     // File attachments: !!FILE[src|filename|size]
     .replace(/^!!FILE\[([^|]+)\|([^|]*)\|?(.*?)\]$/gm,
       '<a href="$1" download class="cms-file-attachment">$2</a>')
-    // Interactive embeds: !!INTERACTIVE[id|title]
-    .replace(/^!!INTERACTIVE\[([^|]+)\|?(.*?)\]$/gm,
-      '<iframe src="/interactives/$1.html" data-interactive="$1" title="$2" style="width:100%;min-height:600px;border:none;border-radius:0.75rem;margin:1.5rem 0;"></iframe>')
+    // Interactive embeds: !!INTERACTIVE[id|title|width:Xpx|height:Ypx]
+    .replace(/^!!INTERACTIVE\[([^\]]+)\]$/gm, (_match, inner) => {
+      const parts = inner.split("|");
+      const id = parts[0];
+      let title = "";
+      let width = "100%";
+      let height = "600px";
+      for (let i = 1; i < parts.length; i++) {
+        if (parts[i].startsWith("width:")) width = parts[i].slice(6);
+        else if (parts[i].startsWith("height:")) height = parts[i].slice(7);
+        else if (parts[i].startsWith("align:")) { /* skip align for now */ }
+        else if (!title) title = parts[i];
+      }
+      return `<iframe src="/interactives/${id}.html" data-interactive="${id}" title="${title}" style="width:${width};height:${height};border:none;border-radius:0.75rem;margin:1.5rem 0;"></iframe>`;
+    })
     // Legacy HTML comment tokens (backwards compatibility)
     .replace(/^<!-- file:([^|]+)\|([^|]*)\|?(.*?) -->$/gm,
       '<a href="$1" download class="cms-file-attachment">$2</a>')
