@@ -141,7 +141,7 @@ export default defineConfig({
     }),
     defineCollection({
       name: "posts",
-      label: "Blog Posts",
+      label: "Posts",
       urlPrefix: "/blog",
       fields: [
         { name: "title", type: "text", required: true },
