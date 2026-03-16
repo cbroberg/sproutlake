@@ -32,6 +32,19 @@ export function renderMarkdown(md: string): string {
       '<a href="$1" download class="cms-file-attachment">$2</a>')
     .replace(/^<!-- interactive:([^|]+)\|?(.*?) -->$/gm,
       '<iframe src="/interactives/$1.html" data-interactive="$1" title="$2" style="width:100%;min-height:600px;border:none;border-radius:0.75rem;margin:1.5rem 0;"></iframe>')
+    // Callouts / admonitions: > [!TIP] / > [!WARNING] / > [!INFO]
+    .replace(/^> \[!(TIP|WARNING|INFO|NOTE|CAUTION)\]\n((?:^> .*\n?)*)/gmi, (_match, type, body) => {
+      const text = body.replace(/^> ?/gm, "").trim();
+      const colors: Record<string, string> = {
+        tip: "border-green-500/40;background:rgba(34,197,94,0.08);color:#86efac",
+        info: "border-blue-500/40;background:rgba(59,130,246,0.08);color:#93c5fd",
+        note: "border-blue-500/40;background:rgba(59,130,246,0.08);color:#93c5fd",
+        warning: "border-yellow-500/40;background:rgba(234,179,8,0.08);color:#fde68a",
+        caution: "border-red-500/40;background:rgba(239,68,68,0.08);color:#fca5a5",
+      };
+      const style = colors[type.toLowerCase()] || colors.info;
+      return `<div style="border-left:4px solid;${style};padding:0.75rem 1rem;border-radius:0.5rem;margin:1rem 0;font-size:0.9rem"><strong style="text-transform:uppercase;font-size:0.75rem;letter-spacing:0.05em;display:block;margin-bottom:0.25rem">${type}</strong>${text}</div>`;
+    })
     // Code blocks (must be before inline code)
     .replace(/```(\w*)\n([\s\S]*?)```/g, '<pre><code class="language-$1">$2</code></pre>')
     // Headings
