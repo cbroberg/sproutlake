@@ -26,7 +26,7 @@ export default defineConfig({
         { name: "caption", type: "text", label: "Caption" },
       ],
     }),
-  ],
+  ]
   collections: [
     defineCollection({
       name: "pages",
@@ -52,17 +52,7 @@ export default defineConfig({
         { name: "title", type: "text", required: true },
         { name: "description", type: "textarea", required: true },
         { name: "icon", type: "text", label: "Icon name" },
-        {
-          name: "category",
-          type: "select",
-          label: "Category",
-          options: [
-            { label: "IoT", value: "iot" },
-            { label: "Monitoring", value: "monitoring" },
-            { label: "Analytics", value: "analytics" },
-            { label: "AI", value: "ai" },
-          ],
-        },
+        { name: "category", type: "select", label: "Category", options: [{ label: "IoT", value: "iot" }, { label: "Monitoring", value: "monitoring" }, { label: "Analytics", value: "analytics" }, { label: "AI", value: "ai" }] },
         { name: "featured", type: "boolean", label: "Featured" },
         { name: "sortOrder", type: "number", label: "Sort Order" },
       ],
@@ -71,26 +61,14 @@ export default defineConfig({
       name: "pricing",
       label: "Pricing",
       fields: [
-        { name: "planName", type: "text", required: true, label: "Plan Name" },
+        { name: "planName", type: "text", label: "Plan Name", required: true },
         { name: "description", type: "textarea" },
         { name: "priceAnnual", type: "text", label: "Annual Price" },
         { name: "currency", type: "text", label: "Currency" },
         { name: "maxSows", type: "text", label: "Max Sows" },
-        {
-          name: "featuresIncluded",
-          type: "array",
-          label: "Features Included",
-        },
+        { name: "featuresIncluded", type: "array", label: "Features Included" },
         { name: "highlighted", type: "boolean", label: "Highlighted" },
-        {
-          name: "addons",
-          type: "array",
-          label: "Add-ons",
-          fields: [
-            { name: "name", type: "text", label: "Add-on Name" },
-            { name: "price", type: "text", label: "Price" },
-          ],
-        },
+        { name: "addons", type: "array", label: "Add-ons" },
       ],
     }),
     defineCollection({
@@ -100,16 +78,7 @@ export default defineConfig({
       fields: [
         { name: "title", type: "text", required: true },
         { name: "description", type: "textarea" },
-        {
-          name: "category",
-          type: "select",
-          label: "Category",
-          options: [
-            { label: "AI", value: "ai" },
-            { label: "Technology", value: "technology" },
-            { label: "Features", value: "features" },
-          ],
-        },
+        { name: "category", type: "select", label: "Category", options: [{ label: "AI", value: "ai" }, { label: "Technology", value: "technology" }, { label: "Features", value: "features" }] },
         { name: "content", type: "richtext" },
         { name: "htmlContent", type: "htmldoc", label: "Interactive HTML" },
       ],
@@ -147,31 +116,22 @@ export default defineConfig({
         { name: "title", type: "text", required: true },
         { name: "excerpt", type: "textarea", label: "Excerpt" },
         { name: "content", type: "richtext", label: "Content (legacy)" },
-        { name: "sections", type: "blocks", label: "Sections", blocks: ["text", "interactive", "image", "file"] },
+        { name: "sections", type: "blocks", label: "Sections" },
         { name: "date", type: "date", label: "Publish Date" },
         { name: "author", type: "text", label: "Author" },
         { name: "tags", type: "tags", label: "Tags" },
-        {
-          name: "category",
-          type: "select",
-          label: "Category",
-          options: [
-            { label: "Engineering", value: "engineering" },
-            { label: "Product", value: "product" },
-            { label: "Company", value: "company" },
-          ],
-        },
+        { name: "category", type: "select", label: "Category", options: [{ label: "Engineering", value: "engineering" }, { label: "Product", value: "product" }, { label: "Company", value: "company" }] },
       ],
-    }),
+    })
   ],
   storage: {
     adapter: "github",
     github: {
-      owner: "cbroberg",
-      repo: "sproutlake",
-      branch: "main",
-      contentDir: "content",
-      token: "oauth",
+        "owner": "cbroberg",
+        "repo": "sproutlake",
+        "branch": "main",
+        "contentDir": "content",
+        "token": "REDACTED"
     },
   },
 });
