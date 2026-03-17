@@ -14,9 +14,9 @@ function ExpandButton({ onClick }: { onClick: () => void }) {
     <button
       onClick={onClick}
       style={{
-        position: "absolute", top: 0, right: 0,
-        width: 32, height: 32, borderRadius: "0 0.75rem 0 8px",
-        background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
+        position: "absolute", top: 8, right: 8,
+        width: 28, height: 28, borderRadius: "50%",
+        background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)",
         border: "none", cursor: "pointer", color: "white",
         display: "flex", alignItems: "center", justifyContent: "center",
         transition: "background 150ms",
