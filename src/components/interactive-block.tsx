@@ -100,7 +100,8 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           <iframe
             src={src}
             title={caption || "Interactive"}
-            style={{ width: "88vw", height: "88vh", maxWidth: 1200, border: "none", borderRadius: "0.75rem", boxShadow: "0 0 60px rgba(0,0,0,0.5)" }}
+            style={{ width: "88vw", height: "88vh", maxWidth: 1200, border: "none", borderRadius: "0.75rem", boxShadow: "0 0 60px rgba(0,0,0,0.5)", overflow: "hidden" }}
+            scrolling="no"
             sandbox="allow-scripts allow-same-origin"
           />
         </div>
