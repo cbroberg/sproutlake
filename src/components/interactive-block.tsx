@@ -62,11 +62,11 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
         </div>
       ) : (
-        <div style={{ position: "relative" }}>
+        <div style={{ position: "relative", display: "inline-block", maxWidth: "100%" }}>
           <iframe
             src={src}
             title={caption || "Interactive"}
-            style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
+            style={{ width: 1000, maxWidth: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
             sandbox="allow-scripts allow-same-origin"
           />
           {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
