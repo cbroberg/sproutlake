@@ -146,7 +146,7 @@ export default function HomePage() {
               {/* IoT Sensors */}
               <div className="text-center">
                 <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-green-100 dark:bg-green-500/10 mb-6">
-                  <svg className="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13a10 10 0 0114 0m-7 5a3 3 0 013-3m-6 0a3 3 0 016 0m-3 3v.01" /></svg>
+                  <svg className="h-8 w-8 text-green-600 dark:text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round"><path d="M5 12.55a11 11 0 0 1 14.08 0" /><path d="M1.42 9a16 16 0 0 1 21.16 0" /><path d="M8.53 16.11a6 6 0 0 1 6.95 0" /><circle cx="12" cy="20" r="1" fill="currentColor" /></svg>
                 </div>
                 <h3 className="text-lg font-semibold mb-2 text-gray-900 dark:text-white">IoT Sensors</h3>
                 <p className="text-gray-600 dark:text-gray-400">Durable, wireless sensors that withstand tough farm conditions</p>
