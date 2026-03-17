@@ -77,14 +77,9 @@
     ],
     "category": "engineering",
     "content": "# **What We've Been Building: A Tour of Our Latest GitHub Repositories**\n\nFrom AI-powered DNS management to a full infrastructure operations platform — here's a candid look at the 10 most recent repositories across our webhousecode and cbroberg GitHub accounts, and what each one does.\n\nWe build a lot of software. Some of it is for clients, some of it is infrastructure we run ourselves, and some of it is tooling that makes our daily work faster and less error-prone. Most of it lives in private repositories — working code that quietly does its job. But occasionally we think it's worth opening the curtain a little.\n\nHere's a tour of the 10 most recent repositories across our [webhousecode](https://github.com/webhousecode) organisation and [cbroberg](https://github.com/cbroberg) personal account — what they are, what they do, and whether they're public or private.",
-    "_fieldMeta": {
-      "sections": {
-        "lockedBy": "user",
-        "lockedAt": "2026-03-17T00:42:11.008Z"
-      }
-    }
+    "_fieldMeta": {}
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T00:42:15.182Z"
+  "updatedAt": "2026-03-17T00:42:19.949Z"
 }
