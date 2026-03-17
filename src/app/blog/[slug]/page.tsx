@@ -47,9 +47,10 @@ function renderBlock(block: Record<string, unknown>, index: number) {
       const scaleRaw = Number(block.scale) || 0;
       const isScaled = scaleRaw > 0 && scaleRaw < 100;
       const sc = scaleRaw / 100;
-      /* For thumbnails: render at 1200×2400 virtual viewport, scale down */
+      /* For thumbnails: render at 1200×1200 virtual viewport, scale down.
+         Most interactives fit within 1200px height. The overflow is hidden. */
       const VW = 1200;
-      const VH = 2400;
+      const VH = 1200;
       return (
         <div key={index} className="my-8">
           {isScaled ? (
