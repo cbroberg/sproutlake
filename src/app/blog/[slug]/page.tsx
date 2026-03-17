@@ -44,18 +44,20 @@ function renderBlock(block: Record<string, unknown>, index: number) {
     case "interactive": {
       const intId = block.interactiveId as string;
       if (!intId) return null;
-      const vw = (block.viewportWidth as number) || 1000;
-      const vh = (block.viewportHeight as number) || 800;
-      const sc = ((block.scale as number) || 100) / 100;
-      const isScaled = sc < 1;
+      const scaleRaw = Number(block.scale) || 0;
+      const isScaled = scaleRaw > 0 && scaleRaw < 100;
+      const sc = scaleRaw / 100;
+      /* For thumbnails: render at 1200×2400 virtual viewport, scale down */
+      const VW = 1200;
+      const VH = 2400;
       return (
         <div key={index} className="my-8">
           {isScaled ? (
-            <div style={{ width: vw * sc, height: vh * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
+            <div style={{ width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
               <iframe
                 src={`/interactives/${intId}.html`}
                 title={block.caption as string || "Interactive"}
-                style={{ width: vw, height: vh, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
+                style={{ width: VW, height: VH, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
                 sandbox="allow-scripts allow-same-origin"
               />
             </div>
@@ -63,7 +65,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
             <iframe
               src={`/interactives/${intId}.html`}
               title={block.caption as string || "Interactive"}
-              style={{ width: "100%", minHeight: `${vh}px`, border: "none", borderRadius: "0.75rem" }}
+              style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
               sandbox="allow-scripts allow-same-origin"
             />
           )}
