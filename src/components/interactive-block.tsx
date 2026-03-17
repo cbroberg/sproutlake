@@ -52,7 +52,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
   return (
     <div className="my-8">
       {isScaled ? (
-        <div style={{ position: "relative", display: "inline-block", width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
+        <div style={{ position: "relative", display: "inline-block", width: VW * sc, maxWidth: "100%", height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
           <iframe
             src={src}
             title={caption || "Interactive"}
