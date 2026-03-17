@@ -72,7 +72,10 @@
       {
         "_block": "interactive",
         "interactiveId": "pricing-calculator-with-sliders",
-        "caption": ""
+        "caption": "",
+        "viewportWidth": "1000",
+        "viewportHeight": "800",
+        "scale": "50"
       }
     ],
     "category": "engineering",
@@ -86,5 +89,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T11:57:11.445Z"
+  "updatedAt": "2026-03-17T11:58:39.732Z"
 }
