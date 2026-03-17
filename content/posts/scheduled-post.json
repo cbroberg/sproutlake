@@ -4,9 +4,17 @@
   "collection": "posts",
   "status": "draft",
   "data": {
-    "title": "Scheduled post"
+    "title": "Scheduled post",
+    "date": "2026-03-17",
+    "category": "engineering",
+    "_lastEditedBy": {
+      "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
+      "name": "Christian Broberg",
+      "email": "cb@webhouse.dk",
+      "at": "2026-03-17T21:37:21.339Z"
+    }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-17T21:35:35.921Z",
-  "updatedAt": "2026-03-17T21:35:35.921Z"
+  "updatedAt": "2026-03-17T21:37:25.571Z"
 }
