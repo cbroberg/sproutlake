@@ -124,7 +124,7 @@ export default defineConfig({
         "repo": "sproutlake",
         "branch": "main",
         "contentDir": "content",
-        "token": "REDACTED"
+        "token": "oauth"
     },
   },
 });
