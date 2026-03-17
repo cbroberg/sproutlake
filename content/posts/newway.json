@@ -70,14 +70,6 @@
         ]
       },
       {
-        "_block": "interactive",
-        "interactiveId": "pricing-calculator-with-sliders",
-        "caption": "",
-        "viewportWidth": "",
-        "viewportHeight": "",
-        "scale": "35"
-      },
-      {
         "_block": "columns",
         "layout": "1-1",
         "columns": [
@@ -104,5 +96,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T12:14:19.924Z"
+  "updatedAt": "2026-03-17T12:14:41.402Z"
 }
