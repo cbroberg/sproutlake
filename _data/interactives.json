@@ -61,5 +61,14 @@
     "status": "draft",
     "createdAt": "2026-03-16T19:10:33.945Z",
     "updatedAt": "2026-03-16T19:13:26.401Z"
+  },
+  {
+    "id": "pricing-calculator-with-sliders",
+    "name": "pricing-calculator-with-sliders",
+    "filename": "pricing-calculator-with-sliders.html",
+    "size": 14787,
+    "status": "draft",
+    "createdAt": "2026-03-17T09:05:16.749Z",
+    "updatedAt": "2026-03-17T09:05:16.749Z"
   }
 ]
