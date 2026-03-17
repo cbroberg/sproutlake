@@ -81,7 +81,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           style={{
             position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999,
             background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)",
-            display: "grid", placeItems: "center",
+            display: "grid", placeItems: "center", overflow: "hidden",
           }}
         >
           <button
