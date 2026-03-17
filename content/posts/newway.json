@@ -77,7 +77,8 @@
             }
           ],
           []
-        ]
+        ],
+        "label": "Med en masse INTS"
       },
       {
         "_block": "image",
@@ -97,5 +98,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T12:28:11.407Z"
+  "updatedAt": "2026-03-17T13:05:02.874Z"
 }
