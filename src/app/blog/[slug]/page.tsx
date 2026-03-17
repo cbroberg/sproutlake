@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getCollection, getDocument } from "@/lib/content";
 import { renderMarkdown } from "@/lib/markdown";
+import { InteractiveBlock } from "@/components/interactive-block";
 import type { Metadata } from "next";
 
 export async function generateStaticParams() {
@@ -44,36 +45,14 @@ function renderBlock(block: Record<string, unknown>, index: number) {
     case "interactive": {
       const intId = block.interactiveId as string;
       if (!intId) return null;
-      const scaleRaw = Number(block.scale) || 0;
-      const isScaled = scaleRaw > 0 && scaleRaw < 100;
-      const sc = scaleRaw / 100;
-      /* For thumbnails: render at 1200×1200 virtual viewport, scale down.
-         Most interactives fit within 1200px height. The overflow is hidden. */
-      const VW = 1200;
-      const VH = 1200;
       return (
-        <div key={index} className="my-8">
-          {isScaled ? (
-            <div style={{ width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
-              <iframe
-                src={`/interactives/${intId}.html`}
-                title={block.caption as string || "Interactive"}
-                style={{ width: VW, height: VH, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
-                sandbox="allow-scripts allow-same-origin"
-              />
-            </div>
-          ) : (
-            <iframe
-              src={`/interactives/${intId}.html`}
-              title={block.caption as string || "Interactive"}
-              style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
-              sandbox="allow-scripts allow-same-origin"
-            />
-          )}
-          {block.caption && (
-            <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</p>
-          )}
-        </div>
+        <InteractiveBlock
+          key={index}
+          interactiveId={intId}
+          caption={block.caption as string}
+          scale={Number(block.scale) || undefined}
+          allowFullscreen={!!block.allowFullscreen}
+        />
       );
     }
     case "image":
