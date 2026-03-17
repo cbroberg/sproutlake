@@ -42,6 +42,14 @@
               "_block": "audio",
               "src": "/audio/ai-farmers-anomaly-detection.mp3",
               "caption": ""
+            },
+            {
+              "_block": "interactive",
+              "interactiveId": "pricing-calculator-with-sliders",
+              "caption": "",
+              "viewportWidth": "",
+              "viewportHeight": "",
+              "scale": ""
             }
           ],
           [
@@ -89,5 +97,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T11:58:39.732Z"
+  "updatedAt": "2026-03-17T12:00:38.979Z"
 }
