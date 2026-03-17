@@ -1,0 +1,12 @@
+{
+  "id": "UGBwU-AMX1OXvrO04hZ5W",
+  "slug": "scheduled-post",
+  "collection": "posts",
+  "status": "draft",
+  "data": {
+    "title": "Scheduled post"
+  },
+  "_fieldMeta": {},
+  "createdAt": "2026-03-17T21:35:35.921Z",
+  "updatedAt": "2026-03-17T21:35:35.921Z"
+}
