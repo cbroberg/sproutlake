@@ -77,30 +77,30 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
       {/* Fullscreen overlay */}
       {fullscreen && (
         <div
-          style={{
-            position: "fixed", inset: 0, zIndex: 9999,
-            background: "rgba(0,0,0,0.9)", backdropFilter: "blur(8px)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-          }}
           onClick={(e) => { if (e.target === e.currentTarget) setFullscreen(false); }}
+          style={{
+            position: "fixed", top: 0, left: 0, right: 0, bottom: 0, zIndex: 9999,
+            background: "rgba(0,0,0,0.92)", backdropFilter: "blur(8px)",
+            display: "grid", placeItems: "center",
+          }}
         >
           <button
             onClick={() => setFullscreen(false)}
             style={{
-              position: "absolute", top: "1rem", right: "1.5rem", zIndex: 1,
-              background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
-              borderRadius: "8px", color: "white", cursor: "pointer",
-              width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
+              position: "fixed", top: 16, right: 16, zIndex: 10000,
+              background: "rgba(255,255,255,0.15)", border: "1px solid rgba(255,255,255,0.25)",
+              borderRadius: "50%", color: "white", cursor: "pointer",
+              width: 40, height: 40, display: "flex", alignItems: "center", justifyContent: "center",
             }}
-            >
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                <path d="M18 6 6 18" /><path d="m6 6 12 12" />
-              </svg>
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+              <path d="M18 6 6 18" /><path d="m6 6 12 12" />
+            </svg>
           </button>
           <iframe
             src={src}
             title={caption || "Interactive"}
-            style={{ width: "90vw", height: "90vh", maxWidth: "1200px", border: "none", borderRadius: "0.75rem" }}
+            style={{ width: "88vw", height: "88vh", maxWidth: 1200, border: "none", borderRadius: "0.75rem", boxShadow: "0 0 60px rgba(0,0,0,0.5)" }}
             sandbox="allow-scripts allow-same-origin"
           />
         </div>
