@@ -61,8 +61,7 @@
               "caption": "Lovely pigs"
             }
           ]
-        ],
-        "label": "Top column"
+        ]
       },
       {
         "_block": "columns",
@@ -79,7 +78,7 @@
           ],
           []
         ],
-        "label": "Med en masse INTS"
+        "label": "Next column"
       },
       {
         "_block": "image",
@@ -99,5 +98,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T13:28:02.142Z"
+  "updatedAt": "2026-03-17T13:28:16.529Z"
 }
