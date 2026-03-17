@@ -10,14 +10,6 @@ export default defineConfig({
       ],
     }),
     defineBlock({
-      name: "interactive",
-      label: "Interactive",
-      fields: [
-        { name: "interactiveId", type: "text", label: "Interactive ID", required: true },
-        { name: "caption", type: "text", label: "Caption" },
-      ],
-    }),
-    defineBlock({
       name: "image",
       label: "Image",
       fields: [
