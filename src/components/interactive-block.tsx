@@ -9,29 +9,6 @@ interface Props {
   allowFullscreen?: boolean;
 }
 
-function ExpandButton({ onClick }: { onClick: () => void }) {
-  return (
-    <button
-      onClick={onClick}
-      style={{
-        position: "absolute", top: 12, right: 20,
-        width: 28, height: 28, borderRadius: "50%", zIndex: 2,
-        background: "rgba(0,0,0,0.5)", backdropFilter: "blur(4px)",
-        border: "none", cursor: "pointer", color: "white",
-        display: "flex", alignItems: "center", justifyContent: "center",
-        transition: "background 150ms",
-      }}
-      onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.8)"; }}
-      onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
-    >
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-        <path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-        <path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" />
-      </svg>
-    </button>
-  );
-}
-
 export function InteractiveBlock({ interactiveId, caption, scale, allowFullscreen }: Props) {
   const [fullscreen, setFullscreen] = useState(false);
 
@@ -59,22 +36,42 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
             style={{ width: VW, height: VH, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
             sandbox="allow-scripts allow-same-origin"
           />
-          {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
         </div>
       ) : (
-        <div style={{ position: "relative", display: "inline-block", maxWidth: "100%" }}>
-          <iframe
-            src={src}
-            title={caption || "Interactive"}
-            style={{ width: 1000, maxWidth: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
-            sandbox="allow-scripts allow-same-origin"
-          />
-          {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
-        </div>
+        <iframe
+          src={src}
+          title={caption || "Interactive"}
+          style={{ width: 1000, maxWidth: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
+          sandbox="allow-scripts allow-same-origin"
+        />
       )}
 
-      {caption && (
-        <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{caption}</p>
+      {(caption || allowFullscreen) && (
+        <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginTop: "0.5rem" }}>
+          {caption && (
+            <p className="text-sm text-gray-500 dark:text-gray-400" style={{ flex: 1, textAlign: "center", margin: 0 }}>{caption}</p>
+          )}
+          {allowFullscreen && (
+            <button
+              onClick={() => setFullscreen(true)}
+              style={{
+                display: "inline-flex", alignItems: "center", gap: "0.35rem",
+                padding: "0.25rem 0.6rem", borderRadius: "6px",
+                background: "transparent", border: "1px solid rgba(150,150,150,0.3)",
+                color: "rgba(150,150,150,0.7)", cursor: "pointer", fontSize: "0.7rem",
+                transition: "all 150ms", whiteSpace: "nowrap",
+              }}
+              onMouseEnter={(e) => { e.currentTarget.style.borderColor = "rgba(100,100,100,0.5)"; e.currentTarget.style.color = "rgba(100,100,100,0.9)"; }}
+              onMouseLeave={(e) => { e.currentTarget.style.borderColor = "rgba(150,150,150,0.3)"; e.currentTarget.style.color = "rgba(150,150,150,0.7)"; }}
+            >
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+                <path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+              </svg>
+              Fullscreen
+            </button>
+          )}
+        </div>
       )}
 
       {/* Fullscreen overlay */}
