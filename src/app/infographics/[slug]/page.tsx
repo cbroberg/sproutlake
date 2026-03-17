@@ -76,7 +76,7 @@ export default async function InfographicPage({
             <iframe
               src={htmlFile}
               className="w-full border-0"
-              style={{ minHeight: "1200px" }}
+              style={{ minHeight: "min(1200px, 150vh)" }}
               title={info.data.title as string}
               sandbox="allow-scripts allow-same-origin"
             />

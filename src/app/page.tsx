@@ -42,7 +42,7 @@ export default function HomePage() {
           />
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-black/70" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 sm:py-44">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-32 md:py-44">
           <div className="text-center max-w-3xl mx-auto">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight leading-tight text-white">
               {page.data.heroTitle as string}
@@ -53,7 +53,7 @@ export default function HomePage() {
             <div className="mt-10 flex flex-wrap gap-4 justify-center">
               <Link
                 href={page.data.ctaLink as string}
-                className="inline-flex items-center px-10 py-4 rounded-lg bg-green-500 text-black font-bold text-lg hover:bg-green-400 transition-all hover:-translate-y-0.5 hover:shadow-lg"
+                className="inline-flex items-center px-6 py-3 sm:px-10 sm:py-4 rounded-lg bg-green-500 text-black font-bold text-base sm:text-lg hover:bg-green-400 transition-all hover:-translate-y-0.5 hover:shadow-lg"
               >
                 {page.data.ctaText as string}
               </Link>
@@ -193,7 +193,7 @@ export default function HomePage() {
 
             {/* Step 1 */}
             <div className="relative z-10">
-              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+              <div className="bg-green-500 text-white w-14 h-14 sm:w-20 sm:h-20 rounded-full mx-auto flex items-center justify-center text-2xl sm:text-3xl font-bold mb-4 shadow-lg">
                 1
               </div>
               <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Install the Hardware</h3>
@@ -205,7 +205,7 @@ export default function HomePage() {
             </div>
             {/* Step 2 */}
             <div className="relative z-10">
-              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+              <div className="bg-green-500 text-white w-14 h-14 sm:w-20 sm:h-20 rounded-full mx-auto flex items-center justify-center text-2xl sm:text-3xl font-bold mb-4 shadow-lg">
                 2
               </div>
               <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Monitor Your Dashboard</h3>
@@ -217,7 +217,7 @@ export default function HomePage() {
             </div>
             {/* Step 3 */}
             <div className="relative z-10">
-              <div className="bg-green-500 text-white w-20 h-20 rounded-full mx-auto flex items-center justify-center text-3xl font-bold mb-4 shadow-lg">
+              <div className="bg-green-500 text-white w-14 h-14 sm:w-20 sm:h-20 rounded-full mx-auto flex items-center justify-center text-2xl sm:text-3xl font-bold mb-4 shadow-lg">
                 3
               </div>
               <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white">Make Smarter Decisions</h3>
@@ -287,7 +287,7 @@ export default function HomePage() {
           </div>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
             {/* AI Card 1 */}
-            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-8 rounded-lg shadow-lg flex items-start space-x-6 border border-gray-600/50 dark:border-white/10">
+            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-5 sm:p-8 rounded-lg shadow-lg flex flex-col sm:flex-row items-start gap-4 sm:gap-6 border border-gray-600/50 dark:border-white/10">
               <div className="bg-green-500 p-3 rounded-full shrink-0">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
@@ -304,7 +304,7 @@ export default function HomePage() {
               </div>
             </div>
             {/* AI Card 2 */}
-            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-8 rounded-lg shadow-lg flex items-start space-x-6 border border-gray-600/50 dark:border-white/10">
+            <div className="bg-gray-700/50 dark:bg-white/5 text-white p-5 sm:p-8 rounded-lg shadow-lg flex flex-col sm:flex-row items-start gap-4 sm:gap-6 border border-gray-600/50 dark:border-white/10">
               <div className="bg-green-500 p-3 rounded-full shrink-0">
                 <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
@@ -373,7 +373,7 @@ export default function HomePage() {
               return (
                 <div
                   key={plan.id}
-                  className={`relative rounded-2xl p-8 ${
+                  className={`relative rounded-2xl p-6 sm:p-8 ${
                     highlighted
                       ? "bg-green-50 dark:bg-green-500/5 border-2 border-green-500/40"
                       : "bg-gray-50 dark:bg-[#141414] border border-gray-200 dark:border-white/5"

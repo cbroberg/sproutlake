@@ -61,7 +61,8 @@
               "caption": "Lovely pigs"
             }
           ]
-        ]
+        ],
+        "label": "Top column"
       },
       {
         "_block": "columns",

@@ -42,7 +42,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
         <iframe
           src={src}
           title={caption || "Interactive"}
-          style={{ width: 1000, maxWidth: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
+          style={{ width: "100%", minHeight: "min(600px, 80vh)", border: "none", borderRadius: "0.75rem" }}
           sandbox="allow-scripts allow-same-origin"
         />
       )}

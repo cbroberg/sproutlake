@@ -29,7 +29,7 @@ export default function RootLayout({
       >
         <ThemeProvider>
           <Navbar />
-          <main className="min-h-screen pt-16">{children}</main>
+          <main className="min-h-screen pt-16 md:pt-32">{children}</main>
           <Footer />
           <LiveRefresh />
         </ThemeProvider>

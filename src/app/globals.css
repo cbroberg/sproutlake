@@ -117,7 +117,7 @@ html.dark .prose .callout-tip {
 .prose iframe[data-interactive],
 .prose div[data-interactive-embed] {
   width: 100%;
-  min-height: 500px;
+  min-height: min(500px, 70vh);
   border: 1px solid #e5e7eb;
   border-radius: 0.75rem;
   margin: 2rem 0;

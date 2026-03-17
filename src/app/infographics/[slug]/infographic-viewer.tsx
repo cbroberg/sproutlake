@@ -40,7 +40,7 @@ export function InfographicViewer({
         srcDoc={htmlContent}
         sandbox="allow-scripts allow-same-origin"
         className="w-full border border-gray-200 dark:border-white/10 rounded-xl"
-        style={{ minHeight: "800px" }}
+        style={{ minHeight: "min(800px, 100vh)" }}
         title={title}
       />
     </div>

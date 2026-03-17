@@ -11,13 +11,13 @@ export function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 bg-[#0a0a0a]/90 dark:bg-[#0a0a0a]/90 bg-white/90 backdrop-blur-md border-b border-white/5 dark:border-white/5 border-gray-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex items-center justify-between h-32">
+        <div className="flex items-center justify-between h-16 md:h-32">
           <Link href="/" className="flex items-center gap-2">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src={logo}
               alt="SproutLake"
-              style={{ height: "100px", width: "auto" }}
+              className="h-10 md:h-[100px] w-auto"
             />
           </Link>
           <div className="hidden md:flex items-center gap-8">
@@ -70,6 +70,7 @@ function MobileMenu() {
         <Link href="/about" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white py-1">About</Link>
         <Link href="/blog" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white py-1">Blog</Link>
         <Link href="/infographics" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white py-1">Infographics</Link>
+        <Link href="/podcasts" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white py-1">Podcasts</Link>
         <Link href="/#pricing" className="text-sm text-gray-600 dark:text-gray-300 hover:text-black dark:hover:text-white py-1">Pricing</Link>
         <Link href="/#contact" className="inline-flex items-center justify-center px-4 py-2 rounded-lg bg-green-500 text-black text-sm font-semibold hover:bg-green-400 transition-colors">
           Request Demo

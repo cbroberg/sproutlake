@@ -185,7 +185,7 @@ export default async function BlogPostPage({
           Back to Blog
         </Link>
         <div className="mt-6">
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-3 mb-6">
             <span className="text-xs font-medium text-green-500 uppercase tracking-wider bg-green-500/10 px-2.5 py-1 rounded-full">
               {post.data.category as string}
             </span>
@@ -203,7 +203,7 @@ export default async function BlogPostPage({
           <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-tight">
             {post.data.title as string}
           </h1>
-          <p className="mt-6 text-xl text-gray-500 dark:text-gray-400 leading-relaxed">
+          <p className="mt-6 text-lg sm:text-xl text-gray-500 dark:text-gray-400 leading-relaxed">
             {post.data.excerpt as string}
           </p>
         </div>
