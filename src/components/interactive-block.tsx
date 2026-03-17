@@ -80,32 +80,29 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           style={{
             position: "fixed", inset: 0, zIndex: 9999,
             background: "rgba(0,0,0,0.9)", backdropFilter: "blur(8px)",
-            display: "flex", flexDirection: "column",
+            display: "flex", alignItems: "center", justifyContent: "center",
           }}
           onClick={(e) => { if (e.target === e.currentTarget) setFullscreen(false); }}
         >
-          <div style={{ display: "flex", justifyContent: "flex-end", padding: "1rem 1.5rem" }}>
-            <button
-              onClick={() => setFullscreen(false)}
-              style={{
-                background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
-                borderRadius: "8px", color: "white", cursor: "pointer",
-                padding: "0.5rem 1rem", fontSize: "0.85rem", display: "flex", alignItems: "center", gap: "0.5rem",
-              }}
+          <button
+            onClick={() => setFullscreen(false)}
+            style={{
+              position: "absolute", top: "1rem", right: "1.5rem", zIndex: 1,
+              background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.2)",
+              borderRadius: "8px", color: "white", cursor: "pointer",
+              width: 36, height: 36, display: "flex", alignItems: "center", justifyContent: "center",
+            }}
             >
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M18 6 6 18" /><path d="m6 6 12 12" />
               </svg>
-            </button>
-          </div>
-          <div style={{ flex: 1, padding: "0 1.5rem 1.5rem" }}>
-            <iframe
-              src={src}
-              title={caption || "Interactive"}
-              style={{ width: "100%", height: "100%", border: "none", borderRadius: "0.75rem" }}
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
+          </button>
+          <iframe
+            src={src}
+            title={caption || "Interactive"}
+            style={{ width: "90vw", height: "90vh", maxWidth: "1200px", border: "none", borderRadius: "0.75rem" }}
+            sandbox="allow-scripts allow-same-origin"
+          />
         </div>
       )}
     </div>
