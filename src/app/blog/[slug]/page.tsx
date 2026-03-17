@@ -52,6 +52,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
           caption={block.caption as string}
           scale={Number(block.scale) || undefined}
           allowFullscreen={!!block.allowFullscreen}
+          fullscreenLabel={block.fullscreenLabel as string}
         />
       );
     }
