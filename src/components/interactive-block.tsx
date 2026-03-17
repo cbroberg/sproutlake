@@ -28,7 +28,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
 
   return (
     <div className="my-8">
-      <div style={{ position: "relative" }}>
+      <div style={{ position: "relative", display: "inline-block" }}>
         {isScaled ? (
           <div style={{ width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
             <iframe
@@ -51,9 +51,8 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
         {allowFullscreen && (
           <button
             onClick={() => setFullscreen(true)}
-            title="Open fullscreen"
             style={{
-              position: "absolute", top: 4, right: 4,
+              position: "absolute", top: 6, right: 6,
               width: 32, height: 32, borderRadius: "8px",
               background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
               border: "none", cursor: "pointer", color: "white",
