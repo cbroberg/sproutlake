@@ -52,7 +52,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           <button
             onClick={() => setFullscreen(true)}
             style={{
-              position: "absolute", top: 6, right: 6,
+              position: "absolute", top: 0, right: 0,
               width: 32, height: 32, borderRadius: "8px",
               background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
               border: "none", cursor: "pointer", color: "white",
