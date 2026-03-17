@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface Props {
   interactiveId: string;
@@ -11,6 +11,13 @@ interface Props {
 
 export function InteractiveBlock({ interactiveId, caption, scale, allowFullscreen }: Props) {
   const [fullscreen, setFullscreen] = useState(false);
+
+  useEffect(() => {
+    if (!fullscreen) return;
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") setFullscreen(false); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [fullscreen]);
   const src = `/interactives/${interactiveId}.html`;
 
   const scaleRaw = scale || 0;
@@ -46,7 +53,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
             onClick={() => setFullscreen(true)}
             title="Open fullscreen"
             style={{
-              position: "absolute", top: isScaled ? 8 : 12, right: isScaled ? 8 : 12,
+              position: "absolute", top: 4, right: 4,
               width: 32, height: 32, borderRadius: "8px",
               background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
               border: "none", cursor: "pointer", color: "white",
