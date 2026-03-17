@@ -3,7 +3,12 @@ import { notFound } from "next/navigation";
 import { getCollection, getDocument } from "@/lib/content";
 import type { Metadata } from "next";
 
-const INFOGRAPHIC_FILES: Record<string, string> = {
+/**
+ * Legacy mapping — used as fallback when the CMS document doesn't have
+ * an `interactiveFile` field set yet. Once all infographics are migrated,
+ * this can be removed.
+ */
+const LEGACY_FILES: Record<string, string> = {
   "hybrid-ai-engine": "/interactives/hybrid-ai-engine.html",
   "ai-anomaly-detection": "/interactives/water-consumption-chart.html",
   "statistical-anomaly-detection": "/interactives/statistical-anomaly-detection.html",
@@ -38,7 +43,8 @@ export default async function InfographicPage({
   const info = getDocument("infographics", slug);
   if (!info) notFound();
 
-  const htmlFile = INFOGRAPHIC_FILES[slug];
+  // Prefer CMS-managed interactiveFile, fall back to legacy mapping
+  const htmlFile = (info.data.interactiveFile as string) || LEGACY_FILES[slug];
 
   return (
     <section className="py-24 sm:py-32">

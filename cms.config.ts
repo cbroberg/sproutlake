@@ -73,6 +73,7 @@ export default defineConfig({
         { name: "category", type: "select", label: "Category", options: [{ label: "AI", value: "ai" }, { label: "Technology", value: "technology" }, { label: "Features", value: "features" }] },
         { name: "content", type: "richtext" },
         { name: "htmlContent", type: "htmldoc", label: "Interactive HTML" },
+        { name: "interactiveFile", type: "text", label: "Interactive File (path in /public/interactives/)" },
       ],
     }),
     defineCollection({
