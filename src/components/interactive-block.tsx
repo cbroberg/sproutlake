@@ -9,6 +9,29 @@ interface Props {
   allowFullscreen?: boolean;
 }
 
+function ExpandButton({ onClick }: { onClick: () => void }) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        position: "absolute", top: 0, right: 0,
+        width: 32, height: 32, borderRadius: "0 0.75rem 0 8px",
+        background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
+        border: "none", cursor: "pointer", color: "white",
+        display: "flex", alignItems: "center", justifyContent: "center",
+        transition: "background 150ms",
+      }}
+      onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.8)"; }}
+      onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
+    >
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" />
+        <path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" />
+      </svg>
+    </button>
+  );
+}
+
 export function InteractiveBlock({ interactiveId, caption, scale, allowFullscreen }: Props) {
   const [fullscreen, setFullscreen] = useState(false);
 
@@ -18,8 +41,8 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
   }, [fullscreen]);
-  const src = `/interactives/${interactiveId}.html`;
 
+  const src = `/interactives/${interactiveId}.html`;
   const scaleRaw = scale || 0;
   const isScaled = scaleRaw > 0 && scaleRaw < 100;
   const sc = scaleRaw / 100;
@@ -28,47 +51,27 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
 
   return (
     <div className="my-8">
-      <div style={{ position: "relative", display: "inline-block" }}>
-        {isScaled ? (
-          <div style={{ width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
-            <iframe
-              src={src}
-              title={caption || "Interactive"}
-              style={{ width: VW, height: VH, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
-              sandbox="allow-scripts allow-same-origin"
-            />
-          </div>
-        ) : (
+      {isScaled ? (
+        <div style={{ position: "relative", display: "inline-block", width: VW * sc, height: VH * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
+          <iframe
+            src={src}
+            title={caption || "Interactive"}
+            style={{ width: VW, height: VH, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
+            sandbox="allow-scripts allow-same-origin"
+          />
+          {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
+        </div>
+      ) : (
+        <div style={{ position: "relative" }}>
           <iframe
             src={src}
             title={caption || "Interactive"}
             style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
             sandbox="allow-scripts allow-same-origin"
           />
-        )}
-
-        {/* Fullscreen expand button */}
-        {allowFullscreen && (
-          <button
-            onClick={() => setFullscreen(true)}
-            style={{
-              position: "absolute", top: 0, right: 0,
-              width: 32, height: 32, borderRadius: "8px",
-              background: "rgba(0,0,0,0.6)", backdropFilter: "blur(4px)",
-              border: "none", cursor: "pointer", color: "white",
-              display: "flex", alignItems: "center", justifyContent: "center",
-              transition: "background 150ms",
-            }}
-            onMouseEnter={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.8)"; }}
-            onMouseLeave={(e) => { e.currentTarget.style.background = "rgba(0,0,0,0.6)"; }}
-          >
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-              <path d="M8 3H5a2 2 0 0 0-2 2v3" /><path d="M21 8V5a2 2 0 0 0-2-2h-3" />
-              <path d="M3 16v3a2 2 0 0 0 2 2h3" /><path d="M16 21h3a2 2 0 0 0 2-2v-3" />
-            </svg>
-          </button>
-        )}
-      </div>
+          {allowFullscreen && <ExpandButton onClick={() => setFullscreen(true)} />}
+        </div>
+      )}
 
       {caption && (
         <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{caption}</p>
@@ -100,7 +103,7 @@ export function InteractiveBlock({ interactiveId, caption, scale, allowFullscree
           <iframe
             src={src}
             title={caption || "Interactive"}
-            style={{ width: "88vw", height: "88vh", maxWidth: 1200, border: "none", borderRadius: "0.75rem", boxShadow: "0 0 60px rgba(0,0,0,0.5)", overflow: "hidden" }}
+            style={{ width: "88vw", height: "88vh", maxWidth: 1200, border: "none", borderRadius: "0.75rem", boxShadow: "0 0 60px rgba(0,0,0,0.5)" }}
             scrolling="no"
             sandbox="allow-scripts allow-same-origin"
           />
