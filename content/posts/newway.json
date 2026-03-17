@@ -78,7 +78,8 @@
               "_block": "interactive",
               "interactiveId": "pricing-calculator-with-sliders",
               "caption": "",
-              "scale": "60"
+              "scale": "60",
+              "allowFullscreen": true
             }
           ],
           []
@@ -96,5 +97,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-17T12:15:29.918Z"
+  "updatedAt": "2026-03-17T12:20:16.569Z"
 }
