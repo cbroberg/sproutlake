@@ -44,14 +44,29 @@ function renderBlock(block: Record<string, unknown>, index: number) {
     case "interactive": {
       const intId = block.interactiveId as string;
       if (!intId) return null;
+      const vw = (block.viewportWidth as number) || 1000;
+      const vh = (block.viewportHeight as number) || 800;
+      const sc = ((block.scale as number) || 100) / 100;
+      const isScaled = sc < 1;
       return (
         <div key={index} className="my-8">
-          <iframe
-            src={`/interactives/${intId}.html`}
-            title={block.caption as string || "Interactive"}
-            style={{ width: "100%", minHeight: "600px", border: "none", borderRadius: "0.75rem" }}
-            sandbox="allow-scripts allow-same-origin"
-          />
+          {isScaled ? (
+            <div style={{ width: vw * sc, height: vh * sc, overflow: "hidden", borderRadius: "0.75rem" }}>
+              <iframe
+                src={`/interactives/${intId}.html`}
+                title={block.caption as string || "Interactive"}
+                style={{ width: vw, height: vh, border: "none", transform: `scale(${sc})`, transformOrigin: "top left" }}
+                sandbox="allow-scripts allow-same-origin"
+              />
+            </div>
+          ) : (
+            <iframe
+              src={`/interactives/${intId}.html`}
+              title={block.caption as string || "Interactive"}
+              style={{ width: "100%", minHeight: `${vh}px`, border: "none", borderRadius: "0.75rem" }}
+              sandbox="allow-scripts allow-same-origin"
+            />
+          )}
           {block.caption && (
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</p>
           )}
