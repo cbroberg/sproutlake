@@ -2,7 +2,7 @@
   "id": "fno0G-OY6-rGZnQBK4UPe",
   "slug": "future",
   "collection": "pages",
-  "status": "published",
+  "status": "expired",
   "data": {
     "title": "Future",
     "_lastEditedBy": {
@@ -15,6 +15,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-18T13:47:15.954Z",
-  "updatedAt": "2026-03-18T14:50:32.273Z",
-  "unpublishAt": "2026-03-18T15:52:00"
+  "updatedAt": "2026-03-18T14:52:51.230Z"
 }
