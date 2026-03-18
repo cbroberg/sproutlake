@@ -2,7 +2,7 @@
   "id": "sl-post-intro",
   "slug": "introducing-sproutlake",
   "collection": "posts",
-  "status": "published",
+  "status": "draft",
   "data": {
     "title": "Introducing SproutLake: From Data to Decisions",
     "excerpt": "SproutLake is a new AI-powered IoT platform designed to transform how farmers manage their operations. A joint venture between Senti and Comadan A/S, we are building the future of precision farming.",
@@ -15,9 +15,15 @@
       "farming",
       "ai"
     ],
-    "category": "company"
+    "category": "company",
+    "_lastEditedBy": {
+      "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
+      "name": "Christian Broberg",
+      "email": "cb@webhouse.dk",
+      "at": "2026-03-18T14:43:55.498Z"
+    }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T12:06:00.000Z",
-  "updatedAt": "2026-03-15T12:06:00.000Z"
+  "updatedAt": "2026-03-18T14:43:57.441Z"
 }
