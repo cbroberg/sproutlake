@@ -4,9 +4,16 @@
   "collection": "pages",
   "status": "draft",
   "data": {
-    "title": "Future"
+    "title": "Future",
+    "_lastEditedBy": {
+      "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
+      "name": "Christian Broberg",
+      "email": "cb@webhouse.dk",
+      "at": "2026-03-18T13:49:09.270Z"
+    }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-18T13:47:15.954Z",
-  "updatedAt": "2026-03-18T13:47:15.954Z"
+  "updatedAt": "2026-03-18T13:49:10.784Z",
+  "publishAt": "2026-03-18T15:00:00"
 }
