@@ -9,12 +9,13 @@
       "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
       "name": "Christian Broberg",
       "email": "cb@webhouse.dk",
-      "at": "2026-03-18T13:50:49.838Z"
+      "at": "2026-03-18T14:06:19.201Z"
     },
     "slug": "future"
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-18T13:47:15.954Z",
-  "updatedAt": "2026-03-18T14:00:39.953Z",
-  "publishAt": "2026-03-18T15:00:00"
+  "updatedAt": "2026-03-18T14:06:20.638Z",
+  "publishAt": "2026-03-18T15:00:00",
+  "unpublishAt": "2026-03-18T15:10:00"
 }
