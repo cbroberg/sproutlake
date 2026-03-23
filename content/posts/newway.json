@@ -80,7 +80,7 @@
           [
             {
               "_block": "richtext",
-              "content": ""
+              "content": "Dette her dur ikke!"
             }
           ]
         ],
@@ -105,10 +105,10 @@
       "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
       "name": "Christian Broberg",
       "email": "cb@webhouse.dk",
-      "at": "2026-03-23T20:56:05.447Z"
+      "at": "2026-03-23T20:58:20.695Z"
     }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-23T20:56:08.555Z"
+  "updatedAt": "2026-03-23T20:58:23.332Z"
 }
