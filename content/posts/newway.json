@@ -77,7 +77,12 @@
               "allowFullscreen": true
             }
           ],
-          []
+          [
+            {
+              "_block": "richtext",
+              "content": "> [!INFO]\n> Type your note here…\n"
+            }
+          ]
         ],
         "label": "Next column"
       },
@@ -100,10 +105,10 @@
       "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
       "name": "Christian Broberg",
       "email": "cb@webhouse.dk",
-      "at": "2026-03-23T20:19:56.002Z"
+      "at": "2026-03-23T20:36:53.582Z"
     }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-16T21:39:12.561Z",
-  "updatedAt": "2026-03-23T20:19:58.718Z"
+  "updatedAt": "2026-03-23T20:36:56.219Z"
 }
