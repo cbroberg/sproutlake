@@ -2,7 +2,7 @@
   "id": "UGBwU-AMX1OXvrO04hZ5W",
   "slug": "scheduled-post",
   "collection": "posts",
-  "status": "draft",
+  "status": "published",
   "data": {
     "title": "Scheduled post",
     "date": "2026-03-17",
@@ -16,6 +16,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-17T21:35:35.921Z",
-  "updatedAt": "2026-03-17T21:59:12.230Z",
-  "publishAt": "2026-03-26T21:59:00.000Z"
+  "updatedAt": "2026-03-26T21:59:24.524Z"
 }
