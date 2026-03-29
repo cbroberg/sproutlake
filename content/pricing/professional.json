@@ -20,8 +20,14 @@
     ],
     "highlighted": true,
     "addons": [
-      { "name": "Proactive Health Forecaster", "price": "2,400 DKK/year" },
-      { "name": "Additional barn sensors", "price": "600 DKK/sensor/year" }
+      {
+        "name": "Proactive Health Forecaster",
+        "price": "2,400 DKK/year"
+      },
+      {
+        "name": "Additional barn sensors",
+        "price": "600 DKK/sensor/year"
+      }
     ]
   },
   "_fieldMeta": {},
