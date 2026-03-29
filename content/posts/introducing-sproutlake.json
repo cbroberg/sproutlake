@@ -4,7 +4,7 @@
   "collection": "posts",
   "status": "published",
   "data": {
-    "title": "Introducing SproutLake: From Data to Decisions",
+    "title": "CHANGED BY RESTORE TEST — This Should Be Reverted",
     "excerpt": "SproutLake is a new AI-powered IoT platform designed to transform how farmers manage their operations. A joint venture between Senti and Comadan A/S, we are building the future of precision farming.",
     "content": "We are excited to introduce SproutLake — an intelligent, AI-driven platform that transforms your farm's critical data into a source of clarity, confidence, and measurable growth.\n\n## The Problem We Solve\n\nManaging a modern farm is more complex than ever. You can't be everywhere at once, and small issues can quickly turn into costly problems. From time-consuming manual checks to unexpected animal health issues, rising energy costs, and decisions based on guesswork — the challenges are real.\n\n## Our Solution\n\nSproutLake bridges the gap between your animals, your equipment, and you. Our network of durable IoT sensors monitors your operations 24/7 and delivers clear, actionable insights directly to your phone, tablet, or computer.\n\nThe platform combines rugged hardware with cutting-edge AI to provide:\n\n- 24/7 Farrowing Monitoring with real-time alerts\n- Environmental sensors for temperature, humidity, and air quality\n- A centralized data platform accessible from any device\n- Advanced analytics and reporting for long-term trend analysis\n- AI-Powered Anomaly Detection\n- Natural Language Reporting\n\n## A Joint Venture\n\nSproutLake is a proud joint venture between leaders in agricultural IoT hardware and enterprise cloud software. We've combined decades of experience in building durable, reliable farm technology with cutting-edge data analytics to create a single, powerful platform built for the future of agriculture.\n\nOur mission: To empower farmers across the globe with robust, intuitive technology, leading to more productive, sustainable, and profitable operations for generations to come.",
     "date": "2025-06-01T08:00:00.000Z",
@@ -20,10 +20,10 @@
       "userId": "fb4eda6a-bc5c-4dec-8cb6-c77c9fb74cd9",
       "name": "Christian Broberg",
       "email": "cb@webhouse.dk",
-      "at": "2026-03-29T21:54:30.685Z"
+      "at": "2026-03-29T21:54:57.319Z"
     }
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T12:06:00.000Z",
-  "updatedAt": "2026-03-29T21:54:32.332Z"
+  "updatedAt": "2026-03-29T21:54:59.034Z"
 }
