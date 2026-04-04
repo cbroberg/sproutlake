@@ -2,7 +2,7 @@
   "id": "bchi6Z964zc3KQ5L5AwS1",
   "slug": "live-refresh-again",
   "collection": "posts",
-  "status": "published",
+  "status": "expired",
   "data": {
     "title": "Live Refresh",
     "date": "2026-03-15",
@@ -19,6 +19,5 @@
   },
   "_fieldMeta": {},
   "createdAt": "2026-03-15T23:07:56.567Z",
-  "updatedAt": "2026-03-18T17:01:44.998Z",
-  "unpublishAt": "2026-04-04T18:00:00"
+  "updatedAt": "2026-04-04T16:00:17.192Z"
 }
