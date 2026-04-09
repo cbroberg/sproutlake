@@ -65,7 +65,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
             alt={block.alt as string || ""}
             className="w-full rounded-lg"
           />
-          {block.caption && (
+          {(block.caption as string) && (
             <figcaption className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</figcaption>
           )}
         </figure>
@@ -111,7 +111,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
           ) : videoUrl ? (
             <video controls src={videoUrl} className="w-full rounded-lg" preload="metadata" />
           ) : null}
-          {block.caption && (
+          {(block.caption as string) && (
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</p>
           )}
         </div>
@@ -124,7 +124,7 @@ function renderBlock(block: Record<string, unknown>, index: number) {
           {audioUrl && (
             <audio controls src={audioUrl} className="w-full" preload="metadata" />
           )}
-          {block.caption && (
+          {(block.caption as string) && (
             <p className="text-sm text-gray-500 dark:text-gray-400 mt-2 text-center">{block.caption as string}</p>
           )}
         </div>

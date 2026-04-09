@@ -46,7 +46,7 @@ export default async function PodcastPage({ params }: Props) {
         </div>
 
         {/* Audio player */}
-        {ep.data.audioFile && (
+        {(ep.data.audioFile as string) && (
           <div className="mt-8 bg-gray-50 dark:bg-[#141414] border border-gray-200 dark:border-white/10 rounded-xl p-6">
             <audio
               controls
@@ -69,7 +69,7 @@ export default async function PodcastPage({ params }: Props) {
         )}
 
         {/* Transcript */}
-        {ep.data.transcript && (
+        {(ep.data.transcript as string) && (
           <div className="mt-12">
             <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">Transcript</h2>
             <div
